@@ -9,12 +9,71 @@
 			<param name="ConversionPattern" value="%-5p: %c - %m%n" />
 		</layout>
 	</appender>
+		<!-- 
+	# log4jdbc settings development production
+	jdbc.connection     :     WARN       WARN
+	jdbc.audit          :     WARN       WARN
+	jdbc.sqlonly        :     WARN       WARN
+	jdbc.sqltiming      :     INFO       WARN
+	jdbc.resultset      :     WARN       WARN
+	jdbc.resultsettable :     INFO       WARN
+	-->
 	
+	<logger name="jdbc.connection" additivity="false">
+	    <level value="WARN"/>
+	    <appender-ref ref="console"/>
+	</logger>
+	
+	<logger name="jdbc.audit" additivity="false">
+	    <level value="WARN"/>
+	    <appender-ref ref="console"/>
+	</logger>
+	
+	<logger name="jdbc.sqlonly" additivity="false">
+	    <level value="WARN"/>
+	    <appender-ref ref="console"/>
+	</logger>
+	
+	<logger name="jdbc.sqltiming" additivity="false">
+	    <level value="INFO"/>
+	    <appender-ref ref="console"/>
+	</logger>
+	
+	<logger name="jdbc.resultset" additivity="false">
+	    <level value="WARN"/>
+	    <appender-ref ref="console"/>
+	</logger>
+	
+	<logger name="jdbc.resultsettable" additivity="false">
+	    <level value="INFO"/>
+	    <appender-ref ref="console"/>
+	</logger>
 	<!-- Application Loggers -->
-	<logger name="test.test.test">
+	<logger name="mplanweb.music.web">
+		<level value="info" />
+	</logger>
+	<logger name="mplanweb.music.web.admin">
+		<level value="info" />
+	</logger>
+	<logger name="mplanweb.music.web.board">
 		<level value="info" />
 	</logger>
 	
+	<logger name="mplanweb.music.web.etc">
+		<level value="info" />
+	</logger>
+	<logger name="mplanweb.music.web.uploadtest">
+		<level value="info" />
+	</logger>
+	<logger name="mplanweb.music.web.search">
+		<level value="info" />
+	</logger>
+	<logger name="mplanweb.music.web.source">
+		<level value="info" />
+	</logger>
+	<logger name="mplanweb.music.web.member">
+		<level value="info" />
+	</logger>
 	<!-- 3rdparty Loggers -->
 	<logger name="org.springframework.core">
 		<level value="info" />

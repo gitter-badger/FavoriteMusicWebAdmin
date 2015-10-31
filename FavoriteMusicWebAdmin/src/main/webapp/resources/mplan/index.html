@@ -1,0 +1,71 @@
+<!doctype html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=euc-kr" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<link rel="stylesheet" href="style.css">
+<style type="text/css">
+body {
+	background-color: #FFFFFF;
+}
+</style>
+<script
+	src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+<script src="js/index.js"></script>
+<title>Favorite Music Admin Page</title>
+</head>
+
+<!-- login -->
+<script type="text/javascript">
+	function login() {
+		var user_id = document.login.userid.value;
+		var passwd = document.login.passwd.value;
+		if (user_id == "" || user_id == null) {
+			alert("아이디를 다시 입력해 주세요");
+			login.getElementById("userid").focus();
+		} else if (passwd == "" || passwd == null) {
+			alert("비밀번호 다시 입력해 주세요");
+			login3.getElementById("passwd").focus();
+		} else {
+			alert("완료");
+			document.login.action="login";
+			//doument.login3.action = "./board?action=write.ui";
+			document.login.submit();
+		}
+	}
+</script>
+<!--  video/195550.mp4 -->
+<!-- Video -->
+<body>
+<div id="polina" align="center">
+  <h1>Favorite! Music Admin</h1>
+  <form action="login" method="post">
+    <div class="id">
+      <input type="text" name="userid" id="userid"
+					placeholder="M!Plan 계정 (아이디)">
+    </div>
+    <div class="pass">
+      <input type="password" name="passwd" id="passwd" placeholder="비밀번호">
+    </div>
+    <div class="checkbox">
+      <input type="checkbox" name="checkbox" id="checkbox">
+      <label
+					for="checkbox">로그인 상태 유지</label>
+    </div>
+    <div class="button">
+      <input type="submit" value="로그인" class="button" />
+    </div>
+    <div class="info"><a class="idsearch" href="#" target="_blank">M!Plan 계정찾기</a><a
+					class="passsearch" href="#" target="_blank">M!Plan 비밀번호찾기</a></div>
+    <p>ⓒ M!Plan Project 1997~2015</p>
+    <p>ⓒ VM! Contents Labs 2009~2015</p>
+  </form>
+</div>
+<!--
+<video id="movie" poster="ittank.png" preload="auto" controls muted autoplay loop >
+  <source src="video/187711/.mp4" type="video/mp4">
+</video>
+-->
+
+</body>
+</html>

@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="Listmusic">
+	<select id="listcount" resultType="int" parameterType="Listsearch">
+		SELECT COUNT(*)
+		FROM mplan_music
+		<where>
+			<if test="@Ognl@isNotEmpty(searchText)">
+				AND ${searchColumn} LIKE CONCAT('%',#{searchText},'%')
+			</if>
+		</where>
+	</select>
+	<select id="listresult" resultType="Listview" parameterType="Listsearch">
+		SELECT mp_mpnum, mp_artist, mp_title, mp_album, mp_year, mp_useyn,
+		mp_imgo,
+		mp_insert_date, mp_320ko, mp_192ko
+		FROM mplan_music
+		<where>
+			<if test="@Ognl@isNotEmpty(searchText)">
+				AND ${searchColumn} LIKE CONCAT('%',#{searchText},'%')
+			</if>
+		</where>
+		ORDER BY mp_insert_date DESC LIMIT #{start}, #{limit}
+	</select>
+
+	<select id="kpoplistresult" resultType="Listview" parameterType="Listsearch">
+		SELECT mp_mpnum, mp_artist, mp_title, mp_album, mp_year, mp_useyn,
+		mp_imgo,
+		mp_insert_date
+		FROM mplan_music
+		<where>
+			<if test="@Ognl@isNotEmpty(searchText)">
+				AND ${searchColumn} = #{searchText}
+			</if>
+		</where>
+		ORDER BY mp_insert_date DESC LIMIT #{start}, #{limit}
+	</select>
+
+	<select id="poplistresult" resultType="Listview" parameterType="Listsearch">
+		SELECT mp_mpnum, mp_artist, mp_title, mp_album, mp_year, mp_useyn,
+		mp_imgo,
+		mp_insert_date
+		FROM mplan_music
+	<where>
+			<if test="@Ognl@isNotEmpty(searchText)">
+			AND ${searchColumn} = #{searchText}
+			</if>
+		</where>
+		ORDER BY mp_insert_date DESC LIMIT #{start}, #{limit}
+	</select>
+
+
+	<select id="ostlistresult" resultType="Listview" parameterType="Listsearch">
+		SELECT mp_mpnum, mp_artist, mp_title, mp_album, mp_year, mp_useyn,
+		mp_imgo,
+		mp_insert_date
+		FROM mplan_music
+		<where>
+			<if test="@Ognl@isNotEmpty(searchText)">
+			AND ${searchColumn} = #{searchText}
+			</if>
+		</where>
+		ORDER BY mp_insert_date DESC LIMIT #{start}, #{limit}
+	</select>
+
+	<select id="jpoplistresult" resultType="Listview" parameterType="Listsearch">
+		SELECT mp_mpnum, mp_artist, mp_title, mp_album, mp_year, mp_useyn,
+		mp_imgo,
+		mp_insert_date
+		FROM mplan_music
+		<where>
+			<if test="@Ognl@isNotEmpty(searchText)">
+			AND ${searchColumn} = #{searchText}
+			</if>
+		</where>
+		ORDER BY mp_insert_date DESC LIMIT #{start}, #{limit}
+	</select>
+
+	<select id="radiolistresult" resultType="Listview"
+		parameterType="Listsearch">
+		SELECT mp_mpnum, mp_artist, mp_title, mp_album, mp_year, mp_useyn,
+		mp_imgo,
+		mp_insert_date
+		FROM mplan_music
+		<where>
+			<if test="@Ognl@isNotEmpty(searchText)">
+				AND ${searchColumn} = #{searchText}
+			</if>
+		</where>
+		ORDER BY mp_insert_date DESC LIMIT #{start}, #{limit}
+	</select>
+</mapper>
+	
+	
