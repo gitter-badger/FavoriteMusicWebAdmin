@@ -2,6 +2,7 @@
 	pageEncoding="EUC-KR"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ page session="false"%>
+<%@ page import="java.util.*"%>
 <!doctype html>
 <html>
 <head>
@@ -10,7 +11,7 @@
 <link rel="stylesheet" href="resources/mplan/css/style.css">
 <script
 	src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
-<script src="resources/mplan/js/index.js"></script>
+<script src="<%=request.getContextPath()%>/resources/mplan/js/index.js"></script>
 <title>Favorite Music Admin Page</title>
 </head>
 <!-- login -->
@@ -32,14 +33,16 @@
 </script>
 <!--  video/195550.mp4 -->
 <!-- Video -->
+<% Random r = new Random();
+int num = r.nextInt(13); %>
 <video id="movie" poster="/movie/music.png" preload="auto" autoplay loop autobuffer muted style="width: 1270px; height: 714px; display: inline; margin-left: 0px;" >
-	<source src="/movie/4.mp4" type="video/mp4">
+	<source src="/movie/<%=num%>.mp4" type="video/mp4">
 </video>
 
 <body>
 	<div id="polina">
 		<h1>M!Plan Media Admin Page</h1>
-		<form name="login3" action="j_spring_security_check" method="post">
+		<form name="login3" action="/test/main" method="get">
 			<div class="id">
 				<input type="text" name="j_username" id="userid"
 					placeholder="M!Plan 계정 (아이디)">

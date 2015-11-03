@@ -19,36 +19,36 @@
 <meta name="viewport" content="width=device-width">
 
 <link
-	href="/web/resources/bower_components/bootstrap/dist/css/bootstrap.min.css"
+	href="<%=request.getContextPath()%>/resources/bower_components/bootstrap/dist/css/bootstrap.min.css"
 	rel="stylesheet">
 <link
-	href="/web/resources/bower_components/bootstrap-select/bootstrap-select.min.css"
+	href="<%=request.getContextPath()%>/resources/bower_components/bootstrap-select/bootstrap-select.min.css"
 	rel="stylesheet">
 <link
-	href="/web/resources/bower_components/bootstrapValidator/dist/css/bootstrapValidator.min.css"
+	href="<%=request.getContextPath()%>/resources/bower_components/bootstrapValidator/dist/css/bootstrapValidator.min.css"
 	rel="stylesheet">
 	
 	
 	
 	
-<script src="/web/resources/bower_components/jquery/jquery.min.js"></script>
-<script src="/web/resources/js/jquery/jquery.form.min.js"></script>
+<script src="<%=request.getContextPath()%>/resources/bower_components/jquery/jquery.min.js"></script>
+<script src="<%=request.getContextPath()%>/resources/js/jquery/jquery.form.min.js"></script>
 <!-- jQuery MultiFile Plugin import -->
-<script src="/web/resources/js/jquery/jQuery.MultiFile.min.js"></script>
+<script src="<%=request.getContextPath()%>/resources/js/jquery/jQuery.MultiFile.min.js"></script>
 <script
-	src="/web/resources/bower_components/bootstrap-select/bootstrap-select.min.js"></script>
+	src="<%=request.getContextPath()%>/resources/bower_components/bootstrap-select/bootstrap-select.min.js"></script>
 <script
-	src="/web/resources/bower_components/bootstrap-paginator/build/bootstrap-paginator.min.js"></script>
+	src="<%=request.getContextPath()%>/resources/bower_components/bootstrap-paginator/build/bootstrap-paginator.min.js"></script>
 <script
-	src="/web/resources/bower_components/bootstrapValidator/dist/js/bootstrapValidator.min.js"></script>
+	src="<%=request.getContextPath()%>/resources/bower_components/bootstrapValidator/dist/js/bootstrapValidator.min.js"></script>
 
 
 
-	<script src="/web/resources/admin/_Shared/js/lib/jquery-1.7.2.js"></script>
+	<script src="<%=request.getContextPath()%>/resources/admin/_Shared/js/lib/jquery-1.7.2.js"></script>
 	<script
-		src="/web/resources/admin/_Shared/bootstrap/js/libs/bootstrap/bootstrap.min.js"></script>
-	<script src="/web/resources/admin/_Shared/bootstrap/js/plugins.js"></script>
-	<script src="/web/resources/admin/_Shared/bootstrap/js/script.js"></script>
+		src="<%=request.getContextPath()%>/resources/admin/_Shared/bootstrap/js/libs/bootstrap/bootstrap.min.js"></script>
+	<script src="<%=request.getContextPath()%>/resources/admin/_Shared/bootstrap/js/plugins.js"></script>
+	<script src="<%=request.getContextPath()%>/resources/admin/_Shared/bootstrap/js/script.js"></script>
 	<script src="http://code.jquery.com/ui/1.8.22/jquery-ui.min.js"></script>
 
 
@@ -58,9 +58,9 @@
 
 
 <link rel="stylesheet"
-	href="/web/resources/admin/_Shared/bootstrap/css/bootstrap.min.css">
+	href="<%=request.getContextPath()%>/resources/admin/_Shared/bootstrap/css/bootstrap.min.css">
 <link rel="stylesheet"
-	href="/web/resources/admin/css/jqueryui/jquery-ui-1.8.22.custom.css">
+	href="<%=request.getContextPath()%>/resources/admin/css/jqueryui/jquery-ui-1.8.22.custom.css">
 <style>
 body {
 	padding-top: 60px;
@@ -69,9 +69,9 @@ body {
 }
 </style>
 <link rel="stylesheet"
-	href="/web/resources/admin/_Shared/bootstrap/css/bootstrap-responsive.min.css">
+	href="<%=request.getContextPath()%>/resources/admin/_Shared/bootstrap/css/bootstrap-responsive.min.css">
 <link rel="stylesheet"
-	href="/web/resources/admin/_Shared/bootstrap/css/style.css">
+	href="<%=request.getContextPath()%>/resources/admin/_Shared/bootstrap/css/style.css">
 
 <!--[if lt IE 9]>
   <script src="js/libs/html5-3.4-respond-1.1.0.min.js"></script>
