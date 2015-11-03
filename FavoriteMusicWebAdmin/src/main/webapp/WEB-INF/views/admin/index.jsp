@@ -32,13 +32,13 @@
 </script>
 <!--  video/195550.mp4 -->
 <!-- Video -->
-<video id="movie" poster="ittank.png" preload="auto" autoplay loop>
-	<source src="/movie/231030.mp4" type="video/mp4">
+<video id="movie" poster="/movie/music.png" preload="auto" autoplay loop autobuffer muted style="width: 1270px; height: 714px; display: inline; margin-left: 0px;" >
+	<source src="/movie/4.mp4" type="video/mp4">
 </video>
 
 <body>
 	<div id="polina">
-		<h1>VM! Sound Admin Login</h1>
+		<h1>M!Plan Media Admin Page</h1>
 		<form name="login3" action="j_spring_security_check" method="post">
 			<div class="id">
 				<input type="text" name="j_username" id="userid"
@@ -61,8 +61,8 @@
 				<a class="idsearch" href="#" target="_blank">M!Plan 계정찾기</a> <a
 					class="passsearch" href="#" target="_blank">M!Plan 비밀번호찾기</a>
 			</div>
-			<p>ⓒ M!Plan Project 1997~2015</p>
-			<p>ⓒ VM! Contents Labs 2009~2015</p>
+			<p>ⓒ M!Plan Lab! 1997~2015</p>
+			<p>ⓒ VM! Media Contents Labs 2009~2015</p>
 		</form>
 	</div>
 </body>

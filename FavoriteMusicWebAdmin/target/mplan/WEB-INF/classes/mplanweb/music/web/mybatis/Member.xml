@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="mplanweb.music.web.member.Membermapper">
+
+	<insert id="insert" parameterType="member">
+		INSERT INTO mplan_member
+		(mp_userid, mp_pwd, mp_name, mp_nickname, mp_email,
+		mp_email_useyn,
+		mp_mobile, mp_mailaddress, mp_houseaddress,
+		mp_etcaddress, mp_insert,
+		mp_useyn)
+		VALUES
+		({#mp_userid}, {#mp_pwd}, {#mp_name}, {#mp_nickname},
+		{#mp_email}, {#mp_email_useyn}, {#mp_mobile}, {#mp_mailaddress},
+		{#mp_houseaddress}, {#mp_etcaddress}, now(), 'Y')
+	</insert>
+
+
+	<insert id="insertAuthority">
+		INSERT INTO mplan_auth VALUES (#{mp_userid}, #{authority})
+	</insert>
+
+	<select id="login" resultType="member">
+		SELECT mp_userid, mp_pwd, mp_name, mp_mobile FROM mplan_member
+		WHERE mp_userid = #{mp_userid} AND mp_pwd = #{mp_pwd}
+	</select>
+
+	<update id="update" parameterType="member">
+		UPDATE mplan_member SET mp_name = #{mp_name}, mp_mobile = #{mp_mobile}
+		WHERE mp_userid = #{mp_userid} AND mp_pwd = #{mp_pwd}
+	</update>
+
+	<update id="updatePasswd">
+		UPDATE mplan_member SET mp_pwd = #{newPasswd}
+		WHERE mp_pwd = #{currentPasswd} AND mp_userid = #{mp_userid}
+	</update>
+
+	<delete id="delete">
+		DELETE FROM mplan_member
+		WHERE mp_userid = #{mp_userid}
+	</delete>
+
+	<delete id="deleteAuthority">
+		DELETE FROM mplan_auth
+		WHERE mp_userid = #{mp_userid}
+	</delete>
+
+	<select id="selectOne" parameterType="string" resultType="member">
+		SELECT mp_userid, mp_pwd, mp_name, mp_mobile
+		FROM mplan_member
+		WHERE mp_userid = #{mp_userid}
+	</select>
+</mapper>    
