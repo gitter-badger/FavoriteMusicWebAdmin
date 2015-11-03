@@ -23,7 +23,7 @@
 </div>
 <div class="container-fluid">
 <div id="footer">
-	<%@ include file="../../mplan/ssview.jsp"%>
+
 </div>
 </div>
 <div id="footer">

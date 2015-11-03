@@ -8,7 +8,7 @@
 		<setting name="cacheEnabled" value="true" />
 		<setting name="useGeneratedKeys" value="false" />
 	</settings>
-
+<!-- 
 	<typeAliases>
 		<typeAlias type="mplanweb.music.web.admin" alias="admin" />
 		<typeAlias type="mplanweb.music.web.board.Board" alias="Board" />
@@ -19,5 +19,5 @@
 		<mapper resource="/WEB-INF/spring/mapper/AdminMemberMapper.xml" />
 		<mapper resource="/WEB-INF/spring/mapper/Board.xml" />
 	</mappers>
-
+ -->
 </configuration>

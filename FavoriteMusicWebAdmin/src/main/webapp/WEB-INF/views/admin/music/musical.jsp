@@ -23,7 +23,9 @@
 </div>
 <div class="container-fluid">
 <div id="center">
-	<%@ include file="../../mplan/album.jsp"%>
+
+
+
 </div>
 </div>
 <div id="footer">
