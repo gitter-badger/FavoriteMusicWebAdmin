@@ -9,7 +9,7 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.UUID;
 
-import mplanweb.music.web.admin.WebController;
+
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -35,7 +35,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
  */
 
 @Controller
-@RequestMapping("/source")
+//@RequestMapping("/source")
 public class MusicController {
 
 	/*
