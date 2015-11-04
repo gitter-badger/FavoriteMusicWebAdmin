@@ -61,20 +61,19 @@
 	<div class="wrapper">
 
 		<!-- Main Header -->
-		<header class="main-header"> <!-- Logo --> <a
-			href="<%=request.getContextPath()%>/main" class="logo"> <!-- mini logo for sidebar mini 50x50 pixels -->
-			<span class="logo-mini">MP</span> <!-- logo for regular state and mobile devices -->
+		<header class="main-header"> <!-- Logo --> <a href="<%=request.getContextPath()%>/main"
+			class="logo"> <!-- mini logo for sidebar mini 50x50 pixels --> <span
+			class="logo-mini">MP</span> <!-- logo for regular state and mobile devices -->
 			<span class="logo-lg">Favorite Music</span>
 		</a> <!-- Header Navbar --> <nav class="navbar navbar-static-top"
 			role="navigation"> <!-- Sidebar toggle button--> <!-- Navbar Right Menu -->
-		<a href="#" class="sidebar-toggle" data-toggle="offcanvas"
-			role="button"> <span class="sr-only">메뉴숨기기</span>
-		</a>
+			  <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button"> <span class="sr-only">메뉴숨기기</span> </a> 
 		<div class="navbar-custom-menu">
 			<ul class="nav navbar-nav">
 				<!-- User Account Menu -->
 				<li class="dropdown user user-menu">
-					<!-- Menu Toggle Button --> <a href="#" class="dropdown-toggle"
+					<!-- Menu Toggle Button --> 
+					<a href="#" class="dropdown-toggle"
 					data-toggle="dropdown"> <!-- The user image in the navbar--> <img
 						src="<%=request.getContextPath()%>/resources/dist/img/user2-160x160.jpg"
 						class="user-image" alt="User Image" /> <!-- hidden-xs hides the username on small devices so only the image appears. -->
@@ -119,7 +118,7 @@
 		<ul class="sidebar-menu">
 			<li class="header">메뉴</li>
 			<!-- Optionally, you can add icons to the links -->
-			<li class="active"><a href="#"><i class='fa fa-link'></i> <span>메인(Main)</span></a></li>
+			<li><a href="<%=request.getContextPath()%>/main"><i class='fa fa-link'></i> <span>메인(Main)</span></a></li>
 			<li class="treeview"><a href="#"><i class='fa fa-users'></i>
 					<span>회원관리(Member)</span> <i class="fa fa-angle-left pull-right"></i></a>
 				<ul class="treeview-menu">
@@ -137,7 +136,7 @@
 					<li><a href="#">제작사 등록</a></li>
 					<li><a href="#">회사 정보</a></li>
 				</ul></li>
-			<li class="treeview"><a href="#"><i class='fa fa-music'></i>
+			<li class="treeview active"><a href="#"><i class='fa fa-music'></i>
 					<span>콘텐츠등록(Contents)</span> <i class="fa fa-angle-left pull-right"></i></a>
 				<ul class="treeview-menu">
 					<li><a href="<%=request.getContextPath()%>/lable">레이블관리</a></li>
@@ -204,64 +203,20 @@
 			<!-- Content Header (Page header) -->
 			<section class="content-header">
 			<h1>
-				Favorite Music <small>DashBoard Version 0.1</small>
+				Favorite Music <small>뮤직비디오관리</small>
 			</h1>
 			<ol class="breadcrumb">
-				<li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-				<!--
-        <li class="active"></li>
-        -->
+				<li><a href="<%=request.getContextPath()%>/main"><i class="fa fa-dashboard"></i> Home</a></li>
+				
+        <li class="active">뮤직비디오관리</li>
+       
 			</ol>
 			</section>
 
 			<!-- Main content -->
 			<section class="content">
 			<div class="infomation">
-				<div class="col-md-3 col-sm-6 col-xs-12">
-					<div class="info-box">
-						<span class="info-box-icon bg-aqua"><em class="fa fa-music"></em></span>
-						<div class="info-box-content">
-							<span class="info-box-text">음원보유수</span> <span
-								class="info-box-number">${musictotal }곡</span>
-						</div>
-						<!-- /.info-box-content -->
-					</div>
-					<!-- /.info-box -->
-				</div>
-				<div class="col-md-3 col-sm-6 col-xs-12">
-					<div class="info-box">
-						<span class="info-box-icon bg-red"><i
-							class="fa fa-play-circle"></i></span>
-						<div class="info-box-content">
-							<span class="info-box-text">라디오 채널수</span> <span
-								class="info-box-number">${radiototal}채널</span>
-						</div>
-						<!-- /.info-box-content -->
-					</div>
-					<!-- /.info-box -->
-				</div>
-				<div class="col-md-3 col-sm-6 col-xs-12">
-					<div class="info-box">
-						<span class="info-box-icon bg-green"><i
-							class="fa fa-cloud-upload"></i></span>
-						<div class="info-box-content">
-							<span class="info-box-text">오늘 등록된 음원수</span> <span
-								class="info-box-number">${todaymusictotal }곡</span>
-						</div>
-						<!-- /.info-box-content -->
-					</div>
-					<!-- /.info-box -->
-				</div>
-				<div class="col-md-3 col-sm-6 col-xs-12">
-					<div class="info-box">
-						<span class="info-box-icon bg-yellow"><i
-							class="fa  fa-users"></i></span>
-						<div class="info-box-content">
-							<span class="info-box-text">총 유저수</span> <span
-								class="info-box-number">${membertotal }명</span>
-						</div>
-					</div>
-				</div>
+
 			</div>
 			</section>
 		</div>

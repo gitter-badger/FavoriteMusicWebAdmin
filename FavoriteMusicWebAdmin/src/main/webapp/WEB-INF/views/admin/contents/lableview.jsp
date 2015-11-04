@@ -35,11 +35,6 @@
 </head>
 <body>
 	<div class="container-fluid">
-		<div class="page-header">
-			<h1>
-				<small>Favorite Music 회사관리</small>
-			</h1>
-		</div>
 		<div class="row">
 			<div class="col-md-12">
 				<div class="panel panel-default">

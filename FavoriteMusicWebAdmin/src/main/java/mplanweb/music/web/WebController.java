@@ -46,35 +46,35 @@ public class WebController {
 	public String Lable(Locale locale, Model model) {
 		logger.info("MainPage ==> LablePage : ", locale);
 
-		return "/admin/contents/lableview";
+		return "/admin/contents/lable";
 	}
 	// Artist main page
 	@RequestMapping(value = "/artist", method = RequestMethod.GET)
 	public String Artist(Locale locale, Model model) {
 		logger.info("MainPage ==> ArtistPage : ", locale);
 
-		return "/admin/contents/artistview";
+		return "/admin/contents/artist";
 	}
 	// Album main page
 	@RequestMapping(value = "/album", method = RequestMethod.GET)
 	public String Album(Locale locale, Model model) {
 		logger.info("MainPage ==> AlbumPage : ", locale);
 
-		return "/admin/contents/albumview";
+		return "/admin/contents/album";
 	}
 	// Music main page
 	@RequestMapping(value = "/music", method = RequestMethod.GET)
 	public String Music(Locale locale, Model model) {
 		logger.info("MainPage ==> MusicPage : ", locale);
 
-		return "/admin/contents/musicview";
+		return "/admin/contents/music";
 	}
 	// MusicVideo main page
 	@RequestMapping(value = "/musicvideo", method = RequestMethod.GET)
 	public String MusicVideo(Locale locale, Model model) {
 		logger.info("MainPage ==> MusicVideoPage : ", locale);
 
-		return "/admin/contents/mvview";
+		return "/admin/contents/musicvideo";
 	}
 	
 }
