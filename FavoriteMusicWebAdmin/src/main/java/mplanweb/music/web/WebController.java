@@ -23,111 +23,58 @@ public class WebController {
 	/**
 	 * Simply selects the home view to render by returning its name.
 	 */
-	// Main Page
+	
+	// index Page
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String Main(Locale locale, Model model) {
-		logger.info("LoginPage ==> MainPage : ", locale);
+		logger.info("Site ==> IndexPage : ", locale);
 		return "/admin/index";
 	}
 	
+	// admin main page
 	@RequestMapping(value = "/main", method = RequestMethod.GET)
 	public String action(Locale locale, Model model) {
-		logger.info("MainPage ==> ??? : ", locale);
+		logger.info("IndexPage ==> MainPage : ", locale);
 
-		return "/admin/music/musical";
+		return "/admin/main/main";
 	}
 	
+	
+	// Contents Page
+	// Lable main page
+	@RequestMapping(value = "/lable", method = RequestMethod.GET)
+	public String Lable(Locale locale, Model model) {
+		logger.info("MainPage ==> LablePage : ", locale);
 
-	// //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	/*
-	 * main =========> ssview =========> /music/ssview.jsp ?Œ?› ê´?ë¦? (View)
-	 * 
-	 * @param Model
-	 * 
-	 * @return /music/ssview
-	 */
-	@RequestMapping(value = "/ssview", method = RequestMethod.GET)
-	public String SsView(Locale locale, Model model) {
-		logger.info("MainPage ==> musicda : " + locale);
-		model.addAttribute("ssearch", new Ssearch());
-		return "/music/soundview";
+		return "/admin/contents/lableview";
 	}
+	// Artist main page
+	@RequestMapping(value = "/artist", method = RequestMethod.GET)
+	public String Artist(Locale locale, Model model) {
+		logger.info("MainPage ==> ArtistPage : ", locale);
 
-	/*
-	 * main =========> corpview =========> /music/corpview.jsp ?šŒ?‚¬ ê´?ë¦? (View)
-	 * 
-	 * @param Model
-	 * 
-	 * @return /music/corpview
-	 */
-	@RequestMapping(value = "/corpview", method = RequestMethod.GET)
-	public String CorpView(Locale locale, Model model) {
-		logger.info("MainPage ==> musicda : " + locale);
-		return "/music/corpview";
+		return "/admin/contents/artistview";
 	}
+	// Album main page
+	@RequestMapping(value = "/album", method = RequestMethod.GET)
+	public String Album(Locale locale, Model model) {
+		logger.info("MainPage ==> AlbumPage : ", locale);
 
-	/*
-	 * main =========> albumview =========> /music/albumview.jsp ?•¨ë²”ê?ë¦? (View)
-	 * 
-	 * @param Model
-	 * 
-	 * @return /music/albumview
-	 */
-	@RequestMapping(value = "/albumview", method = RequestMethod.GET)
-	public String AlbumView(Locale locale, Model model) {
-		logger.info("MainPage ==> musicda : " + locale);
-		return "/music/albumview";
+		return "/admin/contents/albumview";
 	}
+	// Music main page
+	@RequestMapping(value = "/music", method = RequestMethod.GET)
+	public String Music(Locale locale, Model model) {
+		logger.info("MainPage ==> MusicPage : ", locale);
 
-	/*
-	 * main =========> labelview =========> /music/labelview.jsp ? ˆ?´ë¸”ê?ë¦? (View)
-	 * 
-	 * @param Model
-	 * 
-	 * @return /music/labelview
-	 */
-	@RequestMapping(value = "/labelview", method = RequestMethod.GET)
-	public String LabelView(Locale locale, Model model) {
-		logger.info("MainPage ==> musicda : " + locale);
-		return "/music/labelview";
+		return "/admin/contents/musicview";
 	}
+	// MusicVideo main page
+	@RequestMapping(value = "/musicvideo", method = RequestMethod.GET)
+	public String MusicVideo(Locale locale, Model model) {
+		logger.info("MainPage ==> MusicVideoPage : ", locale);
 
-	/*
-	 * main =========> artistview =========> /music/artistview.jsp ?•„?‹°?Š¤?Š¸ ê´?ë¦?
-	 * (View)
-	 * 
-	 * @param Model
-	 * 
-	 * @return /music/artistview
-	 */
-	@RequestMapping(value = "/artistview", method = RequestMethod.GET)
-	public String ArtistView(Locale locale, Model model) {
-		logger.info("MainPage ==> musicda : " + locale);
-		return "/music/artistview";
+		return "/admin/contents/mvview";
 	}
-	/*
-	 * main =========> artistview =========> /music/artistview.jsp ?•„?‹°?Š¤?Š¸ ê´?ë¦?
-	 * (View)
-	 * 
-	 * @param Model
-	 * 
-	 * @return /music/artistview
-	 */
-	@RequestMapping(value = "/radioview", method = RequestMethod.GET)
-	public String RadioView(Locale locale, Model model) {
-		logger.info("MainPage ==> radioview : " + locale);
-		return "/music/radioview";
-	}
-	/*
-	 * main =========> coin =========> /music/coin.jsp ? •?‚° ê´?ë¦? (View)
-	 * 
-	 * @param Model
-	 * 
-	 * @return /music/coin
-	 */
-	@RequestMapping(value = "/coinview", method = RequestMethod.GET)
-	public String CoinView(Locale locale, Model model) {
-		logger.info("MainPage ==> musicda : " + locale);
-		return "/music/coin";
-	}
+	
 }

@@ -12,7 +12,6 @@
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/resources/css/admin.css">
 <script
 	src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
-<script src="<%=request.getContextPath()%>/resources/js/index.js"></script>
 <title>Favorite Music Admin Page</title>
 </head>
 <!-- login -->
