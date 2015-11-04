@@ -42,9 +42,9 @@ int num = r.nextInt(21); %>
 <body>
 	<div id ="box">
   <h1>Favorite Music Admin Page</h1>
-  <form name="login3" action="/test/main" method="get">
-    <input type="text" name="user_id" id="user_id" placeholder="아이디 입력" />
-    <input type="password" name="passwd" id="passwd" placeholder="비밀번호 입력" />
+  <form name="login3" action="j_spring_security_check" method="get">
+    <input type="text" name="j_username" id="userid" placeholder="아이디 입력" />
+    <input type="password" name="j_password" id="passwd" placeholder="비밀번호 입력" />
     <input type="submit" value="로그인" onclick="login()"  />
     
     <!--

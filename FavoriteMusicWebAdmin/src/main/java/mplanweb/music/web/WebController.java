@@ -18,12 +18,19 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-/**
- * Handles requests for the application home page.
+/*
+ * Title : WebController.java
+ * Author : M!Plan
+ * Contents : Controller
+ * 
  */
+
+
 @Controller
 public class WebController {
 
+	
+	// logger
 	private static final Logger logger = LoggerFactory
 			.getLogger(WebController.class);
 

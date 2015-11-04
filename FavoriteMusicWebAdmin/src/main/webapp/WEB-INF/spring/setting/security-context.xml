@@ -3,37 +3,30 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:security="http://www.springframework.org/schema/security"
 	xsi:schemaLocation="http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security.xsd
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
-<!-- 
+
 	<security:http auto-config="true">
-		<security:intercept-url pattern="/main.do" access="ROLE_USER" />
-		<security:form-login login-page="/login.do" default-target-url="/main.do" authentication-failure-url="/loginFail.do" />
+	<!-- security => main.do : ROLE_USER -->
+		<security:intercept-url pattern="/main.do"
+			access="ROLE_USER" />
+		<security:form-login login-page="/login.do"
+			default-target-url="/main.do" authentication-failure-url="/loginFail.do" />
 		<security:logout logout-success-url="/logout.do" />
-		
+
 	</security:http>
 
-auto-config : 
-use-expressions : 
 
-<security:http  auto-config="true" use-expressions="true">
-	<security:intercept-url pattern="" "/>
-
-
-
-</security:http>
- -->
- <!-- 
 	<security:authentication-manager>
 		<security:authentication-provider
 			user-service-ref="memberService" />
 	</security:authentication-manager>
 
-	<bean id="memberService" class="mplanweb.music.web.admin.UserService">
+	<bean id="memberService" class="mplanweb.music.web.login.UserService">
 		<property name="mainDao">
-			<bean class="mplanweb.music.web.admin.MainDaoImpl">
+			<bean class="mplanweb.music.web.login.MainDaoImpl">
 				<property name="sqlSessionFactory" ref="sqlSessionFactory" />
 			</bean>
 		</property>
 	</bean>
- -->
+
 </beans>
 
