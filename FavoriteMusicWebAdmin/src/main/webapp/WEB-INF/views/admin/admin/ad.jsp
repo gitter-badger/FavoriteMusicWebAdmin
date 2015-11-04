@@ -118,22 +118,22 @@
 		<ul class="sidebar-menu">
 			<li class="header">메뉴</li>
 			<!-- Optionally, you can add icons to the links -->
-			<li class="active"><a href="#"><i class='fa fa-link'></i> <span>메인(Main)</span></a></li>
+			<li class="active"><a href="<%=request.getContextPath()%>/main"><i class='fa fa-link'></i> <span>메인(Main)</span></a></li>
 			<li class="treeview"><a href="#"><i class='fa fa-users'></i>
 					<span>회원관리(Member)</span> <i class="fa fa-angle-left pull-right"></i></a>
 				<ul class="treeview-menu">
-					<li><a href="#">관리자 담당 관리</a></li>
-					<li><a href="#">고객사 관리자 관리</a></li>
-					<li><a href="#">일반회원 관리</a></li>
-					<li><a href="#">블랙리스트 관리</a></li>
-					<li><a href="#">일괄회원등록</a></li>
+					<li><a href="<%=request.getContextPath()%>/lable">관리자 담당 관리</a></li>
+					<li><a href="<%=request.getContextPath()%>/lable">고객사 관리자 관리</a></li>
+					<li><a href="<%=request.getContextPath()%>/lable">일반회원 관리</a></li>
+					<li><a href="<%=request.getContextPath()%>/lable">블랙리스트 관리</a></li>
+					<li><a href="<%=request.getContextPath()%>/lable">일괄회원등록</a></li>
 				</ul></li>
 			<li class="treeview"><a href="#"><i class='fa fa-building'></i>
 					<span>회사(Company)</span> <i class="fa fa-angle-left pull-right"></i></a>
 				<ul class="treeview-menu">
-					<li><a href="#">회사등록</a></li>
+					<li><a href="<%=request.getContextPath()%>/lable">회사등록</a></li>
 					<li><a href="<%=request.getContextPath()%>/lable">레이블/제작사관리</a></li>
-					<li><a href="#">B2B 관련 관리</a></li>
+					<li><a href="<%=request.getContextPath()%>/lable">B2B 관련 관리</a></li>
 				</ul></li>
 			<li class="treeview"><a href="#"><i class='fa fa-music'></i>
 					<span>콘텐츠등록(Contents)</span> <i class="fa fa-angle-left pull-right"></i></a>
@@ -147,54 +147,54 @@
 			<li class="treeview"><a href="#"><i class='fa fa-money'></i>
 					<span>정산관리(Call)</span> <i class="fa fa-angle-left pull-right"></i></a>
 				<ul class="treeview-menu">
-					<li><a href="#">회사별정산 관리</a></li>
-					<li><a href="#">아티스트별 정산관리</a></li>
-					<li><a href="#">음원단가 등록</a></li>
-					<li><a href="#">저작관련 정산</a></li>
+					<li><a href="<%=request.getContextPath()%>/lable">회사별정산 관리</a></li>
+					<li><a href="<%=request.getContextPath()%>/lable">아티스트별 정산관리</a></li>
+					<li><a href="<%=request.getContextPath()%>/lable">음원단가 등록</a></li>
+					<li><a href="<%=request.getContextPath()%>/lable">저작관련 정산</a></li>
 				</ul></li>
 			<li class="treeview"><a href="#"><i class='fa fa-bar-chart'></i>
 					<span>차트관리(Chart)</span> <i class="fa fa-angle-left pull-right"></i></a>
 				<ul class="treeview-menu">
-					<li><a href="#">전체차트관리</a></li>
-					<li><a href="#">가요차트관리</a></li>
-					<li><a href="#">팝차트관리</a></li>
-					<li><a href="#">O.S.T차트관리</a></li>
-					<li><a href="#">J-Pop차트관리</a></li>
+					<li><a href="<%=request.getContextPath()%>/lable">전체차트관리</a></li>
+					<li><a href="<%=request.getContextPath()%>/lable">가요차트관리</a></li>
+					<li><a href="<%=request.getContextPath()%>/lable">팝차트관리</a></li>
+					<li><a href="<%=request.getContextPath()%>/lable">O.S.T차트관리</a></li>
+					<li><a href="<%=request.getContextPath()%>/lable">J-Pop차트관리</a></li>
 				</ul></li>
 			<li class="treeview"><a href="#"><i
 					class='fa  fa-headphones'></i> <span>라디오관리(Radio)</span> <i
 					class="fa fa-angle-left pull-right"></i></a>
 				<ul class="treeview-menu">
-					<li><a href="#">프로그램 관리</a></li>
-					<li><a href="#">라디오콘텐츠 관리</a></li>
-					<li><a href="#">큐시트 관리</a></li>
-					<li><a href="#">게시판 관리</a></li>
-					<li><a href="#">M!Radior관리</a></li>
+					<li><a href="<%=request.getContextPath()%>/lable">프로그램 관리</a></li>
+					<li><a href="<%=request.getContextPath()%>/lable">라디오콘텐츠 관리</a></li>
+					<li><a href="<%=request.getContextPath()%>/lable">큐시트 관리</a></li>
+					<li><a href="<%=request.getContextPath()%>/lable">게시판 관리</a></li>
+					<li><a href="<%=request.getContextPath()%>/lable">M!Radio관리</a></li>
 				</ul></li>
 			<li class="treeview"><a href="#"><i class='fa  fa-archive'></i>
 					<span>관리자(Admin)</span> <i class="fa fa-angle-left pull-right"></i></a>
 				<ul class="treeview-menu">
-					<li><a href="#">공지사항 관리</a></li>
-					<li><a href="#">게시판 관리</a></li>
-					<li><a href="#">댓글 관리</a></li>
-					<li><a href="#">FAQ 관리</a></li>
-					<li><a href="#">추천음악 관리</a></li>
-					<li><a href="#">VOC 관리</a></li>
-					<li><a href="#">이벤트 관리</a></li>
-					<li><a href="#">SNS 관리</a></li>
-					<li><a href="#">API 관리</a></li>
-					<li><a href="#">광고 관리</a></li>
+					<li><a href="<%=request.getContextPath()%>/lable">공지사항 관리</a></li>
+					<li><a href="<%=request.getContextPath()%>/lable">게시판 관리</a></li>
+					<li><a href="<%=request.getContextPath()%>/lable">댓글 관리</a></li>
+					<li><a href="<%=request.getContextPath()%>/lable">FAQ 관리</a></li>
+					<li><a href="<%=request.getContextPath()%>/lable">추천음악 관리</a></li>
+					<li><a href="<%=request.getContextPath()%>/lable">VOC 관리</a></li>
+					<li><a href="<%=request.getContextPath()%>/lable">이벤트 관리</a></li>
+					<li><a href="<%=request.getContextPath()%>/lable">SNS 관리</a></li>
+					<li><a href="<%=request.getContextPath()%>/lable">API 관리</a></li>
+					<li><a href="<%=request.getContextPath()%>/lable">광고 관리</a></li>
 				</ul></li>
 			<li class="treeview"><a href="#"><i class='fa fa-home'></i>
 					<span>홈페이지관리(Homepage)</span> <i
 					class="fa fa-angle-left pull-right"></i></a>
 				<ul class="treeview-menu">
-					<li><a href="#">메뉴관리</a></li>
-					<li><a href="#">이미지관리</a></li>
-					<li><a href="#">홈페이지텍스트관리</a></li>
-					<li><a href="#">기타</a></li>
+					<li><a href="<%=request.getContextPath()%>/lable">메뉴관리</a></li>
+					<li><a href="<%=request.getContextPath()%>/lable">이미지관리</a></li>
+					<li><a href="<%=request.getContextPath()%>/lable">홈페이지텍스트관리</a></li>
+					<li><a href="<%=request.getContextPath()%>/lable">기타</a></li>
 				</ul></li>
-			<li><a href="#"><i class='fa fa-link'></i> <span>Favorite
+			<li><a href="http://localhost:7788/web/"><i class='fa fa-link'></i> <span>Favorite
 						Music</span></a></li>
 
 		</ul>
@@ -205,12 +205,12 @@
 			<!-- Content Header (Page header) -->
 			<section class="content-header">
 			<h1>
-				Favorite Music <small>아티스트관리</small>
+				Favorite Music <small>앨범관리</small>
 			</h1>
 			<ol class="breadcrumb">
 				<li><a href="<%=request.getContextPath()%>/main"><i class="fa fa-dashboard"></i> Home</a></li>
 				
-        <li class="active">아티스트관리</li>
+        <li class="active">앨범관리</li>
        
 			</ol>
 			</section>

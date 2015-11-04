@@ -115,44 +115,42 @@
 			</div>
 		</div>
 		<!-- Sidebar Menu -->
-		<ul class="sidebar-menu">
+	<ul class="sidebar-menu">
 			<li class="header">메뉴</li>
 			<!-- Optionally, you can add icons to the links -->
-			<li><a href="<%=request.getContextPath()%>/main"><i class='fa fa-link'></i> <span>메인(Main)</span></a></li>
+			<li class="active"><a href="#"><i class='fa fa-link'></i> <span>메인(Main)</span></a></li>
 			<li class="treeview"><a href="#"><i class='fa fa-users'></i>
 					<span>회원관리(Member)</span> <i class="fa fa-angle-left pull-right"></i></a>
 				<ul class="treeview-menu">
-					<li><a href="#">관리자 회원 관리</a></li>
-					<li><a href="#">일반 회원 관리</a></li>
-					<li><a href="#">블랙리스트 회원 관리</a></li>
-					<li><a href="#">회사 특별회원</a></li>
-					<li><a href="#">회원등록/탈퇴</a></li>
-					<li><a href="#">회원엑셀등록</a></li>
+					<li><a href="#">관리자 담당 관리</a></li>
+					<li><a href="#">고객사 관리자 관리</a></li>
+					<li><a href="#">일반회원 관리</a></li>
+					<li><a href="#">블랙리스트 관리</a></li>
+					<li><a href="#">일괄회원등록</a></li>
 				</ul></li>
 			<li class="treeview"><a href="#"><i class='fa fa-building'></i>
 					<span>회사(Company)</span> <i class="fa fa-angle-left pull-right"></i></a>
 				<ul class="treeview-menu">
-					<li><a href="#">회사 등록</a></li>
-					<li><a href="#">제작사 등록</a></li>
-					<li><a href="#">회사 정보</a></li>
+					<li><a href="#">회사등록</a></li>
+					<li><a href="<%=request.getContextPath()%>/lable">레이블/제작사관리</a></li>
+					<li><a href="#">B2B 관련 관리</a></li>
 				</ul></li>
-			<li class="treeview active"><a href="#"><i class='fa fa-music'></i>
+			<li class="treeview"><a href="#"><i class='fa fa-music'></i>
 					<span>콘텐츠등록(Contents)</span> <i class="fa fa-angle-left pull-right"></i></a>
 				<ul class="treeview-menu">
-					<li><a href="<%=request.getContextPath()%>/lable">레이블관리</a></li>
 					<li><a href="<%=request.getContextPath()%>/artist">아티스트관리</a></li>
 					<li><a href="<%=request.getContextPath()%>/album">앨범관리</a></li>
 					<li><a href="<%=request.getContextPath()%>/music">음원관리</a></li>
+					<li><a href="<%=request.getContextPath()%>/music">음원단체등록관리</a></li>
 					<li><a href="<%=request.getContextPath()%>/musicvideo">뮤직비디오관리</a></li>
 				</ul></li>
 			<li class="treeview"><a href="#"><i class='fa fa-money'></i>
 					<span>정산관리(Call)</span> <i class="fa fa-angle-left pull-right"></i></a>
 				<ul class="treeview-menu">
-					<li><a href="#">회사정산총관리</a></li>
-					<li><a href="#">아티스트총정산관리</a></li>
-					<li><a href="#">앨범/싱글관리</a></li>
-					<li><a href="#">스트리밍정산관리</a></li>
-					<li><a href="#">다운로드정산관리</a></li>
+					<li><a href="#">회사별정산 관리</a></li>
+					<li><a href="#">아티스트별 정산관리</a></li>
+					<li><a href="#">음원단가 등록</a></li>
+					<li><a href="#">저작관련 정산</a></li>
 				</ul></li>
 			<li class="treeview"><a href="#"><i class='fa fa-bar-chart'></i>
 					<span>차트관리(Chart)</span> <i class="fa fa-angle-left pull-right"></i></a>
@@ -169,19 +167,23 @@
 				<ul class="treeview-menu">
 					<li><a href="#">프로그램 관리</a></li>
 					<li><a href="#">라디오콘텐츠 관리</a></li>
-					<li><a href="#">큐시트관리</a></li>
-					<li><a href="#">게시판관리</a></li>
+					<li><a href="#">큐시트 관리</a></li>
+					<li><a href="#">게시판 관리</a></li>
 					<li><a href="#">M!Radior관리</a></li>
 				</ul></li>
 			<li class="treeview"><a href="#"><i class='fa  fa-archive'></i>
 					<span>관리자(Admin)</span> <i class="fa fa-angle-left pull-right"></i></a>
 				<ul class="treeview-menu">
-					<li><a href="#">FAQ</a></li>
-					<li><a href="#">VOC</a></li>
-					<li><a href="#">게시판관리</a></li>
-					<li><a href="#">이벤트관리</a></li>
-					<li><a href="#">SNS관리</a></li>
-					<li><a href="#">API관리</a></li>
+					<li><a href="#">공지사항 관리</a></li>
+					<li><a href="#">게시판 관리</a></li>
+					<li><a href="#">댓글 관리</a></li>
+					<li><a href="#">FAQ 관리</a></li>
+					<li><a href="#">추천음악 관리</a></li>
+					<li><a href="#">VOC 관리</a></li>
+					<li><a href="#">이벤트 관리</a></li>
+					<li><a href="#">SNS 관리</a></li>
+					<li><a href="#">API 관리</a></li>
+					<li><a href="#">광고 관리</a></li>
 				</ul></li>
 			<li class="treeview"><a href="#"><i class='fa fa-home'></i>
 					<span>홈페이지관리(Homepage)</span> <i

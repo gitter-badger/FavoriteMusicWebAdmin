@@ -205,12 +205,12 @@
 			<!-- Content Header (Page header) -->
 			<section class="content-header">
 			<h1>
-				Favorite Music <small>아티스트관리</small>
+				Favorite Music <small>앨범관리</small>
 			</h1>
 			<ol class="breadcrumb">
 				<li><a href="<%=request.getContextPath()%>/main"><i class="fa fa-dashboard"></i> Home</a></li>
 				
-        <li class="active">아티스트관리</li>
+        <li class="active">앨범관리</li>
        
 			</ol>
 			</section>
