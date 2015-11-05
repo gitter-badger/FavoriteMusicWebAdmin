@@ -11,11 +11,19 @@
 	</settings>
 
 	<typeAliases>
-	
+	<!-- Contents Query -->
+		<typeAlias alias="Ssearch" type="mplanweb.music.web.contents.Ssearch" />
+		<typeAlias alias="Ssview" type="mplanweb.music.web.contents.Ssview" />
+		<typeAlias alias="Ssalbum" type="mplanweb.music.web.contents.SsAlbum" />
+		<typeAlias alias="Ssartist" type="mplanweb.music.web.contents.Ssartist" />
+		<typeAlias alias="Sscorp" type="mplanweb.music.web.contents.Sscorp" />
 	</typeAliases>
 
 	<mappers>
-
+		<!-- Main Count query -->
+		<mapper resource="mplanweb/music/web/mybatis/main.xml" />
+		<!-- Contents query -->
+		<mapper resource="mplanweb/music/web/mybatis/contents.xml" />
 	</mappers>
 
 

@@ -9,8 +9,6 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.UUID;
 
-
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,7 +33,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
  */
 
 @Controller
-//@RequestMapping("/source")
+@RequestMapping("/contents")
 public class MusicController {
 
 	/*
@@ -47,7 +45,6 @@ public class MusicController {
 
 	@Autowired
 	private MusicService musicService;
-
 
 	// //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	/*
@@ -65,7 +62,7 @@ public class MusicController {
 		Jsontotal jsontotal = new Jsontotal();
 		// Ïπ¥Ïö¥?ä∏ Í≥ÑÏÇ∞
 		int totalCount = musicService.selecttotalcount(ssearch);
-		System.out.println("Ï¥? Í∞??àò : " + totalCount);
+
 		// Î¶¨Ïä§?ä∏ ?òï?ãù
 		List<Ssview> musiclist = musicService.selectSsview(ssearch); // nullpoint
 		jsontotal.setTotal(totalCount);
@@ -102,23 +99,27 @@ public class MusicController {
 			throws Exception {
 
 		// Jsontotal
-		// int mp_num = Integer.parseInt(request.getParameter("num")); // ?ïÑ?ã∞?ä§?ä∏
+		// int mp_num = Integer.parseInt(request.getParameter("num")); //
+		// ?ïÑ?ã∞?ä§?ä∏
 		// ?ù¥Î¶? Request
 		String num_p = request.getParameter("num"); // ?ïÑ?ã∞?ä§?ä∏ ?ù¥Î¶? Request
 		int mp_num = Integer.parseInt(num_p);
 		String mp_artist = request.getParameter("artist"); // ?ùå?õê?†úÎ™? Request
 		String mp_title = request.getParameter("title"); // ?ï®Î≤îÎ™Ö Request
 		String mp_album = request.getParameter("album"); // Í∞??Ç¨ Request
-		String mp_lyric = request.getParameter("lyric"); // ?ïÑ?ã∞?ä§?ä∏ ?ù¥Î¶? Request
+		String mp_lyric = request.getParameter("lyric"); // ?ïÑ?ã∞?ä§?ä∏ ?ù¥Î¶?
+															// Request
 		String mp_label = request.getParameter("label"); // ?ùå?õê?†úÎ™? Request
 		String mp_corp = request.getParameter("corp"); // ?ï®Î≤îÎ™Ö Request
 		String mp_year = request.getParameter("year"); // Í∞??Ç¨ Request
-		String mp_genre1 = request.getParameter("genre1"); // ?ïÑ?ã∞?ä§?ä∏ ?ù¥Î¶? Request
+		String mp_genre1 = request.getParameter("genre1"); // ?ïÑ?ã∞?ä§?ä∏ ?ù¥Î¶?
+															// Request
 		String mp_genre2 = request.getParameter("genre2"); // ?ùå?õê?†úÎ™? Request
 		String mp_etc = request.getParameter("etc"); // ?ï®Î≤îÎ™Ö Request
 		String mp_open_date = request.getParameter("copy"); // Í∞??Ç¨ Request
 		String mp_age = request.getParameter("age"); // ?ïÑ?ã∞?ä§?ä∏ ?ù¥Î¶? Request
-		String mp_useyn = request.getParameter("RadioGroup1"); // ?ùå?õê?†úÎ™? Request
+		String mp_useyn = request.getParameter("RadioGroup1"); // ?ùå?õê?†úÎ™?
+																// Request
 		MultipartFile mimg = request.getFile("imgupload");
 		MultipartFile m320k = request.getFile("m320kupload");
 		MultipartFile m192k = request.getFile("m192kupload");
@@ -202,7 +203,7 @@ public class MusicController {
 			ssview.setMp_useyn(mp_useyn);
 
 			musicService.insertssearch(ssview);
-			System.out.println("Jsontotal : " + jsontotal);
+
 			jsontotal.setSuccess(true);
 
 		}
@@ -223,7 +224,8 @@ public class MusicController {
 	public Jsontotal updatessview(MultipartHttpServletRequest request)
 			throws Exception {
 		// Jsontotal
-		// int mp_num = Integer.parseInt(request.getParameter("num")); // ?ïÑ?ã∞?ä§?ä∏
+		// int mp_num = Integer.parseInt(request.getParameter("num")); //
+		// ?ïÑ?ã∞?ä§?ä∏
 		// ?ù¥Î¶? Request
 		String num_pm = request.getParameter("mpssnumEncrypt"); // ?ïÑ?ã∞?ä§?ä∏ ?ù¥Î¶?
 																// Request
@@ -232,16 +234,19 @@ public class MusicController {
 		String mp_artist = request.getParameter("artist"); // ?ùå?õê?†úÎ™? Request
 		String mp_title = request.getParameter("title"); // ?ï®Î≤îÎ™Ö Request
 		String mp_album = request.getParameter("album"); // Í∞??Ç¨ Request
-		String mp_lyric = request.getParameter("lyric"); // ?ïÑ?ã∞?ä§?ä∏ ?ù¥Î¶? Request
+		String mp_lyric = request.getParameter("lyric"); // ?ïÑ?ã∞?ä§?ä∏ ?ù¥Î¶?
+															// Request
 		String mp_label = request.getParameter("label"); // ?ùå?õê?†úÎ™? Request
 		String mp_corp = request.getParameter("corp"); // ?ï®Î≤îÎ™Ö Request
 		String mp_year = request.getParameter("year"); // Í∞??Ç¨ Request
-		String mp_genre1 = request.getParameter("genre1"); // ?ïÑ?ã∞?ä§?ä∏ ?ù¥Î¶? Request
+		String mp_genre1 = request.getParameter("genre1"); // ?ïÑ?ã∞?ä§?ä∏ ?ù¥Î¶?
+															// Request
 		String mp_genre2 = request.getParameter("genre2"); // ?ùå?õê?†úÎ™? Request
 		String mp_etc = request.getParameter("etc"); // ?ï®Î≤îÎ™Ö Request
 		String mp_open_date = request.getParameter("copy"); // Í∞??Ç¨ Request
 		String mp_age = request.getParameter("age"); // ?ïÑ?ã∞?ä§?ä∏ ?ù¥Î¶? Request
-		String mp_useyn = request.getParameter("RadioGroup1"); // ?ùå?õê?†úÎ™? Request
+		String mp_useyn = request.getParameter("RadioGroup1"); // ?ùå?õê?†úÎ™?
+																// Request
 		MultipartFile mimg = request.getFile("imgupload");
 		MultipartFile m320k = request.getFile("m320kupload");
 		MultipartFile m192k = request.getFile("m192kupload");
@@ -327,7 +332,7 @@ public class MusicController {
 			ssview.setMp_useyn(mp_useyn);
 
 			musicService.updatessearch(ssview);
-			System.out.println("Jsontotal : " + jsontotal);
+
 			jsontotal.setSuccess(true);
 
 		}
@@ -345,12 +350,12 @@ public class MusicController {
 	 */
 	@RequestMapping(value = "/ssviewdelete", method = RequestMethod.POST)
 	@ResponseBody
-	public Jsontotal deletessview(@RequestBody Map<String, Object> param, String mp_imgo) {
+	public Jsontotal deletessview(@RequestBody Map<String, Object> param,
+			String mp_imgo) {
 		Jsontotal jsontotal = new Jsontotal();
 		String mp_mpnum = String.valueOf(param.get("mp_mpnum"));
-		//String mp_imgo = String.valueOf(param.get("mp_imgo"));
-		System.out.println("mp_mpnum : " + mp_mpnum);
-		System.out.println("mp_imgo : " + mp_imgo);
+		// String mp_imgo = String.valueOf(param.get("mp_imgo"));
+
 		List<Map<String, Object>> mapList = new ArrayList<Map<String, Object>>();
 		String[] mpssnumEncrypts = mp_mpnum.split(",");
 
@@ -360,7 +365,7 @@ public class MusicController {
 					MusicStringUtil.getTmsDecryptoAesForInt(mpssnumEncrypt));
 			mapList.add(map);
 		}
-		//musicService.deletessearch(mapList);
+		// musicService.deletessearch(mapList);
 		jsontotal.setSuccess(true);
 		return jsontotal;
 	}
@@ -381,18 +386,16 @@ public class MusicController {
 		// Json ?òï?ãù?úºÎ°? Î≥??ôò?ï†?†§Í≥? ?Éù?Ñ± parameter json => result json
 		Jsontotal jsontotal = new Jsontotal();
 		// Ïπ¥Ïö¥?ä∏ Í≥ÑÏÇ∞
-		System.out.println("ssearch : " + ssearch);
+
 		int totalCount = musicService.albumtotalcount(ssearch);
-		System.out.println("totalCount : " + totalCount);
+
 		// Î¶¨Ïä§?ä∏ ?òï?ãù
 		List<SsAlbum> albumlist = musicService.selectalbumview(ssearch); // nullpoint
 		jsontotal.setTotal(totalCount);
 		jsontotal.setItems(albumlist);
-		System.out.println("Jsontotal : " + jsontotal);
-		System.out.println("musiclist : " + albumlist);
+
 		jsontotal.setSuccess(true);
-		System.out.println("musiclist : " + albumlist);
-		System.out.println("Jsontotal : " + jsontotal);
+
 		// Î¶¨ÌÑ¥
 		return jsontotal;
 	}
@@ -408,13 +411,13 @@ public class MusicController {
 	@RequestMapping(value = "/abviewer/{mpssnumEncrypt}", method = RequestMethod.GET)
 	@ResponseBody
 	public Jsontotal albumviewSelect(@PathVariable String mpssnumEncrypt) {
-		System.out.println("mpssnumEncrypt : " + mpssnumEncrypt);
+
 		Jsontotal jsontotal = new Jsontotal();
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("mp_alnum",
 				MusicStringUtil.getTmsDecryptoAesForInt(mpssnumEncrypt));
 		jsontotal.setData(musicService.viewalbumview(map));
-		System.out.println("jsontotal : " + jsontotal);
+
 		jsontotal.setSuccess(true);
 		return jsontotal;
 	}
@@ -434,17 +437,20 @@ public class MusicController {
 			throws Exception {
 
 		// Jsontotal
-		// int mp_num = Integer.parseInt(request.getParameter("num")); // ?ïÑ?ã∞?ä§?ä∏
+		// int mp_num = Integer.parseInt(request.getParameter("num")); //
+		// ?ïÑ?ã∞?ä§?ä∏
 		// ?ù¥Î¶? Request
 
-		// String num_p = request.getParameter("mp_alnum"); // ?ïÑ?ã∞?ä§?ä∏ ?ù¥Î¶? Request
+		// String num_p = request.getParameter("mp_alnum"); // ?ïÑ?ã∞?ä§?ä∏ ?ù¥Î¶?
+		// Request
 		// int mp_alnum = Integer.parseInt(num_p);
 		String mp_artist = request.getParameter("artist"); // ?ùå?õê?†úÎ™? Request
 		String mp_album = request.getParameter("album"); // ?ï®Î≤îÎ™Ö Request
 		String mp_content = request.getParameter("content"); // Í∞??Ç¨ Request
 		String mp_year = request.getParameter("year"); // ?ùå?õê?†úÎ™? Request
 		String mp_corp = request.getParameter("corp"); // ?ï®Î≤îÎ™Ö Request
-		String mp_useyn = request.getParameter("RadioGroup1"); // ?ùå?õê?†úÎ™? Request
+		String mp_useyn = request.getParameter("RadioGroup1"); // ?ùå?õê?†úÎ™?
+																// Request
 		MultipartFile mimg = request.getFile("imgupload");
 
 		logger.info("mp_artist : " + mp_artist);
@@ -496,7 +502,7 @@ public class MusicController {
 			ssalbum.setMp_albumimgorg(mp_albumimgorg);
 
 			musicService.insertalbum(ssalbum);
-			System.out.println("Jsontotal : " + jsontotal);
+
 			jsontotal.setSuccess(true);
 
 		}
@@ -523,7 +529,8 @@ public class MusicController {
 		String mp_content = request.getParameter("content"); // Í∞??Ç¨ Request
 		String mp_year = request.getParameter("year"); // ?ùå?õê?†úÎ™? Request
 		String mp_corp = request.getParameter("corp"); // ?ï®Î≤îÎ™Ö Request
-		String mp_useyn = request.getParameter("RadioGroup1"); // ?ùå?õê?†úÎ™? Request
+		String mp_useyn = request.getParameter("RadioGroup1"); // ?ùå?õê?†úÎ™?
+																// Request
 		MultipartFile mimg = request.getFile("imgupload");
 
 		logger.info("mp_artist : " + mp_artist);
@@ -576,7 +583,7 @@ public class MusicController {
 			ssalbum.setMp_albumimgorg(mp_albumimgorg);
 
 			musicService.updatealbum(ssalbum);
-			System.out.println("Jsontotal : " + jsontotal);
+
 			jsontotal.setSuccess(true);
 
 		}
@@ -597,7 +604,7 @@ public class MusicController {
 	public Jsontotal deletessalbum(@RequestBody Map<String, Object> param) {
 		Jsontotal jsontotal = new Jsontotal();
 		String mp_mpnum = String.valueOf(param.get("mp_alnum"));
-		System.out.println("mp_alnum : " + mp_mpnum);
+
 		List<Map<String, Object>> mapList = new ArrayList<Map<String, Object>>();
 		String[] mpssnumEncrypts = mp_mpnum.split(",");
 
@@ -628,18 +635,16 @@ public class MusicController {
 		// Json ?òï?ãù?úºÎ°? Î≥??ôò?ï†?†§Í≥? ?Éù?Ñ± parameter json => result json
 		Jsontotal jsontotal = new Jsontotal();
 		// Ïπ¥Ïö¥?ä∏ Í≥ÑÏÇ∞
-		System.out.println("ssearch : " + ssearch);
+
 		int totalCount = musicService.artisttotalcount(ssearch);
-		System.out.println("totalCount : " + totalCount);
+
 		// Î¶¨Ïä§?ä∏ ?òï?ãù
 		List<Ssartist> artistlist = musicService.selectartistview(ssearch); // nullpoint
 		jsontotal.setTotal(totalCount);
 		jsontotal.setItems(artistlist);
-		System.out.println("Jsontotal : " + jsontotal);
-		System.out.println("musiclist : " + artistlist);
+
 		jsontotal.setSuccess(true);
-		System.out.println("musiclist : " + artistlist);
-		System.out.println("Jsontotal : " + jsontotal);
+
 		// Î¶¨ÌÑ¥
 		return jsontotal;
 	}
@@ -655,13 +660,13 @@ public class MusicController {
 	@RequestMapping(value = "/artviewer/{mpssnumEncrypt}", method = RequestMethod.GET)
 	@ResponseBody
 	public Jsontotal artistviewSelect(@PathVariable String mpssnumEncrypt) {
-		System.out.println("mpssnumEncrypt : " + mpssnumEncrypt);
+
 		Jsontotal jsontotal = new Jsontotal();
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("mp_anum",
 				MusicStringUtil.getTmsDecryptoAesForInt(mpssnumEncrypt));
 		jsontotal.setData(musicService.viewartistview(map));
-		System.out.println("jsontotal : " + jsontotal);
+
 		jsontotal.setSuccess(true);
 		return jsontotal;
 	}
@@ -737,7 +742,7 @@ public class MusicController {
 			ssartist.setMp_artistorg(mp_artistorg);
 
 			musicService.insertartist(ssartist);
-			System.out.println("Jsontotal : " + jsontotal);
+
 			jsontotal.setSuccess(true);
 
 		}
@@ -758,7 +763,8 @@ public class MusicController {
 	public Jsontotal updateartist(MultipartHttpServletRequest request)
 			throws Exception {
 
-		String num_pm = request.getParameter("mpssnumEncrypt"); // ?ïÑ?ã∞?ä§?ä∏ ?ù¥Î¶?;
+		String num_pm = request.getParameter("mpssnumEncrypt"); // ?ïÑ?ã∞?ä§?ä∏
+																// ?ù¥Î¶?;
 		String mp_artist = request.getParameter("artist"); // ?ùå?õê?†úÎ™? Request
 		String mp_content = request.getParameter("content"); // ?ï®Î≤îÎ™Ö Request
 		String mp_label = request.getParameter("label"); // Í∞??Ç¨ Request
@@ -813,7 +819,6 @@ public class MusicController {
 			ssartist.setMp_artistorg(mp_artistorg);
 
 			musicService.updateartist(ssartist);
-			System.out.println("Jsontotal : " + jsontotal);
 			jsontotal.setSuccess(true);
 
 		}
@@ -834,7 +839,7 @@ public class MusicController {
 	public Jsontotal deleteartist(@RequestBody Map<String, Object> param) {
 		Jsontotal jsontotal = new Jsontotal();
 		String mp_mpnum = String.valueOf(param.get("mp_anum"));
-		System.out.println("mp_anum : " + mp_mpnum);
+
 		List<Map<String, Object>> mapList = new ArrayList<Map<String, Object>>();
 		String[] mpssnumEncrypts = mp_mpnum.split(",");
 
@@ -865,18 +870,16 @@ public class MusicController {
 		// Json ?òï?ãù?úºÎ°? Î≥??ôò?ï†?†§Í≥? ?Éù?Ñ± parameter json => result json
 		Jsontotal jsontotal = new Jsontotal();
 		// Ïπ¥Ïö¥?ä∏ Í≥ÑÏÇ∞
-		System.out.println("ssearch : " + ssearch);
+
 		int totalCount = musicService.corptotalcount(ssearch);
-		System.out.println("totalCount : " + totalCount);
+
 		// Î¶¨Ïä§?ä∏ ?òï?ãù
 		List<Sscorp> corplist = musicService.selectcorpview(ssearch); // nullpoint
 		jsontotal.setTotal(totalCount);
 		jsontotal.setItems(corplist);
-		System.out.println("Jsontotal : " + jsontotal);
-		System.out.println("musiclist : " + corplist);
+
 		jsontotal.setSuccess(true);
-		System.out.println("musiclist : " + corplist);
-		System.out.println("Jsontotal : " + jsontotal);
+
 		// Î¶¨ÌÑ¥
 		return jsontotal;
 	}
@@ -884,13 +887,13 @@ public class MusicController {
 	@RequestMapping(value = "/corpviewer/{mpssnumEncrypt}", method = RequestMethod.GET)
 	@ResponseBody
 	public Jsontotal corpviewSelect(@PathVariable String mpssnumEncrypt) {
-		System.out.println("mpssnumEncrypt : " + mpssnumEncrypt);
+
 		Jsontotal jsontotal = new Jsontotal();
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("mp_corpnum",
 				MusicStringUtil.getTmsDecryptoAesForInt(mpssnumEncrypt));
 		jsontotal.setData(musicService.viewcorpview(map));
-		System.out.println("jsontotal : " + jsontotal);
+
 		jsontotal.setSuccess(true);
 		return jsontotal;
 	}
@@ -900,10 +903,10 @@ public class MusicController {
 	@RequestMapping(value = "/sscorpinsert", method = RequestMethod.POST)
 	@ResponseBody
 	public Jsontotal insertcorp(@RequestBody Sscorp sscorp) {
-		System.out.println("sscorp : " + sscorp);
+
 		Jsontotal jsontotal = new Jsontotal();
 		musicService.insertcorp(sscorp);
-		System.out.println("jsontotal : " + jsontotal);
+
 		jsontotal.setSuccess(true);
 		return jsontotal;
 	}
@@ -912,7 +915,7 @@ public class MusicController {
 	@ResponseBody
 	public Jsontotal updatecorp(@RequestBody Sscorp sscorp) {
 		Jsontotal jsontotal = new Jsontotal();
-		System.out.println(sscorp.getMpssnumEncrypt());
+
 		sscorp.setMp_corpnum(MusicStringUtil.getTmsDecryptoAesForInt(sscorp
 				.getMpssnumEncrypt()));
 		musicService.updatecorp(sscorp);
@@ -925,7 +928,6 @@ public class MusicController {
 	public Jsontotal deletecorp(@RequestBody Map<String, Object> param) {
 		Jsontotal jsontotal = new Jsontotal();
 		String mp_corpnum = String.valueOf(param.get("mp_corpnum"));
-		System.out.println("mp_corpnum : " + mp_corpnum);
 
 		List<Map<String, Object>> mapList = new ArrayList<Map<String, Object>>();
 		String[] mpssnumEncrypts = mp_corpnum.split(",");

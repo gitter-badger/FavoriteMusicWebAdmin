@@ -4,6 +4,8 @@
 	<title> SringBoard</title>
 </head>
 <body>
-	이용해주셔서 감사합니다.
+<%
+out.println("<script>alert('로그아웃 하였습니다.');</script>"); 
+%>사합니다.
 </body>
 </html>

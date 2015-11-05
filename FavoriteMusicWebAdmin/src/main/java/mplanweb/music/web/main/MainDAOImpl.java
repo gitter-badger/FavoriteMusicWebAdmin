@@ -11,7 +11,6 @@ public class MainDAOImpl implements MainDAO {
 
 	public int selectTotalCountMusic() {
 		return sqlSession.selectOne("Query.selectTotalCountMusic" );
-
 	}
 
 	public int selectTotalCountRadio() {

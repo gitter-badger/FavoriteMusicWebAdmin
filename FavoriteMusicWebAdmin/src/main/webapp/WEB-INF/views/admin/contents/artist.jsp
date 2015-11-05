@@ -118,7 +118,7 @@
 		<ul class="sidebar-menu">
 			<li class="header">메뉴</li>
 			<!-- Optionally, you can add icons to the links -->
-			<li class="active"><a href="#"><i class='fa fa-link'></i> <span>메인(Main)</span></a></li>
+			<li><a href="#"><i class='fa fa-link'></i> <span>메인(Main)</span></a></li>
 			<li class="treeview"><a href="#"><i class='fa fa-users'></i>
 					<span>회원관리(Member)</span> <i class="fa fa-angle-left pull-right"></i></a>
 				<ul class="treeview-menu">
@@ -135,7 +135,7 @@
 					<li><a href="<%=request.getContextPath()%>/lable">레이블/제작사관리</a></li>
 					<li><a href="#">B2B 관련 관리</a></li>
 				</ul></li>
-			<li class="treeview"><a href="#"><i class='fa fa-music'></i>
+			<li class="treeview active"><a href="#"><i class='fa fa-music'></i>
 					<span>콘텐츠등록(Contents)</span> <i class="fa fa-angle-left pull-right"></i></a>
 				<ul class="treeview-menu">
 					<li><a href="<%=request.getContextPath()%>/artist">아티스트관리</a></li>
@@ -169,7 +169,7 @@
 					<li><a href="#">라디오콘텐츠 관리</a></li>
 					<li><a href="#">큐시트 관리</a></li>
 					<li><a href="#">게시판 관리</a></li>
-					<li><a href="#">M!Radior관리</a></li>
+					<li><a href="#">M!Radio관리</a></li>
 				</ul></li>
 			<li class="treeview"><a href="#"><i class='fa  fa-archive'></i>
 					<span>관리자(Admin)</span> <i class="fa fa-angle-left pull-right"></i></a>
@@ -218,7 +218,7 @@
 			<!-- Main content -->
 			<section class="content">
 			<div class="infomation">
-
+<%@ include file="/WEB-INF/views/admin/contents/inc/artistview.jsp"%>
 			</div>
 			</section>
 		</div>
@@ -242,14 +242,6 @@
 	<!-- ./wrapper -->
 
 	<!-- REQUIRED JS SCRIPTS -->
-
-	<!-- jQuery 2.1.4 -->
-	<script
-		src="<%=request.getContextPath()%>/resources/plugins/jQuery/jQuery-2.1.4.min.js"
-		type="text/javascript"></script>
-	<!-- Bootstrap 3.3.2 JS -->
-	<script
-		src="<%=request.getContextPath()%>/resources/bootstrap/js/bootstrap.min.js"></script>
 	<!-- AdminLTE App -->
 	<script
 		src="<%=request.getContextPath()%>/resources/dist/js/app.min.js"

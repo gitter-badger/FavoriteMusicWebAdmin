@@ -8,9 +8,11 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 
 import mplanweb.music.web.contents.Ssearch;
+import mplanweb.music.web.main.MainService;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
@@ -37,7 +39,8 @@ public class WebController {
 	/**
 	 * Simply selects the home view to render by returning its name.
 	 */
-
+	@Autowired
+	MainService mainservice;
 	// index Page
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String Main(Locale locale, Model model) {
@@ -49,7 +52,15 @@ public class WebController {
 	@RequestMapping(value = "/main", method = RequestMethod.GET)
 	public String action(Locale locale, Model model) {
 		logger.info("IndexPage ==> MainPage : ", locale);
+		int musictotal = mainservice.selectTotalCountMusic();
+		int todaymusictotal = mainservice.selectTotalCountToday();
+		int radiototal = mainservice.selectTotalCountRadio();
+		int membertotal = mainservice.selectTotalCountMember();
 
+		model.addAttribute("musictotal", musictotal);
+		model.addAttribute("todaymusictotal", todaymusictotal);
+		model.addAttribute("radiototal", radiototal);
+		model.addAttribute("membertotal", membertotal);
 		return "/admin/main/main";
 	}
 	
@@ -58,7 +69,7 @@ public class WebController {
 	public String loginFail(@RequestParam Map<String, Object> paramMap,
 			ModelMap model) throws Throwable {
 		logger.info("MainPage ==> loginFail.do : ", paramMap, model);
-		return "/admin/loginFail";
+		return "/admin/login/loginFail";
 	}
 
 	@RequestMapping("/main.do")
@@ -68,7 +79,7 @@ public class WebController {
 		// 로그인 후 로그인 한 아이디를 가지고 온다.
 		String name = principal.getName();
 		model.addAttribute("username", name);
-		return "/main/loginok";
+		return "/admin/login/loginok";
 
 	}
 
@@ -76,9 +87,10 @@ public class WebController {
 	public String logout(@RequestParam Map<String, Object> paramMap,
 			ModelMap model) throws Throwable {
 		logger.info("MainPage ==> logout.do : ", paramMap, model);
-		return "/main/main";
+		return "/admin/main/main";
 	}
 	
+	// Join 
 	@RequestMapping("/join.do")
 	public void getJoin(ModelMap model, HttpServletRequest request)  throws Throwable {
 		String userid = request.getParameter("userid");

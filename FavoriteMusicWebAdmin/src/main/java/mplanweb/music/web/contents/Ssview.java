@@ -34,144 +34,144 @@ public class Ssview implements Serializable {
 	private String mp_insert_date; // : ?•„?‹°?Š¤?Š¸
 
 	public long getMp_imgsize() {
-		System.out.println("getMp_imgsize : " + mp_imgsize);
+	
 		return mp_imgsize;
 	}
 
 	public void setMp_imgsize(long mp_imgsize) {
-		System.out.println("setMp_imgsize : " + mp_imgsize);
+
 		this.mp_imgsize = mp_imgsize;
 	}
 
 	public long getMp_320size() {
-		System.out.println("getMp_320size : " + mp_320size);
+
 		return mp_320size;
 	}
 
 	public void setMp_320size(long mp_320size) {
-		System.out.println("setMp_320size : " + mp_320size);
+	
 		this.mp_320size = mp_320size;
 	}
 
 	public long getMp_192size() {
-		System.out.println("getMp_192size : " + mp_192size);
+
 		return mp_192size;
 	}
 
 	public void setMp_192size(long mp_192size) {
-		System.out.println("setMp_192size : " + mp_192size);
+	
 		this.mp_192size = mp_192size;
 	}
 
 	public String getMp_imgo() {
-		System.out.println("getMp_imgo : " + mp_imgo);
+
 		return mp_imgo;
 	}
 
 	public void setMp_imgo(String mp_imgo) {
-		System.out.println("setMp_imgo : " + mp_imgo);
+	
 		this.mp_imgo = mp_imgo;
 	}
 
 	public String getMp_320ko() {
-		System.out.println("getMp_320ko : " + mp_320ko);
+	
 		return mp_320ko;
 	}
 
 	public void setMp_320ko(String mp_320ko) {
-		System.out.println("setMp_320ko : " + mp_320ko);
+		
 		this.mp_320ko = mp_320ko;
 	}
 
 	public String getMp_192ko() {
-		System.out.println("getMp_192ko : " + mp_192ko);
+	
 		return mp_192ko;
 	}
 
 	public void setMp_192ko(String mp_192ko) {
-		System.out.println("setMp_192ko : " + mp_192ko);
+		
 		this.mp_192ko = mp_192ko;
 	}
 
 	public int getMp_mpnum() {
-		System.out.println("getMp_mpnum : " + mp_mpnum);
+	
 		return mp_mpnum;
 	}
 
 	public void setMp_mpnum(int mp_mpnum) {
-		System.out.println("setMp_mpnum : " + mp_mpnum);
+
 		setMpssnumEncrypt(MusicStringUtil
 				.getStringTmsEncryptoAesForInt(mp_mpnum));
 		this.mp_mpnum = mp_mpnum;
 	}
 
 	public String getMp_artist() {
-		System.out.println("getMp_artist : " + mp_artist);
+		
 		return mp_artist;
 	}
 
 	public void setMp_artist(String mp_artist) {
-		System.out.println("setMp_artist : " + mp_artist);
+
 		this.mp_artist = mp_artist;
 	}
 
 	public String getMp_title() {
-		System.out.println("getMp_title : " + mp_title);
+	
 		return mp_title;
 	}
 
 	public void setMp_title(String mp_title) {
-		System.out.println("setMp_title : " + mp_title);
+
 		this.mp_title = mp_title;
 	}
 
 	public String getMp_album() {
-		System.out.println("getMp_album : " + mp_album);
+	
 		return mp_album;
 	}
 
 	public void setMp_album(String mp_album) {
-		System.out.println("setMp_album : " + mp_album);
+	
 		this.mp_album = mp_album;
 	}
 
 	public String getMp_year() {
-		System.out.println("getMp_year : " + mp_year);
+	
 		return mp_year;
 	}
 
 	public void setMp_year(String mp_year) {
-		System.out.println("setMp_year : " + mp_year);
+	
 		this.mp_year = mp_year;
 	}
 
 	public String getMp_useyn() {
-		System.out.println("getMp_useyn : " + mp_useyn);
+
 		return mp_useyn;
 	}
 
 	public void setMp_useyn(String mp_useyn) {
-		System.out.println("setMp_useyn : " + mp_useyn);
+
 		this.mp_useyn = mp_useyn;
 	}
 
 	public String getMp_insert_date() {
-		System.out.println("getMp_insert_date : " + mp_insert_date);
+	
 		return mp_insert_date;
 	}
 
 	public void setMp_insert_date(String mp_insert_date) {
-		System.out.println("setMp_insert_date : " + mp_insert_date);
+		
 		this.mp_insert_date = mp_insert_date;
 	}
 
 	public String getMpssnumEncrypt() {
-		System.out.println("getMpssnumEncrypt : " + mpssnumEncrypt);
+	
 		return mpssnumEncrypt;
 	}
 
 	public void setMpssnumEncrypt(String mpssnumEncrypt) {
-		System.out.println("setMpssnumEncrypt : " + mpssnumEncrypt);
+
 		this.mpssnumEncrypt = mpssnumEncrypt;
 	}
 

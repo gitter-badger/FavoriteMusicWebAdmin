@@ -40,7 +40,7 @@ public class MusicServiceImpl implements MusicService {
 	@Override
 	public void deletessearch(List<Map<String, Object>> mapList) {
 		// TODO Auto-generated method stub
-		System.out.println("deletessearch" + mapList);
+
 		musicDAO.deletessearch(mapList);
 	}
 

@@ -4,16 +4,26 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security.xsd
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
+	<!-- Spring security -->
+	<!-- security pattern -->
+	<!-- Security pattern 입력 -->
+	<!-- security auto-config -->
 	<security:http auto-config="true">
-	<!-- security => main.do : ROLE_USER -->
+		<!-- Security intercept-URL -->
+		<security:intercept-url pattern="/**"
+			access="IS_AUTHENTICATED_ANONYMOUSLY" />
+		<security:intercept-url pattern="/admin/**"
+			access="ROLE_ADMIN" />
 		<security:intercept-url pattern="/main.do"
 			access="ROLE_USER" />
+		<!-- Security form-login -->
 		<security:form-login login-page="/login.do"
-			default-target-url="/main.do" authentication-failure-url="/loginFail.do" />
-		<security:logout logout-success-url="/logout.do" />
-
+			login-processing-url="/j_spring_security_check.do"
+			default-target-url="/loginSuccess.do" authentication-failure-url="/loginFailed.do" />
+		<!-- Security logout-url -->
+		<security:logout logout-url="/j_spring_security_logout.do"
+			logout-success-url="/logout.do" invalidate-session="true" />
 	</security:http>
-
 
 	<security:authentication-manager>
 		<security:authentication-provider

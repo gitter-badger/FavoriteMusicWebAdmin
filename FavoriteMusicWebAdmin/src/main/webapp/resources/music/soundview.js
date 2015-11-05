@@ -18,7 +18,7 @@ function showList(ssearch) {
 				dataType : 'JSON',
 				data : JSON.stringify(ssearch),
 				contentType : "application/json; charset=UTF-8",
-				url : '/web/source/ssviewselect',
+				url : '/test/contents/ssviewselect',
 				error : function() {
 					alert("데이터가 에러 났습니다. 에러확인바랍니다.");
 				},
@@ -79,7 +79,7 @@ function ViewSelect(mpssnumEncrypt) {
 		type : "GET",
 		dataType : "JSON",
 		contentType : "application/json; charset=UTF-8",
-		url : "/web/source/ssviewer/" + mpssnumEncrypt,
+		url : "/test/contents/ssviewer/" + mpssnumEncrypt,
 		error : function() {
 			alert("실패 하셩습니다. ");
 		},
@@ -251,7 +251,6 @@ function formValidator() {
  * 
  */
 
-
 function goPagination(total, limit, page_index) {
 	var options = {
 		bootstrapMajorVersion : 3,
@@ -322,7 +321,7 @@ $('#btnYboardSave').click(function() {
 	$('#mplanform').ajaxForm(
 
 	{
-		url : '/web/source/' + method,
+		url : '/test/contents/' + method,
 		cache : false,
 		dataType : "json",
 		// 보내기전 validation check가 필요할경우
@@ -351,17 +350,18 @@ $('#btnYboardSave').click(function() {
  * 체크된 게시내용 삭제
  */
 $('#btnYboardDelete').click(function() {
-	var checknum = $('input[name=mp_mpnum]:checked').map(function() {
+
+	var checknum = $(':checkbox[name="mp_mpnum"]').map(function() {
 		if (this.checked) {
-			// alert("한개 이상 체크되어야 합니다.");
 			alert(checknum);
+			alert("exit");
 			return this.value;
 		}
 	}).get().join(",");
-
 	// 아무것도 체크되어 있지 않다면 에러표시
 	if (checknum === "") {
 		alert(checknum);
+		alert("exit2");
 		alert("한개 이상 체크되어야 합니다.");
 		return;
 	}
@@ -374,7 +374,7 @@ $('#btnYboardDelete').click(function() {
 		dataType : "JSON",
 		data : JSON.stringify(param),
 		contentType : "application/json; charset=UTF-8",
-		url : "/web/source/ssviewdelete",
+		url : "/test/contents/ssviewdelete",
 		error : function() {
 			alert("Loading failed!")
 		},
@@ -399,7 +399,7 @@ $('#allCheck').click(function() {
 	}
 });
 
-//초기화
+// 초기화
 (function() {
 	$('.selectpicker').selectpicker({
 		width : "auto"
