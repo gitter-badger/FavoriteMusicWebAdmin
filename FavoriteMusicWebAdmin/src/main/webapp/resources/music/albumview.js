@@ -17,7 +17,7 @@ function showList(ssearch) {
 				dataType : 'JSON',
 				data : JSON.stringify(ssearch),
 				contentType : "application/json; charset=UTF-8",
-				url : '/web/source/abviewselect',
+				url : '/test/contents/abviewselect',
 				error : function() {
 					alert("데이터가 에러 났습니다. 에러확인바랍니다.");
 				},
@@ -79,7 +79,7 @@ function ViewSelect(mpssnumEncrypt) {
 		type : "GET",
 		dataType : "JSON",
 		contentType : "application/json; charset=UTF-8",
-		url : "/web/source/abviewer/" + mpssnumEncrypt,
+		url : "/test/contents/abviewer/" + mpssnumEncrypt,
 		error : function() {
 			alert("실패 하셩습니다. ");
 		},
@@ -274,7 +274,7 @@ $('#btnYboardSave').click(function() {
 	$('#mplanform').ajaxForm(
 
 	{
-		url : '/web/source/' + method,
+		url : '/test/contents/' + method,
 		cache : false,
 		dataType : "json",
 		// 보내기전 validation check가 필요할경우
@@ -324,7 +324,7 @@ $('#btnYboardDelete').click(function() {
 		dataType : "JSON",
 		data : JSON.stringify(param),
 		contentType : "application/json; charset=UTF-8",
-		url : "/web/source/ssalbumdelete",
+		url : "/test/contents/ssalbumdelete",
 		error : function() {
 			alert("Loading failed!")
 		},

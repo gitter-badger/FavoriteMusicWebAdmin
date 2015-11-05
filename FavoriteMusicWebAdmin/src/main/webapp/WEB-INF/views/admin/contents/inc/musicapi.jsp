@@ -274,6 +274,15 @@
 							</div>
 						</div>
 						<div class="form-group">
+							<label for="mmvkupload" class="col-sm-2 control-label">뮤직비디오
+							</label>
+							<div class="col-sm-10">
+								<input type="file" class="mpmvfile" name="mmvkupload"
+									id="mmvkupload" />
+
+							</div>
+						</div>
+						<div class="form-group">
 							<label for="RadioGroup1" class="col-sm-2 control-label">사용여부
 								: </label>
 							<div class="col-sm-10">

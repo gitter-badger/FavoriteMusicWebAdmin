@@ -108,7 +108,7 @@ public class MusicController {
 		String mp_title = request.getParameter("title"); // ?ï®Î≤îÎ™Ö Request
 		String mp_album = request.getParameter("album"); // Í∞??Ç¨ Request
 		String mp_lyric = request.getParameter("lyric"); // ?ïÑ?ã∞?ä§?ä∏ ?ù¥Î¶?
-															// Request
+												// Request
 		String mp_label = request.getParameter("label"); // ?ùå?õê?†úÎ™? Request
 		String mp_corp = request.getParameter("corp"); // ?ï®Î≤îÎ™Ö Request
 		String mp_year = request.getParameter("year"); // Í∞??Ç¨ Request
@@ -123,7 +123,7 @@ public class MusicController {
 		MultipartFile mimg = request.getFile("imgupload");
 		MultipartFile m320k = request.getFile("m320kupload");
 		MultipartFile m192k = request.getFile("m192kupload");
-
+		MultipartFile mmvk = request.getFile("mmvkupload");
 		logger.info("mp_num2 : " + mp_num);
 		logger.info("mp_artist : " + mp_artist);
 		logger.info("mp_title : " + mp_title);
@@ -132,14 +132,17 @@ public class MusicController {
 		logger.info("mp_label : " + mp_label);
 
 		Jsontotal jsontotal = new Jsontotal();
-		if (mimg != null && m192k != null && m192k != null) {
+		if (mimg != null && m192k != null && m192k != null && mmvk != null) {
 
 			String mp_img = mimg.getOriginalFilename();
 			String mp_192k = m192k.getOriginalFilename();
 			String mp_320k = m320k.getOriginalFilename();
+			String mp_mvk = mmvk.getOriginalFilename();
+			
 			long mp_imgsize = mimg.getSize();
 			long mp_192size = m192k.getSize();
 			long mp_320size = m320k.getSize();
+			long mp_mvsize = mmvk.getSize();
 
 			// ///////////////////////////////////////////////////////////////////////
 			// Upload ?åå?ùºÎ™? UUIDÎ≥?Í≤? (?ûÑ?ùò ?ûú?ç§ ?åå?ùº?ù¥Î¶? Î≥?Í≤?)
@@ -153,6 +156,9 @@ public class MusicController {
 			String mp_192ko = System.currentTimeMillis()
 					+ UUID.randomUUID().toString()
 					+ mp_192k.substring(mp_192k.lastIndexOf("."));
+			String mp_mvko = System.currentTimeMillis()
+					+ UUID.randomUUID().toString()
+					+ mp_mvk.substring(mp_mvk.lastIndexOf("."));
 
 			// ///////////////////////////////////////////////////////////////////////
 			// Upload ?è¥?çî?úÑÏπ? ?Ñ§?†ï
@@ -160,6 +166,7 @@ public class MusicController {
 			String uploadimgPath = "E://upload//img//";
 			String upload320Path = "E://upload//music320k//";
 			String upload192Path = "E://upload//music192k//";
+			String uploadmvPath = "E://upload//video//";
 
 			// ///////////////////////////////////////////////////////////////////////
 			// Upload ?åå?ùº?Ç¨?ù¥Ï¶? 0?ù¥ ?ïÑ?ãà?ùºÎ©?... ?óÖÎ°úÎìú
@@ -174,6 +181,10 @@ public class MusicController {
 				m320k.transferTo(new File(upload320Path + "/" + mp_320ko));
 			}
 
+			if (mmvk.getSize() != 0) {
+				mmvk.transferTo(new File(uploadmvPath + "/" + mp_mvko));
+			}
+
 			// ///////////////////////////////////////////////////////////////////////
 			// Hashput ?ûÖ?†•
 			// ///////////////////////////////////////////////////////////////////////
@@ -181,12 +192,18 @@ public class MusicController {
 			ssview.setMp_img(mp_img);
 			ssview.setMp_320k(mp_320k);
 			ssview.setMp_192k(mp_192k);
+			ssview.setMp_mvk(mp_mvk);
+			
 			ssview.setMp_imgsize(mp_imgsize);
 			ssview.setMp_320size(mp_320size);
 			ssview.setMp_192size(mp_192size);
+			ssview.setMp_mvsize(mp_mvsize);
+			
 			ssview.setMp_imgo(mp_imgo);
 			ssview.setMp_320ko(mp_320ko);
 			ssview.setMp_192ko(mp_192ko);
+			ssview.setMp_mvko(mp_mvko);
+			
 			ssview.setMp_num(mp_num);
 			ssview.setMp_artist(mp_artist);
 			ssview.setMp_title(mp_title);
@@ -250,6 +267,7 @@ public class MusicController {
 		MultipartFile mimg = request.getFile("imgupload");
 		MultipartFile m320k = request.getFile("m320kupload");
 		MultipartFile m192k = request.getFile("m192kupload");
+		MultipartFile mmvk = request.getFile("mmvkupload");
 		logger.info("num_pm : " + num_pm);
 		logger.info("mp_num2 : " + mp_num);
 		logger.info("mp_artist : " + mp_artist);
@@ -259,15 +277,18 @@ public class MusicController {
 		logger.info("mp_label : " + mp_label);
 
 		Jsontotal jsontotal = new Jsontotal();
-		if (mimg != null && m192k != null && m192k != null) {
+		if (mimg != null && m192k != null && m192k != null && mmvk != null) {
 
 			String mp_img = mimg.getOriginalFilename();
 			String mp_192k = m192k.getOriginalFilename();
 			String mp_320k = m320k.getOriginalFilename();
+			String mp_mvk = mmvk.getOriginalFilename();
+			
 			long mp_imgsize = mimg.getSize();
 			long mp_192size = m192k.getSize();
 			long mp_320size = m320k.getSize();
-
+			long mp_mvsize = mmvk.getSize();
+			
 			// ///////////////////////////////////////////////////////////////////////
 			// Upload ?åå?ùºÎ™? UUIDÎ≥?Í≤? (?ûÑ?ùò ?ûú?ç§ ?åå?ùº?ù¥Î¶? Î≥?Í≤?)
 			// ///////////////////////////////////////////////////////////////////////
@@ -280,6 +301,9 @@ public class MusicController {
 			String mp_192ko = System.currentTimeMillis()
 					+ UUID.randomUUID().toString()
 					+ mp_192k.substring(mp_192k.lastIndexOf("."));
+			String mp_mvko = System.currentTimeMillis()
+					+ UUID.randomUUID().toString()
+					+ mp_mvk.substring(mp_mvk.lastIndexOf("."));
 
 			// ///////////////////////////////////////////////////////////////////////
 			// Upload ?è¥?çî?úÑÏπ? ?Ñ§?†ï
@@ -287,7 +311,8 @@ public class MusicController {
 			String uploadimgPath = "E://upload//img//";
 			String upload192Path = "E://upload//music192k//";
 			String upload320Path = "E://upload//music320k//";
-
+			String uploadmvPath = "E://upload//video//";
+			
 			// ///////////////////////////////////////////////////////////////////////
 			// Upload ?åå?ùº?Ç¨?ù¥Ï¶? 0?ù¥ ?ïÑ?ãà?ùºÎ©?... ?óÖÎ°úÎìú
 			// ///////////////////////////////////////////////////////////////////////
@@ -300,6 +325,9 @@ public class MusicController {
 			if (m320k.getSize() != 0) {
 				m320k.transferTo(new File(upload320Path + "/" + mp_192ko));
 			}
+			if (mmvk.getSize() != 0) {
+				mmvk.transferTo(new File(uploadmvPath + "/" + mp_mvko));
+			}
 
 			// ///////////////////////////////////////////////////////////////////////
 			// Hashput ?ûÖ?†•
@@ -310,12 +338,19 @@ public class MusicController {
 			ssview.setMp_img(mp_img);
 			ssview.setMp_320k(mp_320k);
 			ssview.setMp_192k(mp_192k);
+			ssview.setMp_192k(mp_mvk);
+			
 			ssview.setMp_imgsize(mp_imgsize);
 			ssview.setMp_320size(mp_320size);
 			ssview.setMp_192size(mp_192size);
+			ssview.setMp_192size(mp_mvsize);
+			
+			
 			ssview.setMp_imgo(mp_imgo);
 			ssview.setMp_320ko(mp_320ko);
 			ssview.setMp_192ko(mp_192ko);
+			ssview.setMp_192ko(mp_mvko);
+			
 			ssview.setMp_num(mp_num);
 			ssview.setMp_artist(mp_artist);
 			ssview.setMp_title(mp_title);
@@ -352,9 +387,10 @@ public class MusicController {
 	@ResponseBody
 	public Jsontotal deletessview(@RequestBody Map<String, Object> param,
 			String mp_imgo) {
+
 		Jsontotal jsontotal = new Jsontotal();
 		String mp_mpnum = String.valueOf(param.get("mp_mpnum"));
-		// String mp_imgo = String.valueOf(param.get("mp_imgo"));
+		System.out.println(mp_mpnum);
 
 		List<Map<String, Object>> mapList = new ArrayList<Map<String, Object>>();
 		String[] mpssnumEncrypts = mp_mpnum.split(",");
@@ -365,7 +401,7 @@ public class MusicController {
 					MusicStringUtil.getTmsDecryptoAesForInt(mpssnumEncrypt));
 			mapList.add(map);
 		}
-		// musicService.deletessearch(mapList);
+		musicService.deletessearch(mapList);
 		jsontotal.setSuccess(true);
 		return jsontotal;
 	}

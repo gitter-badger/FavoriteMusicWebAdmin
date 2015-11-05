@@ -218,7 +218,7 @@
 			<!-- Main content -->
 			<section class="content">
 			<div class="infomation">
-<%@ include file="/WEB-INF/views/admin/contents/inc/musicapi.jsp"%>
+				<%@ include file="/WEB-INF/views/admin/contents/inc/musicapi.jsp"%>
 			</div>
 			</section>
 		</div>

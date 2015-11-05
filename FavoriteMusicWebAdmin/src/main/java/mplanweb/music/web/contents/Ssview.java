@@ -22,16 +22,45 @@ public class Ssview implements Serializable {
 	private String mp_img; // : ?•„?‹°?Š¤?Š¸
 	private String mp_320k; // : ?•„?‹°?Š¤?Š¸
 	private String mp_192k; // : ?•„?‹°?Š¤?Š¸
+	private String mp_mvk; // : ?•„?‹°?Š¤?Š¸
 	private long mp_imgsize; // : ?•„?‹°?Š¤?Š¸
 	private long mp_320size; // : ?•„?‹°?Š¤?Š¸
 	private long mp_192size; // : ?•„?‹°?Š¤?Š¸
+	private long mp_mvsize; // : ?•„?‹°?Š¤?Š¸
 	private String mp_imgo; // : ?•„?‹°?Š¤?Š¸
 	private String mp_320ko; // : ?•„?‹°?Š¤?Š¸
 	private String mp_192ko; // : ?•„?‹°?Š¤?Š¸
+	private String mp_mvko; // : ?•„?‹°?Š¤?Š¸
+
 	private String mp_age; // : ?•„?‹°?Š¤?Š¸
 	private String mp_useyn; // : ?•„?‹°?Š¤?Š¸
 	private String mp_open_date; // : ?•„?‹°?Š¤?Š¸
 	private String mp_insert_date; // : ?•„?‹°?Š¤?Š¸
+
+	
+	public String getMp_mvk() {
+		return mp_mvk;
+	}
+
+	public void setMp_mvk(String mp_mvk) {
+		this.mp_mvk = mp_mvk;
+	}
+
+	public long getMp_mvsize() {
+		return mp_mvsize;
+	}
+
+	public void setMp_mvsize(long mp_mvsize) {
+		this.mp_mvsize = mp_mvsize;
+	}
+
+	public String getMp_mvko() {
+		return mp_mvko;
+	}
+
+	public void setMp_mvko(String mp_mvko) {
+		this.mp_mvko = mp_mvko;
+	}
 
 	public long getMp_imgsize() {
 	

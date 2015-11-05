@@ -61,19 +61,20 @@
 	<div class="wrapper">
 
 		<!-- Main Header -->
-		<header class="main-header"> <!-- Logo --> <a href="<%=request.getContextPath()%>/main"
-			class="logo"> <!-- mini logo for sidebar mini 50x50 pixels --> <span
-			class="logo-mini">MP</span> <!-- logo for regular state and mobile devices -->
+		<header class="main-header"> <!-- Logo --> <a
+			href="<%=request.getContextPath()%>/main" class="logo"> <!-- mini logo for sidebar mini 50x50 pixels -->
+			<span class="logo-mini">MP</span> <!-- logo for regular state and mobile devices -->
 			<span class="logo-lg">Favorite Music</span>
 		</a> <!-- Header Navbar --> <nav class="navbar navbar-static-top"
 			role="navigation"> <!-- Sidebar toggle button--> <!-- Navbar Right Menu -->
-			  <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button"> <span class="sr-only">메뉴숨기기</span> </a> 
+		<a href="#" class="sidebar-toggle" data-toggle="offcanvas"
+			role="button"> <span class="sr-only">메뉴숨기기</span>
+		</a>
 		<div class="navbar-custom-menu">
 			<ul class="nav navbar-nav">
 				<!-- User Account Menu -->
 				<li class="dropdown user user-menu">
-					<!-- Menu Toggle Button --> 
-					<a href="#" class="dropdown-toggle"
+					<!-- Menu Toggle Button --> <a href="#" class="dropdown-toggle"
 					data-toggle="dropdown"> <!-- The user image in the navbar--> <img
 						src="<%=request.getContextPath()%>/resources/dist/img/user2-160x160.jpg"
 						class="user-image" alt="User Image" /> <!-- hidden-xs hides the username on small devices so only the image appears. -->
@@ -118,7 +119,7 @@
 		<ul class="sidebar-menu">
 			<li class="header">메뉴</li>
 			<!-- Optionally, you can add icons to the links -->
-			<li class="active"><a href="#"><i class='fa fa-link'></i> <span>메인(Main)</span></a></li>
+			<li><a href="#"><i class='fa fa-link'></i> <span>메인(Main)</span></a></li>
 			<li class="treeview"><a href="#"><i class='fa fa-users'></i>
 					<span>회원관리(Member)</span> <i class="fa fa-angle-left pull-right"></i></a>
 				<ul class="treeview-menu">
@@ -135,8 +136,9 @@
 					<li><a href="<%=request.getContextPath()%>/lable">레이블/제작사관리</a></li>
 					<li><a href="#">B2B 관련 관리</a></li>
 				</ul></li>
-			<li class="treeview"><a href="#"><i class='fa fa-music'></i>
-					<span>콘텐츠등록(Contents)</span> <i class="fa fa-angle-left pull-right"></i></a>
+			<li class="treeview active"><a href="#"><i
+					class='fa fa-music'></i> <span>콘텐츠등록(Contents)</span> <i
+					class="fa fa-angle-left pull-right"></i></a>
 				<ul class="treeview-menu">
 					<li><a href="<%=request.getContextPath()%>/artist">아티스트관리</a></li>
 					<li><a href="<%=request.getContextPath()%>/album">앨범관리</a></li>
@@ -208,17 +210,18 @@
 				Favorite Music <small>앨범관리</small>
 			</h1>
 			<ol class="breadcrumb">
-				<li><a href="<%=request.getContextPath()%>/main"><i class="fa fa-dashboard"></i> Home</a></li>
-				
-        <li class="active">앨범관리</li>
-       
+				<li><a href="<%=request.getContextPath()%>/main"><i
+						class="fa fa-dashboard"></i> Home</a></li>
+
+				<li class="active">앨범관리</li>
+
 			</ol>
 			</section>
 
 			<!-- Main content -->
 			<section class="content">
 			<div class="infomation">
-
+				<%@ include file="/WEB-INF/views/admin/contents/inc/albumview.jsp"%>
 			</div>
 			</section>
 		</div>
@@ -242,14 +245,6 @@
 	<!-- ./wrapper -->
 
 	<!-- REQUIRED JS SCRIPTS -->
-
-	<!-- jQuery 2.1.4 -->
-	<script
-		src="<%=request.getContextPath()%>/resources/plugins/jQuery/jQuery-2.1.4.min.js"
-		type="text/javascript"></script>
-	<!-- Bootstrap 3.3.2 JS -->
-	<script
-		src="<%=request.getContextPath()%>/resources/bootstrap/js/bootstrap.min.js"></script>
 	<!-- AdminLTE App -->
 	<script
 		src="<%=request.getContextPath()%>/resources/dist/js/app.min.js"

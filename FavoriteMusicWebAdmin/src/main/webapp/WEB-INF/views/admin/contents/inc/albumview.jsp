@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+<%@ page language="java" contentType="text/html; charset=EUC-KR"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -7,26 +7,26 @@
 <title>앨범 관리 게시판</title>
 
 <link
-	href="/web/resources/bower_components/bootstrap/dist/css/bootstrap.min.css"
+	href="<%=request.getContextPath()%>/resources/bower_components/bootstrap/dist/css/bootstrap.min.css"
 	rel="stylesheet">
 <link
-	href="/web/resources/bower_components/bootstrap-select/bootstrap-select.min.css"
+	href="<%=request.getContextPath()%>/resources/bower_components/bootstrap-select/bootstrap-select.min.css"
 	rel="stylesheet">
 <link
-	href="/web/resources/bower_components/bootstrapValidator/dist/css/bootstrapValidator.min.css"
+	href="<%=request.getContextPath()%>/resources/bower_components/bootstrapValidator/dist/css/bootstrapValidator.min.css"
 	rel="stylesheet">
-<script src="/web/resources/bower_components/jquery/jquery.min.js"></script>
-<script src="/web/resources/js/jquery/jquery.form.min.js"></script>
+<script src="<%=request.getContextPath()%>/resources/bower_components/jquery/jquery.min.js"></script>
+<script src="<%=request.getContextPath()%>/resources/js/jquery/jquery.form.min.js"></script>
 <!-- jQuery MultiFile Plugin import -->
-<script src="/web/resources/js/jquery/jQuery.MultiFile.min.js"></script>
+<script src="<%=request.getContextPath()%>/resources/js/jquery/jQuery.MultiFile.min.js"></script>
 <script
-	src="/web/resources/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+	src="<%=request.getContextPath()%>/resources/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 <script
-	src="/web/resources/bower_components/bootstrap-select/bootstrap-select.min.js"></script>
+	src="<%=request.getContextPath()%>/resources/bower_components/bootstrap-select/bootstrap-select.min.js"></script>
 <script
-	src="/web/resources/bower_components/bootstrap-paginator/build/bootstrap-paginator.min.js"></script>
+	src="<%=request.getContextPath()%>/resources/bower_components/bootstrap-paginator/build/bootstrap-paginator.min.js"></script>
 <script
-	src="/web/resources/bower_components/bootstrapValidator/dist/js/bootstrapValidator.min.js"></script>
+	src="<%=request.getContextPath()%>/resources/bower_components/bootstrapValidator/dist/js/bootstrapValidator.min.js"></script>
 
 
 
@@ -35,11 +35,6 @@
 </head>
 <body>
 	<div class="container-fluid">
-		<div class="page-header">
-			<h1>
-				<small>Favorite Music 앨범 관리</small>
-			</h1>
-		</div>
 		<div class="row">
 			<div class="col-md-12">
 				<div class="panel panel-default">
@@ -182,5 +177,5 @@
 	</form>
 </body>
 
-<script src="/web/resources/music/albumview.js"></script>
+<script src="<%=request.getContextPath()%>/resources/music/albumview.js"></script>
 </html>

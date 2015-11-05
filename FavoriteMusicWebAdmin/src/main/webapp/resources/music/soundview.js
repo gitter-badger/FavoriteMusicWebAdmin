@@ -81,7 +81,7 @@ function ViewSelect(mpssnumEncrypt) {
 		contentType : "application/json; charset=UTF-8",
 		url : "/test/contents/ssviewer/" + mpssnumEncrypt,
 		error : function() {
-			alert("실패 하셩습니다. ");
+			alert("실패 하셨습니다. ");
 		},
 		success : function(jsontotal) {
 			if (jsontotal.success) {
@@ -353,19 +353,17 @@ $('#btnYboardDelete').click(function() {
 
 	var checknum = $(':checkbox[name="mp_mpnum"]').map(function() {
 		if (this.checked) {
-			alert(checknum);
 			alert("exit");
 			return this.value;
 		}
 	}).get().join(",");
 	// 아무것도 체크되어 있지 않다면 에러표시
 	if (checknum === "") {
-		alert(checknum);
 		alert("exit2");
 		alert("한개 이상 체크되어야 합니다.");
 		return;
 	}
-
+alert(param);
 	var param = {
 		mp_mpnum : checknum
 	};

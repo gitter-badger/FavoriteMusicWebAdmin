@@ -81,7 +81,8 @@
 	</select>
 
 	<!-- 아티스트 총 리스트 -->
-	<select id="selectartistview" resultType="Ssartist" parameterType="Ssearch">
+	<select id="selectartistview" resultType="Ssartist"
+		parameterType="Ssearch">
 		SELECT mp_anum, mp_artist, mp_content, mp_label, mp_debut, mp_useyn,
 		mp_date
 		FROM mplan_artist
@@ -137,7 +138,8 @@
 
 	<select id="viewartistview" resultType="Ssartist" parameterType="map">
 		SELECT mp_anum, mp_artist, mp_content, mp_label, mp_debut,
-		mp_useyn, mp_artistimg, mp_artistsize, mp_artistorg
+		mp_useyn,
+		mp_artistimg, mp_artistsize, mp_artistorg
 		FROM
 		mplan_artist
 		WHERE mp_anum
@@ -146,11 +148,13 @@
 	<!-- 회사 총 뷰 -->
 
 	<select id="viewcorpview" resultType="Sscorp" parameterType="map">
-		SELECT mp_corpnum, mp_corpname, mp_number, mp_address, mp_contents, mp_person,
+		SELECT mp_corpnum, mp_corpname, mp_number, mp_address, mp_contents,
+		mp_person,
 		mp_phone, mp_useyn
 		FROM
 		mplan_corp
-		WHERE mp_corpnum = #{mp_corpnum}
+		WHERE mp_corpnum =
+		#{mp_corpnum}
 	</select>
 
 	<!-- 뷰 쿼리 종료 -->
@@ -171,12 +175,14 @@
 		mp_img,
 		mp_320k, mp_192k,
 		mp_useyn, mp_insert_date, mp_imgsize, mp_imgo,
-		mp_320size, mp_320ko, mp_192size, mp_192ko)
-		values (
+		mp_320size, mp_320ko, mp_192size, mp_192ko, mp_mvk,mp_mvko, mp_mvsize)
+		values
+		(
 		#{mp_num},
 		#{mp_artist},
 		#{mp_title}, #{mp_album},
-		#{mp_lyric}, #{mp_year},
+		#{mp_lyric},
+		#{mp_year},
 		#{mp_corp}, #{mp_label},
 		#{mp_genre1}, #{mp_genre2},
 		#{mp_etc},
@@ -189,7 +195,11 @@
 		#{mp_320size},
 		#{mp_320ko},
 		#{mp_192size},
-		#{mp_192ko})
+		#{mp_192ko},
+		#{mp_mvk},
+		#{mp_mvko},
+		#{mp_mvsize}
+		)
 	</insert>
 	<!-- 앨범 등록 -->
 	<insert id="insertalbum" parameterType="SsAlbum">
@@ -218,7 +228,7 @@
 		mplan_artist
 		(
 		mp_anum, mp_artist,
-		 mp_content,
+		mp_content,
 		mp_label, mp_debut,
 		mp_artistimg,
 		mp_artistsize,
@@ -229,8 +239,10 @@
 		#{mp_artist},
 		#{mp_content}, #{mp_label},
 		#{mp_debut},
-		#{mp_artistimg}, #{mp_artistsize},
-		#{mp_artistorg}, #{mp_useyn},
+		#{mp_artistimg},
+		#{mp_artistsize},
+		#{mp_artistorg},
+		#{mp_useyn},
 		now())
 	</insert>
 	<!-- 회사 등록 -->
@@ -241,14 +253,15 @@
 		mp_corpname, mp_number,
 		mp_address, mp_contents,
 		mp_person, mp_phone,
-		 mp_useyn,
+		mp_useyn,
 		mp_date)
 		values (
 		#{mp_corpname},
 		#{mp_number},
-		#{mp_address}, #{mp_contents},
+		#{mp_address},
+		#{mp_contents},
 		#{mp_person}, #{mp_phone},
-		 #{mp_useyn},
+		#{mp_useyn},
 		now())
 	</insert>
 	<!-- Insert 종료 -->
@@ -344,6 +357,15 @@
 			</if>
 			<if test="@Ognl@isNotEmpty(mp_192ko)">
 				mp_192ko = #{mp_192ko},
+			</if>
+			<if test="@Ognl@isNotEmpty(mp_mvk)">
+				mp_mvk = #{mp_mvk},
+			</if>
+			<if test="@Ognl@isNotEmpty(mp_mvsize)">
+				mp_mvsize = #{mp_mvsize},
+			</if>
+			<if test="@Ognl@isNotEmpty(mp_mvko)">
+				mp_mvko = #{mp_mvko},
 			</if>
 			<if test="@Ognl@isNotEmpty(mp_age)">
 				mp_age = #{mp_age},
