@@ -142,6 +142,17 @@
 								</select>
 							</div>
 						</div>
+							<div class="form-group">
+							<label for="RadioGroup1" class="col-sm-2 control-label">타이틀
+								: </label>
+							<div class="col-sm-10">
+								<label class="radio-inline"> <input type="radio"
+									id="titleuse1" name="titleuse1" value="Y">타이틀곡
+								</label> <label class="radio-inline"> <input type="radio"
+									id="titleuse2" name="titleuse2" value="N">타이틀곡 아님
+								</label>
+							</div>
+						</div>
 						<div class="form-group">
 							<label for="artist" class="col-sm-2 control-label">아티스트 </label>
 							<div class="col-sm-10">
@@ -273,15 +284,7 @@
 
 							</div>
 						</div>
-						<div class="form-group">
-							<label for="mmvkupload" class="col-sm-2 control-label">뮤직비디오
-							</label>
-							<div class="col-sm-10">
-								<input type="file" class="mpmvfile" name="mmvkupload"
-									id="mmvkupload" />
-
-							</div>
-						</div>
+			
 						<div class="form-group">
 							<label for="RadioGroup1" class="col-sm-2 control-label">사용여부
 								: </label>

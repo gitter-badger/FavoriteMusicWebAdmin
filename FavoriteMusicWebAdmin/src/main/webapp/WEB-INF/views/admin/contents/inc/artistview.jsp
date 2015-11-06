@@ -2,40 +2,13 @@
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
+<!-- start head -->
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>아티스트 관리 게시판</title>
-
-<link
-	href="<%=request.getContextPath()%>/resources/bower_components/bootstrap/dist/css/bootstrap.min.css"
-	rel="stylesheet">
-<link
-	href="<%=request.getContextPath()%>/resources/bower_components/bootstrap-select/bootstrap-select.min.css"
-	rel="stylesheet">
-<link
-	href="<%=request.getContextPath()%>/resources/bower_components/bootstrapValidator/dist/css/bootstrapValidator.min.css"
-	rel="stylesheet">
-<script src="<%=request.getContextPath()%>/resources/bower_components/jquery/jquery.min.js"></script>
-<script src="<%=request.getContextPath()%>/resources/js/jquery/jquery.form.min.js"></script>
-<!-- jQuery MultiFile Plugin import -->
-<script src="<%=request.getContextPath()%>/resources/js/jquery/jQuery.MultiFile.min.js"></script>
-<script
-	src="<%=request.getContextPath()%>/resources/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
-<script
-	src="<%=request.getContextPath()%>/resources/bower_components/bootstrap-select/bootstrap-select.min.js"></script>
-<script
-	src="<%=request.getContextPath()%>/resources/bower_components/bootstrap-paginator/build/bootstrap-paginator.min.js"></script>
-<script
-	src="<%=request.getContextPath()%>/resources/bower_components/bootstrapValidator/dist/js/bootstrapValidator.min.js"></script>
-
-
-
-
-
 </head>
+<!-- end head -->
 <body>
 	<div class="container-fluid">
-	
 		<div class="row">
 			<div class="col-md-12">
 				<div class="panel panel-default">
@@ -84,25 +57,19 @@
 			</div>
 		</div>
 	</div>
-
-
 	<!-- Modal : Yboard Edit -->
 	<form class="form-horizontal" id="mplanform" name="mplanform"
 		method="POST" enctype="multipart/form-data">
 		<div class="modal fade" id="yboardEditModal" tabindex="-1"
 			role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 			<div class="modal-dialog">
-
 				<div class="modal-content">
-
 					<div class="modal-header">
 						<button type="button" class="close" data-dismiss="modal"
 							aria-hidden="true">&times;</button>
 						<h4 class="modal-title" id="myModalLabel">아티스트 관리/수정</h4>
 					</div>
-
 					<div class="modal-body">
-
 						<input type="hidden" id="mpssnumEncrypt" name="mpssnumEncrypt">
 						<div class="form-group">
 							<label for="artist" class="col-sm-2 control-label">아티스트 </label>
@@ -111,12 +78,14 @@
 									name="artist" placeholder="아티스트 입력하세요">
 							</div>
 						</div>
-
 						<div class="form-group">
 							<label for="content" class="col-sm-2 control-label">내용 </label>
 							<div class="col-sm-10">
 								<textarea style="height: 200px; width: 100%;" id="content"
 									name="content"></textarea>
+								<script type="text/javascript">
+									CKEDITOR.replace('content');
+								</script>
 							</div>
 						</div>
 						<div class="form-group">
@@ -154,21 +123,15 @@
 								</label>
 							</div>
 						</div>
-
 					</div>
-
 					<div class="modal-footer">
 						<button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
 						<button type="submit" class="btn btn-primary" id="btnYboardSave">저장</button>
+						<button type="button" class="btn btn-info" id="resetBtn">리셋</button>
 					</div>
-
 				</div>
-
 			</div>
-
 		</div>
 	</form>
 </body>
-
-<script src="<%=request.getContextPath()%>/resources/music/artistview.js"></script>
 </html>

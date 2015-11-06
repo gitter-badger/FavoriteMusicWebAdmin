@@ -678,7 +678,6 @@ public class MusicController {
 		List<Ssartist> artistlist = musicService.selectartistview(ssearch); // nullpoint
 		jsontotal.setTotal(totalCount);
 		jsontotal.setItems(artistlist);
-
 		jsontotal.setSuccess(true);
 
 		// 리턴

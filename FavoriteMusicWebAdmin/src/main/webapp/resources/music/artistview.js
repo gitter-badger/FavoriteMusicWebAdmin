@@ -54,6 +54,7 @@ function showList(ssearch) {
 													+ ssartist.mp_date
 													+ '</td>'
 										
+										
 												
 												
 										});
@@ -81,7 +82,7 @@ function ViewSelect(mpssnumEncrypt) {
 		contentType : "application/json; charset=UTF-8",
 		url : "/test/contents/artviewer/" + mpssnumEncrypt,
 		error : function() {
-			alert("실패 하셩습니다. ");
+			alert("실패 하셨습니다. ");
 		},
 		success : function(jsontotal) {
 			if (jsontotal.success) {
@@ -89,9 +90,9 @@ function ViewSelect(mpssnumEncrypt) {
 				$('#mpssnumEncrypt').val(ssartist.mpssnumEncrypt);
 				$('#artist').val(ssartist.mp_artist);
 				$('#content').text(ssartist.mp_content);
-				$('#debut').val(ssartist.mp_label);
-				$('#label').val(ssartist.mp_debut);
-				//$('#imgupload').load(ssartist.mp_artistimg);
+				$('#debut').val(ssartist.mp_debut);
+				$('#label').val(ssartist.mp_label);
+				//$('#imgupload').load(ssartist.mp_artistorg);
 				$(':radio[name="RadioGroup1"]').filter(
 						'[value="' + ssartist.mp_useyn + '"]').prop("checked",
 						true);
@@ -248,10 +249,13 @@ function resetForm(formID) {
  * 모달창이 닫힐때 폼내용을 reset해준다.
  */
 $('.modal').on('hidden.bs.modal', function() {
-	$('#lyric').text('');
+	$('#content').text('');
 	resetForm('mplanform');
 });
-
+$('#resetBtn').click(function() {
+	$('#content').text('');
+	resetForm('mplanform');
+});
 /**
  * 저장
  */

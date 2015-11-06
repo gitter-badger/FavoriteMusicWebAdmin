@@ -96,6 +96,7 @@
 
 				<div class="modal-content">
 
+					
 					<div class="modal-header">
 						<button type="button" class="close" data-dismiss="modal"
 							aria-hidden="true">&times;</button>
@@ -105,6 +106,17 @@
 					<div class="modal-body">
 
 						<input type="hidden" id="mpssnumEncrypt" name="mpssnumEncrypt">
+						<div class="form-group">
+						<label for="name" class="col-sm-2 control-label">앨범타이틀</label>
+						<div class="col-sm-10">
+							<select id="name" class="selectpicker" name="name">
+								<option value="mini">미니</option>
+								<option value="single">싱글</option>
+								<option value="album">앨범</option>
+
+							</select>
+						</div>
+					</div>
 						<div class="form-group">
 							<label for="artist" class="col-sm-2 control-label">아티스트 </label>
 							<div class="col-sm-10">
@@ -122,8 +134,17 @@
 						<div class="form-group">
 							<label for="content" class="col-sm-2 control-label">내용 </label>
 							<div class="col-sm-10">
+							
+							
+							
 								<textarea style="height: 200px; width: 100%;" id="content"
 									name="content"></textarea>
+									
+									
+									
+									
+									
+									
 							</div>
 						</div>
 						<div class="form-group">

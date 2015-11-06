@@ -8,72 +8,84 @@
 <meta
 	content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no'
 	name='viewport'>
-<!-- Bootstrap 3.3.4 -->
-<link rel="stylesheet" type="text/css"
-	href="<%=request.getContextPath()%>/resources/bootstrap/css/bootstrap.css">
-<!-- Font Awesome Icons -->
+<!-- CSS -->
+<!-- bootstrap.min -->
+<link
+	href="<%=request.getContextPath()%>/resources/css/bootstrap/css/bootstrap.min.css"
+	rel="stylesheet">
+<!-- bootstrap-select.min -->
+<link
+	href="<%=request.getContextPath()%>/resources/css/bootstrap/css/bootstrap-select.min.css"
+	rel="stylesheet">
+<!-- bootstrapValidator.min -->
+<link
+	href="<%=request.getContextPath()%>/resources/css/bootstrap/css/bootstrapValidator.min.css"
+	rel="stylesheet">
+<!-- font-awesome.min -->
 <link
 	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css"
 	rel="stylesheet" type="text/css" />
-<!-- Ionicons -->
+<!-- ionicons.min -->
 <link
 	href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css"
 	rel="stylesheet" type="text/css" />
-<!-- Theme style -->
+<!-- adminpage -->
 <link rel="stylesheet" type="text/css"
-	href="<%=request.getContextPath()%>/resources/dist/css/adminpage.css">
-
-<!-- AdminLTE Skins. We have chosen the skin-blue for this starter
-          page. However, you can choose any other skin. Make sure you
-          apply the skin class to the body tag so the changes take effect.
-    -->
+	href="<%=request.getContextPath()%>/resources/css/adminpage.css">
+<!-- skin-red.min -->
 <link rel="stylesheet" type="text/css"
-	href="<%=request.getContextPath()%>/resources/dist/css/skins/skin-red.min.css">
-
+	href="<%=request.getContextPath()%>/resources/css/skins/skin-red.min.css">
 <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
 <!--[if lt IE 9]>
         <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
         <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-    <![endif]-->
+<![endif]-->
+<!-- JS -->
+<!-- jquery.min -->
+<script
+	src="<%=request.getContextPath()%>/resources/js/jquery/jquery.min.js"></script>
+<!-- jquery.form.min -->
+<script
+	src="<%=request.getContextPath()%>/resources/js/jquery/jquery.form.min.js"></script>
+<!-- jQuery.MultiFile.min -->
+<script
+	src="<%=request.getContextPath()%>/resources/js/jquery/jQuery.MultiFile.min.js"></script>
+<!-- bootstrap.min -->
+<script
+	src="<%=request.getContextPath()%>/resources/js/bootstrap/bootstrap.min.js"></script>
+<!-- bootstrap-select.min -->
+<script
+	src="<%=request.getContextPath()%>/resources/js/bootstrap/bootstrap-select.min.js"></script>
+<!-- bootstrap-paginator.min -->
+<script
+	src="<%=request.getContextPath()%>/resources/js/bootstrap/bootstrap-paginator.min.js"></script>
+<!-- bootstrapValidator.min -->
+<script
+	src="<%=request.getContextPath()%>/resources/js/bootstrap/bootstrapValidator.min.js"></script>
+	<!-- ckeditor -->
+<script
+	src="<%=request.getContextPath()%>/resources/editor/ckeditor/ckeditor.js"></script>
 </head>
-<!--
-  BODY TAG OPTIONS:
-  =================
-  Apply one or more of the following classes to get the
-  desired effect
-  |---------------------------------------------------------|
-  | SKINS         | skin-blue                               |
-  |               | skin-black                              |
-  |               | skin-purple                             |
-  |               | skin-yellow                             |
-  |               | skin-red                                |
-  |               | skin-green                              |
-  |---------------------------------------------------------|
-  |LAYOUT OPTIONS | fixed                                   |
-  |               | layout-boxed                            |
-  |               | layout-top-nav                          |
-  |               | sidebar-collapse                        |
-  |               | sidebar-mini                            |
-  |---------------------------------------------------------|
-  -->
+
+
 <body class="skin-red sidebar-mini">
 	<div class="wrapper">
 
 		<!-- Main Header -->
-		<header class="main-header"> <!-- Logo --> <a href="<%=request.getContextPath()%>/main"
-			class="logo"> <!-- mini logo for sidebar mini 50x50 pixels --> <span
-			class="logo-mini">MP</span> <!-- logo for regular state and mobile devices -->
+		<header class="main-header"> <!-- Logo --> <a
+			href="<%=request.getContextPath()%>/main" class="logo"> <!-- mini logo for sidebar mini 50x50 pixels -->
+			<span class="logo-mini">MP</span> <!-- logo for regular state and mobile devices -->
 			<span class="logo-lg">Favorite Music</span>
 		</a> <!-- Header Navbar --> <nav class="navbar navbar-static-top"
 			role="navigation"> <!-- Sidebar toggle button--> <!-- Navbar Right Menu -->
-			  <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button"> <span class="sr-only">메뉴숨기기</span> </a> 
+		<a href="#" class="sidebar-toggle" data-toggle="offcanvas"
+			role="button"> <span class="sr-only">메뉴숨기기</span>
+		</a>
 		<div class="navbar-custom-menu">
 			<ul class="nav navbar-nav">
 				<!-- User Account Menu -->
 				<li class="dropdown user user-menu">
-					<!-- Menu Toggle Button --> 
-					<a href="#" class="dropdown-toggle"
+					<!-- Menu Toggle Button --> <a href="#" class="dropdown-toggle"
 					data-toggle="dropdown"> <!-- The user image in the navbar--> <img
 						src="<%=request.getContextPath()%>/resources/dist/img/user2-160x160.jpg"
 						class="user-image" alt="User Image" /> <!-- hidden-xs hides the username on small devices so only the image appears. -->
@@ -135,8 +147,9 @@
 					<li><a href="<%=request.getContextPath()%>/lable">레이블/제작사관리</a></li>
 					<li><a href="#">B2B 관련 관리</a></li>
 				</ul></li>
-			<li class="treeview active"><a href="#"><i class='fa fa-music'></i>
-					<span>콘텐츠등록(Contents)</span> <i class="fa fa-angle-left pull-right"></i></a>
+			<li class="treeview active"><a href="#"><i
+					class='fa fa-music'></i> <span>콘텐츠등록(Contents)</span> <i
+					class="fa fa-angle-left pull-right"></i></a>
 				<ul class="treeview-menu">
 					<li><a href="<%=request.getContextPath()%>/artist">아티스트관리</a></li>
 					<li><a href="<%=request.getContextPath()%>/album">앨범관리</a></li>
@@ -208,17 +221,18 @@
 				Favorite Music <small>아티스트관리</small>
 			</h1>
 			<ol class="breadcrumb">
-				<li><a href="<%=request.getContextPath()%>/main"><i class="fa fa-dashboard"></i> Home</a></li>
-				
-        <li class="active">아티스트관리</li>
-       
+				<li><a href="<%=request.getContextPath()%>/main"><i
+						class="fa fa-dashboard"></i> Home</a></li>
+
+				<li class="active">아티스트관리</li>
+
 			</ol>
 			</section>
 
 			<!-- Main content -->
 			<section class="content">
 			<div class="infomation">
-<%@ include file="/WEB-INF/views/admin/contents/inc/artistview.jsp"%>
+				<%@ include file="/WEB-INF/views/admin/contents/inc/artistview.jsp"%>
 			</div>
 			</section>
 		</div>
@@ -247,9 +261,7 @@
 		src="<%=request.getContextPath()%>/resources/dist/js/app.min.js"
 		type="text/javascript"></script>
 
-	<!-- Optionally, you can add Slimscroll and FastClick plugins.
-          Both of these plugins are recommended to enhance the
-          user experience. Slimscroll is required when using the
-          fixed layout. -->
+	<script
+		src="<%=request.getContextPath()%>/resources/music/artistview.js"></script>
 </body>
 </html>
