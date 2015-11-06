@@ -132,7 +132,7 @@ public class MusicController {
 		logger.info("mp_label : " + mp_label);
 
 		Jsontotal jsontotal = new Jsontotal();
-		if (mimg != null && m192k != null && m192k != null && mmvk != null) {
+		if (mimg != null && m192k != null && m192k != null) {
 
 			String mp_img = mimg.getOriginalFilename();
 			String mp_192k = m192k.getOriginalFilename();
@@ -277,7 +277,7 @@ public class MusicController {
 		logger.info("mp_label : " + mp_label);
 
 		Jsontotal jsontotal = new Jsontotal();
-		if (mimg != null && m192k != null && m192k != null && mmvk != null) {
+		if (mimg != null && m192k != null && m192k != null) {
 
 			String mp_img = mimg.getOriginalFilename();
 			String mp_192k = m192k.getOriginalFilename();
