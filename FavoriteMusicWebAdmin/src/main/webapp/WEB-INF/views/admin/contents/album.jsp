@@ -45,11 +45,7 @@
         <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 <![endif]-->
 <!-- JS -->
-<script src="http://code.jquery.com/jquery-1.9.1.js"
-	type="text/javascript"></script>
-<script
-	src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"
-	type="text/javascript"></script>
+
 <!-- jquery.min -->
 <script
 	src="<%=request.getContextPath()%>/resources/js/jquery/jquery.min.js"></script>
@@ -72,10 +68,15 @@
 <script
 	src="<%=request.getContextPath()%>/resources/js/bootstrap/bootstrapValidator.min.js"></script>
 <!-- ckeditor -->
+
 <script
 	src="<%=request.getContextPath()%>/resources/editor/ckeditor/ckeditor.js"></script>
+<script
+	src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"
+	type="text/javascript"></script>
 
-<script src="http://code.jquery.com/ui/1.10.2/jquery-ui.js"></script>
+	<script src="http://code.jquery.com/ui/1.10.2/jquery-ui.js"></script>
+
 <style>
 .ui-autocomplete {
 	position: absolute;
@@ -104,18 +105,24 @@
 															// Value",
 															// param2 : "param2
 															// Value"
+
 															},
 															contentType : "application/x-www-form-urlencoded; charset=UTF-8",
 															data : request,
-															success : function(
-																	data) {
+															success : function(data) {
+																
 																var result = data;
+													alert(result.item.mp_anum);
 																response(result);
+																
+																$("#artist2").val(result.item.mp_anum);
+
 															},
 															error : function(
 																	data) {
 																alert("에러가 발생하였습니다.")
 															}
+
 														});
 											}
 										});
@@ -319,8 +326,9 @@
 											<th><input type="checkbox" id="allCheck" /></th>
 											<th>번호</th>
 											<th>아티스트</th>
-											<th>회사명</th>
-											<th>데뷔일</th>
+											<th>앨범명</th>
+											<th>레이블회사</th>
+											<th>발매일</th>
 											<th>사용여부</th>
 											<th>등록일</th>
 										</tr>
@@ -372,9 +380,11 @@
 										<label for="artist" class="col-sm-2 control-label">아티스트
 										</label>
 										<div class="col-sm-10">
-
-											<input type="text" class="form-control" id="artist"
-												name="artist" placeholder="아티스트 입력하세요">
+											<input type="text" id="artist" name="artist"
+												class="form-control" placeholder="아티스트 입력하세요"> 
+												<input
+												type="text" id="artist2" name="artis2t"
+												class="form-control">
 										</div>
 									</div>
 									<div class="form-group">

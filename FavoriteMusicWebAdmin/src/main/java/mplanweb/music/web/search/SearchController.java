@@ -36,11 +36,11 @@ public class SearchController {
 		logger.info("list : " + list);
 		JSONArray json = new JSONArray();
 		logger.info("json : " + json);
-//	System.out.println(list.get(1));
+		//System.out.println(list.get(0));
+		//System.out.println(list.get(1));
 		for (int i = 0; i < list.size(); i++) {
 			json.add(list.get(i));
 			logger.info("list.get(i) : " + list.get(i));
-
 		}
 
 		PrintWriter out = response.getWriter();
