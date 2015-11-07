@@ -25,7 +25,7 @@ public class SearchController {
 	@Autowired
 	SearchDAO searchdao;
 
-	@RequestMapping(value = "/editsearch", method = RequestMethod.POST)
+	@RequestMapping(value = "/artistname", method = RequestMethod.POST)
 	public void SearchValues(Locale locale, Model model,
 			HttpServletRequest request, HttpServletResponse response,
 			SearchDTO searchdto) throws IOException {
@@ -36,7 +36,7 @@ public class SearchController {
 		logger.info("list : " + list);
 		JSONArray json = new JSONArray();
 		logger.info("json : " + json);
-		// System.out.println(list.get(0).getEname());
+//	System.out.println(list.get(1));
 		for (int i = 0; i < list.size(); i++) {
 			json.add(list.get(i));
 			logger.info("list.get(i) : " + list.get(i));
@@ -47,32 +47,4 @@ public class SearchController {
 		out.print(json.toString());
 
 	}
-	
-	@RequestMapping(value = "/search", method = RequestMethod.GET)
-	public String Searchtest(Locale locale, Model model,
-			HttpServletRequest request, HttpServletResponse response,
-			MsearchDTO msearchdto) throws IOException {
-		String result = request.getParameter("searchname");
-		System.out.println("Test : " + result);
-		List<MsearchDTO> object = searchdao.artistsearch(result);
-		List<MsearchDTO> object2 = searchdao.albumsearch(result);
-		List<MsearchDTO> object3 = searchdao.musicsearch(result);
-		model.addAttribute("object", object);
-		model.addAttribute("object2", object2);
-		model.addAttribute("object3", object3);
-		logger.info("count : " + object.size());
-		logger.info("object : " + object.toString());
-		
-		logger.info("count : " + object2.size());
-		logger.info("object : " + object2.toString());
-		
-		logger.info("count : " + object3.size());
-		logger.info("object : " + object3.toString());
-		//移댁슫�듃 怨꾩궛
-		return "main/search";
-		
-		//泥섎━ 
-		//List<SearchDTO> list = searchdao.searchall(result);
-	}
-
 }

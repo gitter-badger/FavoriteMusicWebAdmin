@@ -5,6 +5,7 @@
 <!-- start head -->
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
 </head>
 <!-- end head -->
 <body>
@@ -40,7 +41,7 @@
 								<th>번호</th>
 								<th>아티스트</th>
 								<th>회사명</th>
-								<th>데뷰일</th>
+								<th>데뷔일</th>
 								<th>사용여부</th>
 								<th>등록일</th>
 							</tr>
@@ -81,11 +82,10 @@
 						<div class="form-group">
 							<label for="content" class="col-sm-2 control-label">내용 </label>
 							<div class="col-sm-10">
-								<textarea style="height: 200px; width: 100%;" id="content"
-									name="content"></textarea>
-								<script type="text/javascript">
-									CKEDITOR.replace('content');
-								</script>
+							
+									<textarea style="height: 200px; width: 100%;" id="content"
+												name="content">
+									</textarea>
 							</div>
 						</div>
 						<div class="form-group">

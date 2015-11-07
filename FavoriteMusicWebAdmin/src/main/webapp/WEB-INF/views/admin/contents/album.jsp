@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
 	pageEncoding="UTF-8"%>
+<%@ page session="false"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -8,55 +9,121 @@
 <meta
 	content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no'
 	name='viewport'>
-<!-- Bootstrap 3.3.4 -->
-<link rel="stylesheet" type="text/css"
-	href="<%=request.getContextPath()%>/resources/bootstrap/css/bootstrap.css">
-<!-- Font Awesome Icons -->
+<!-- CSS -->
+<!-- bootstrap.min -->
+<link
+	href="<%=request.getContextPath()%>/resources/css/bootstrap/css/bootstrap.min.css"
+	rel="stylesheet">
+<!-- bootstrap-select.min -->
+<link
+	href="<%=request.getContextPath()%>/resources/css/bootstrap/css/bootstrap-select.min.css"
+	rel="stylesheet">
+<!-- bootstrapValidator.min -->
+<link
+	href="<%=request.getContextPath()%>/resources/css/bootstrap/css/bootstrapValidator.min.css"
+	rel="stylesheet">
+<!-- font-awesome.min -->
 <link
 	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css"
 	rel="stylesheet" type="text/css" />
-<!-- Ionicons -->
+<!-- ionicons.min -->
 <link
 	href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css"
 	rel="stylesheet" type="text/css" />
-<!-- Theme style -->
+<!-- adminpage -->
 <link rel="stylesheet" type="text/css"
-	href="<%=request.getContextPath()%>/resources/dist/css/adminpage.css">
-
-<!-- AdminLTE Skins. We have chosen the skin-blue for this starter
-          page. However, you can choose any other skin. Make sure you
-          apply the skin class to the body tag so the changes take effect.
-    -->
+	href="<%=request.getContextPath()%>/resources/css/adminpage.css">
+<!-- skin-red.min -->
 <link rel="stylesheet" type="text/css"
-	href="<%=request.getContextPath()%>/resources/dist/css/skins/skin-red.min.css">
-
+	href="<%=request.getContextPath()%>/resources/css/skins/skin-red.min.css">
+<link
+	href="http://code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.css"
+	rel="Stylesheet"></link>
 <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
 <!--[if lt IE 9]>
         <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
         <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-    <![endif]-->
+<![endif]-->
+<!-- JS -->
+<script src="http://code.jquery.com/jquery-1.9.1.js"
+	type="text/javascript"></script>
+<script
+	src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"
+	type="text/javascript"></script>
+<!-- jquery.min -->
+<script
+	src="<%=request.getContextPath()%>/resources/js/jquery/jquery.min.js"></script>
+<!-- jquery.form.min -->
+<script
+	src="<%=request.getContextPath()%>/resources/js/jquery/jquery.form.min.js"></script>
+<!-- jQuery.MultiFile.min -->
+<script
+	src="<%=request.getContextPath()%>/resources/js/jquery/jQuery.MultiFile.min.js"></script>
+<!-- bootstrap.min -->
+<script
+	src="<%=request.getContextPath()%>/resources/js/bootstrap/bootstrap.min.js"></script>
+<!-- bootstrap-select.min -->
+<script
+	src="<%=request.getContextPath()%>/resources/js/bootstrap/bootstrap-select.min.js"></script>
+<!-- bootstrap-paginator.min -->
+<script
+	src="<%=request.getContextPath()%>/resources/js/bootstrap/bootstrap-paginator.min.js"></script>
+<!-- bootstrapValidator.min -->
+<script
+	src="<%=request.getContextPath()%>/resources/js/bootstrap/bootstrapValidator.min.js"></script>
+<!-- ckeditor -->
+<script
+	src="<%=request.getContextPath()%>/resources/editor/ckeditor/ckeditor.js"></script>
+
+<script src="http://code.jquery.com/ui/1.10.2/jquery-ui.js"></script>
+<style>
+.ui-autocomplete {
+	position: absolute;
+	cursor: default;
+	height: 200px;
+	overflow-y: scroll;
+	overflow-x: hidden;
+}
+</STYLE>
+<script type="text/javascript">
+	$(document)
+			.ready(
+					function() {
+						$("#artist")
+								.autocomplete(
+										{
+											source : function(request, response) {
+												$
+														.ajax({
+															url : "/test/artistname",
+															type : "post",
+															dataType : "json",
+															data : {
+																term : request.term,
+															// param1 : "param1
+															// Value",
+															// param2 : "param2
+															// Value"
+															},
+															contentType : "application/x-www-form-urlencoded; charset=UTF-8",
+															data : request,
+															success : function(
+																	data) {
+																var result = data;
+																response(result);
+															},
+															error : function(
+																	data) {
+																alert("에러가 발생하였습니다.")
+															}
+														});
+											}
+										});
+					});
+</script>
 </head>
-<!--
-  BODY TAG OPTIONS:
-  =================
-  Apply one or more of the following classes to get the
-  desired effect
-  |---------------------------------------------------------|
-  | SKINS         | skin-blue                               |
-  |               | skin-black                              |
-  |               | skin-purple                             |
-  |               | skin-yellow                             |
-  |               | skin-red                                |
-  |               | skin-green                              |
-  |---------------------------------------------------------|
-  |LAYOUT OPTIONS | fixed                                   |
-  |               | layout-boxed                            |
-  |               | layout-top-nav                          |
-  |               | sidebar-collapse                        |
-  |               | sidebar-mini                            |
-  |---------------------------------------------------------|
-  -->
+
+
 <body class="skin-red sidebar-mini">
 	<div class="wrapper">
 
@@ -221,7 +288,167 @@
 			<!-- Main content -->
 			<section class="content">
 			<div class="infomation">
-				<%@ include file="/WEB-INF/views/admin/contents/inc/albumview.jsp"%>
+				<div class="container-fluid">
+					<div class="row">
+						<div class="col-md-12">
+							<div class="panel panel-default">
+								<!-- Default panel contents -->
+								<div class="panel-heading">아티스트 관리</div>
+								<div class="panel-body">
+									<div class="form-inline">
+										<div class="row">
+											<div class="col-md-10">
+												<select id="searchColumn" class="selectpicker">
+													<option value="mp_artist">아티스트</option>
+													<option value="mp_label">회사명</option>
+												</select> <input type="text" id="searchText" class="form-control">
+												<button class="btn btn-default" id="searchBtn">검색</button>
+											</div>
+											<div class="col-md-2" style="text-align: right">
+												<button class="btn btn-primary" data-toggle="modal"
+													data-target="#yboardEditModal">등록</button>
+												<button class="btn btn-danger" id="btnYboardDelete">삭제</button>
+											</div>
+										</div>
+									</div>
+								</div>
+								<!-- Table -->
+								<table class="table table-striped" id="dataTable">
+									<thead>
+										<tr>
+											<th><input type="checkbox" id="allCheck" /></th>
+											<th>번호</th>
+											<th>아티스트</th>
+											<th>회사명</th>
+											<th>데뷔일</th>
+											<th>사용여부</th>
+											<th>등록일</th>
+										</tr>
+									</thead>
+									<tbody>
+									</tbody>
+								</table>
+							</div>
+						</div>
+						<!-- 페이징처리 부분  -->
+						<div class="col-md-8">
+							<ul class="pagination" id="pagination">
+							</ul>
+						</div>
+					</div>
+				</div>
+				<!-- Modal : Yboard Edit -->
+				<form class="form-horizontal" id="mplanform" name="mplanform"
+					method="POST" enctype="multipart/form-data">
+					<div class="modal fade" id="yboardEditModal" tabindex="-1"
+						role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+						<div class="modal-dialog">
+
+							<div class="modal-content">
+
+
+								<div class="modal-header">
+									<button type="button" class="close" data-dismiss="modal"
+										aria-hidden="true">&times;</button>
+									<h4 class="modal-title" id="myModalLabel">앨범 관리/수정</h4>
+								</div>
+
+								<div class="modal-body">
+
+									<input type="hidden" id="mpssnumEncrypt" name="mpssnumEncrypt">
+									<div class="form-group">
+										<label for="name" class="col-sm-2 control-label">앨범타이틀</label>
+										<div class="col-sm-10">
+											<select id="name" class="selectpicker" name="name">
+												<option value="mini">미니</option>
+												<option value="single">싱글</option>
+												<option value="album">앨범</option>
+
+											</select>
+										</div>
+									</div>
+
+									<div class="form-group">
+										<label for="artist" class="col-sm-2 control-label">아티스트
+										</label>
+										<div class="col-sm-10">
+
+											<input type="text" class="form-control" id="artist"
+												name="artist" placeholder="아티스트 입력하세요">
+										</div>
+									</div>
+									<div class="form-group">
+										<label for="album" class="col-sm-2 control-label">앨범명
+										</label>
+										<div class="col-sm-10">
+											<input type="text" class="form-control" id="album"
+												name="album" placeholder="앨범명  입력하세요">
+										</div>
+									</div>
+									<div class="form-group">
+										<label for="content" class="col-sm-2 control-label">내용
+										</label>
+										<div class="col-sm-10">
+											<textarea style="height: 200px; width: 100%;" id="content"
+												name="content">
+											</textarea>
+											<script>
+												CKEDITOR.replace('content');
+											</script>
+										</div>
+									</div>
+									<div class="form-group">
+										<label for="year" class="col-sm-2 control-label">년도 </label>
+										<div class="col-sm-10">
+											<input type="date" class="form-control" id="year" name="year"
+												placeholder="년도 ">
+										</div>
+									</div>
+									<div class="form-group">
+										<label for="corp" class="col-sm-2 control-label">유통사 </label>
+										<div class="col-sm-10">
+											<input type="text" class="form-control" id="corp" name="corp"
+												placeholder="유통사  ">
+										</div>
+									</div>
+
+									<div class="form-group">
+										<label for="imgupload" class="col-sm-2 control-label">이미지
+											: </label>
+										<div class="col-sm-10">
+											<input type="file" class="imgfile" name="imgupload"
+												id="imgupload" />
+
+										</div>
+									</div>
+									<div class="form-group">
+										<label for="RadioGroup1" class="col-sm-2 control-label">사용여부
+											: </label>
+										<div class="col-sm-10">
+											<label class="radio-inline"> <input type="radio"
+												id="RadioGroup1" name="RadioGroup1" value="Y">사용
+											</label> <label class="radio-inline"> <input type="radio"
+												id="RadioGroup1" name="RadioGroup1" value="N">사용안함
+											</label>
+										</div>
+									</div>
+
+								</div>
+
+								<div class="modal-footer">
+									<button type="button" class="btn btn-default"
+										data-dismiss="modal">닫기</button>
+									<button type="submit" class="btn btn-primary"
+										id="btnYboardSave">저장</button>
+									<button type="button" class="btn btn-info" id="resetBtn">리셋</button>
+								</div>
+
+							</div>
+
+						</div>
+
+					</div>
+				</form>
 			</div>
 			</section>
 		</div>
@@ -250,9 +477,7 @@
 		src="<%=request.getContextPath()%>/resources/dist/js/app.min.js"
 		type="text/javascript"></script>
 
-	<!-- Optionally, you can add Slimscroll and FastClick plugins.
-          Both of these plugins are recommended to enhance the
-          user experience. Slimscroll is required when using the
-          fixed layout. -->
+	<script
+		src="<%=request.getContextPath()%>/resources/music/albumview.js"></script>
 </body>
 </html>

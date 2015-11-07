@@ -69,4 +69,5 @@
 <context:component-scan base-package="mplanweb.music.web.qna" />
 <context:component-scan base-package="mplanweb.music.web.radio" />
 <context:component-scan base-package="mplanweb.music.web.sns" />
+<context:component-scan base-package="mplanweb.music.web.search" />
 </beans:beans>

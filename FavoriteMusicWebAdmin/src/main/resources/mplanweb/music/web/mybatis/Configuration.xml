@@ -11,7 +11,8 @@
 	</settings>
 
 	<typeAliases>
-	<!-- Contents Query -->
+		<!-- Contents Query -->
+			<typeAlias alias="SearchDTO" type="mplanweb.music.web.search.SearchDTO" />
 		<typeAlias alias="Ssearch" type="mplanweb.music.web.contents.Ssearch" />
 		<typeAlias alias="Ssview" type="mplanweb.music.web.contents.Ssview" />
 		<typeAlias alias="Ssalbum" type="mplanweb.music.web.contents.SsAlbum" />
@@ -24,9 +25,7 @@
 		<mapper resource="mplanweb/music/web/mybatis/main.xml" />
 		<!-- Contents query -->
 		<mapper resource="mplanweb/music/web/mybatis/contents.xml" />
+		<!-- Search query -->
+		<mapper resource="mplanweb/music/web/mybatis/Search.xml" />
 	</mappers>
-
-
-	<!-- <mapper resource="mplanweb/music/web/mybatis/excel.xml" /> <mapper 
-		resource="mplanweb/music/web/mybatis/Upload.xml" /> -->
 </configuration>

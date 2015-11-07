@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="Query">
+	<select id="listall" parameterType="java.lang.String"
+		resultType="SearchDTO">
+		select DISTINCT mp_artist, mp_anum from mplan_artist where mp_artist
+		like
+		concat('%',concat(UPPER(#{search}), '%')) or mp_artist like
+		concat('%',
+		concat(LOWER(#{search}), '%'))
+
+	</select>
+</mapper>

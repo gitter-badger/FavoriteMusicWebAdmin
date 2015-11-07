@@ -89,7 +89,10 @@ function ViewSelect(mpssnumEncrypt) {
 				var ssartist = jsontotal.data;
 				$('#mpssnumEncrypt').val(ssartist.mpssnumEncrypt);
 				$('#artist').val(ssartist.mp_artist);
-				$('#content').text(ssartist.mp_content);
+				///$('#cke_1_contents').text(ssartist.mp_content);
+				//$('#content').text(ssartist.mp_content);
+				//$('#content').text(ssartist.mp_content);
+				//s$('#content').html(ssartist.mp_content);
 				$('#debut').val(ssartist.mp_debut);
 				$('#label').val(ssartist.mp_label);
 				//$('#imgupload').load(ssartist.mp_artistorg);
@@ -97,7 +100,7 @@ function ViewSelect(mpssnumEncrypt) {
 						'[value="' + ssartist.mp_useyn + '"]').prop("checked",
 						true);
 				$('#yboardEditModal').modal('show');
-
+				var content = CKEDITOR.instances.content.setData(ssartist.mp_content);
 			} else {
 				alert("Loading failed!");
 			}
@@ -250,10 +253,12 @@ function resetForm(formID) {
  */
 $('.modal').on('hidden.bs.modal', function() {
 	$('#content').text('');
+	var content = CKEDITOR.instances.content.setData('');
 	resetForm('mplanform');
 });
 $('#resetBtn').click(function() {
 	$('#content').text('');
+	var content = CKEDITOR.instances.content.setData('');
 	resetForm('mplanform');
 });
 /**

@@ -1,6 +1,7 @@
 ﻿/**
- * @license Copyright (c) 2003-2015, CKSource - Frederico Knabben. All rights reserved.
- * For licensing, see LICENSE.md or http://ckeditor.com/license
+ * @license Copyright (c) 2003-2015, CKSource - Frederico Knabben. All rights
+ *          reserved. For licensing, see LICENSE.md or
+ *          http://ckeditor.com/license
  */
 
 // Compressed version of core/ckeditor_base.js. See original for instructions.
@@ -33,15 +34,15 @@ else {
 
 /**
  * The skin to load for all created instances, it may be the name of the skin
- * folder inside the editor installation path, or the name and the path separated
- * by a comma.
- *
+ * folder inside the editor installation path, or the name and the path
+ * separated by a comma.
+ * 
  * **Note:** This is a global configuration that applies to all instances.
- *
- *		CKEDITOR.skinName = 'moono';
- *
- *		CKEDITOR.skinName = 'myskin,/customstuff/myskin/';
- *
+ * 
+ * CKEDITOR.skinName = 'moono';
+ * 
+ * CKEDITOR.skinName = 'myskin,/customstuff/myskin/';
+ * 
  * @cfg {String} [skinName='moono']
  * @member CKEDITOR
  */

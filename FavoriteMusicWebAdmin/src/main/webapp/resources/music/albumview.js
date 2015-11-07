@@ -89,7 +89,7 @@ function ViewSelect(mpssnumEncrypt) {
 				$('#mpssnumEncrypt').val(ssalbum.mpssnumEncrypt);
 				$('#artist').val(ssalbum.mp_artist);
 				$('#album').val(ssalbum.mp_album);
-				$('#content').text(ssalbum.mp_content);
+				//$('#cke_1_contents').text(ssalbum.mp_content);
 				$('#year').val(ssalbum.mp_year);
 				$('#corp').val(ssalbum.mp_corp);
 				$('#imgupload').load(ssalbum.mp_albumimg);
@@ -97,7 +97,7 @@ function ViewSelect(mpssnumEncrypt) {
 						'[value="' + ssalbum.mp_useyn + '"]').prop("checked",
 						true);
 				$('#yboardEditModal').modal('show');
-
+				var content = CKEDITOR.instances.content.setData(ssalbum.mp_content);
 			} else {
 				alert("Loading failed!");
 			}
@@ -249,10 +249,15 @@ function resetForm(formID) {
  * 모달창이 닫힐때 폼내용을 reset해준다.
  */
 $('.modal').on('hidden.bs.modal', function() {
-	$('#lyric').text('');
+	$('#content').text('');
+	var content = CKEDITOR.instances.content.setData('');
 	resetForm('mplanform');
 });
-
+$('#resetBtn').click(function() {
+	$('#content').text('');
+	var content = CKEDITOR.instances.content.setData('');
+	resetForm('mplanform');
+});
 /**
  * 저장
  */

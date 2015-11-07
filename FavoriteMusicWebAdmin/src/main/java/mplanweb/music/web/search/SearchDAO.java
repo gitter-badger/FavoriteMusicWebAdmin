@@ -12,23 +12,10 @@ public class SearchDAO implements SearchService {
 	@Autowired
 	private SqlSession sqlSession;
 
-	public List<SearchDTO> listall(String artist) {
+	public List<SearchDTO> listall(String result) {
 		// TODO Auto-generated method stub
-		return sqlSession.selectList("Query.listall", artist);
+		return sqlSession.selectList("Query.listall", result);
 	}
+	
 
-	public List<MsearchDTO> artistsearch(String result) {
-		// TODO Auto-generated method stub
-		return sqlSession.selectList("Query.artistsearch", result);
-	}
-
-	public List<MsearchDTO> albumsearch(String result) {
-		// TODO Auto-generated method stub
-		return sqlSession.selectList("Query.albumsearch", result);
-	}
-
-	public List<MsearchDTO> musicsearch(String result) {
-		// TODO Auto-generated method stub
-		return sqlSession.selectList("Query.musicsearch", result);
-	}
 }
