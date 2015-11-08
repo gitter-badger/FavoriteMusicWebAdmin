@@ -71,6 +71,7 @@
 
 <script
 	src="<%=request.getContextPath()%>/resources/editor/ckeditor/ckeditor.js"></script>
+	
 <script
 	src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"
 	type="text/javascript"></script>
@@ -87,46 +88,48 @@
 }
 </STYLE>
 <script type="text/javascript">
-	$(document)
-			.ready(
-					function() {
-						$("#artist")
-								.autocomplete(
-										{
-											source : function(request, response) {
-												$
-														.ajax({
-															url : "/test/artistname",
-															type : "post",
-															dataType : "json",
-															data : {
-																term : request.term,
-															// param1 : "param1
-															// Value",
-															// param2 : "param2
-															// Value"
-
-															},
-															contentType : "application/x-www-form-urlencoded; charset=UTF-8",
-															data : request,
-															success : function(data) {
-																
-																var result = data;
-													alert(result.item.mp_anum);
-																response(result);
-																
-																$("#artist2").val(result.item.mp_anum);
-
-															},
-															error : function(
-																	data) {
-																alert("에러가 발생하였습니다.")
-															}
-
-														});
-											}
-										});
-					});
+$(function() {
+			$("#artist").autocomplete({
+								source : function(request, response) {
+									$.ajax({
+										url : "/test/artistname",
+										type : "post",
+										dataType : "json",
+										data : {
+											term : request.term,
+										},
+										//contentType : "application/x-www-form-urlencoded; charset=UTF-8",
+										success : function(data) {
+											response($.map(data, function(item)
+											{
+												//alert(item.mp_artist);
+												 console.log(data);
+												 console.log(item.mp_artist);
+												 console.log(item.mp_anum);
+												return{
+													label: item.mp_artist,
+													value : item.mp_anum
+													
+												}
+											}));
+										},
+										error : function(data) {
+												alert("에러가 발생하였습니다.")
+										}
+										
+									});
+								},
+								focus: function(event, ui) {
+									event.preventDefault();
+									$("#artist").val(ui.item.label);
+								},
+								select: function(event, ui) {
+									event.preventDefault();
+									$("#artist").val(ui.item.label);
+									$("#artistnum").val(ui.item.value);
+								}
+			});
+});
 </script>
 </head>
 
@@ -217,7 +220,6 @@
 					<li><a href="<%=request.getContextPath()%>/artist">아티스트관리</a></li>
 					<li><a href="<%=request.getContextPath()%>/album">앨범관리</a></li>
 					<li><a href="<%=request.getContextPath()%>/music">음원관리</a></li>
-					<li><a href="<%=request.getContextPath()%>/music">음원단체등록관리</a></li>
 					<li><a href="<%=request.getContextPath()%>/musicvideo">뮤직비디오관리</a></li>
 				</ul></li>
 			<li class="treeview"><a href="#"><i class='fa fa-money'></i>
@@ -367,7 +369,7 @@
 									<div class="form-group">
 										<label for="name" class="col-sm-2 control-label">앨범타이틀</label>
 										<div class="col-sm-10">
-											<select id="name" class="selectpicker" name="name">
+											<select id="albumtitle" class="selectpicker" name="albumtitle">
 												<option value="mini">미니</option>
 												<option value="single">싱글</option>
 												<option value="album">앨범</option>
@@ -381,10 +383,10 @@
 										</label>
 										<div class="col-sm-10">
 											<input type="text" id="artist" name="artist"
-												class="form-control" placeholder="아티스트 입력하세요"> 
+												class="form-control" placeholder="아티스트 입력하세요" > 
 												<input
-												type="text" id="artist2" name="artis2t"
-												class="form-control">
+												type="hidden" id="artistnum" name="artistnum"
+												class="form-control" >
 										</div>
 									</div>
 									<div class="form-group">

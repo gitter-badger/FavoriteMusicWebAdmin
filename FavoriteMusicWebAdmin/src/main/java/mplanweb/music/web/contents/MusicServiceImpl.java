@@ -125,4 +125,42 @@ public class MusicServiceImpl implements MusicService {
 	public int updatecorp(Sscorp sscorp) {
 		return musicDAO.updatecorp(sscorp);
 	}
+	// mv View
+	@Override
+	public int mvtotalcount(Ssearch ssearch) {
+		// TODO Auto-generated method stub
+		return musicDAO.mvtotalcount(ssearch);
+	}
+
+	@Override
+	public List<Ssview> selectSsmvview(Ssearch ssearch) {
+		// TODO Auto-generated method stub
+		return musicDAO.selectSsmvview(ssearch);
+	}
+
+	@Override
+	public Ssview viewmv(Map<String, Object> map) {
+		// TODO Auto-generated method stub
+		return musicDAO.viewmv(map);
+	}
+
+	@Override
+	public int insertmv(Ssmvview ssmvview) {
+		// TODO Auto-generated method stub
+		return musicDAO.insertmv(ssmvview);
+	}
+
+	@Override
+	public void deletemv(List<Map<String, Object>> mapList) {
+		// TODO Auto-generated method stub
+		musicDAO.deletemv(mapList);
+		
+	}
+
+	@Override
+	public int updatemv(Ssmvview ssmvview) {
+		// TODO Auto-generated method stub
+		return musicDAO.updatemv(ssmvview);
+	}
+
 }

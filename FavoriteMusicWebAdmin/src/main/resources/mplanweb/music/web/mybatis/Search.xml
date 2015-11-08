@@ -2,13 +2,44 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="Query">
-	<!--	 <select id="listall" parameterType="java.lang.String"
-		resultType="java.lang.String">-->
-	<select id="listall" parameterType="java.lang.String"
-		resultType="SearchDTO"> 
-		select DISTINCT mp_artist, mp_anum from mplan_artist where mp_artist
+	<!-- <select id="listall" parameterType="java.lang.String" resultType="java.lang.String"> -->
+	<select id="artistall" parameterType="java.lang.String"
+		resultType="SearchDTO">
+		select DISTINCT mp_artist, mp_anum from mplan_artist where
+		mp_artist
 		like
-		concat('%',concat(UPPER(#{search}), '%')) or mp_artist like
+		concat('%',concat(UPPER(#{search}), '%')) or mp_artist
+		like
+		concat('%',
+		concat(LOWER(#{search}), '%'))
+
+	</select>
+
+	<select id="albumall" parameterType="java.lang.String"
+		resultType="SearchDTO">
+		select DISTINCT mp_album,
+		mp_alnum
+		from mplan_album
+		where
+		mp_album
+		like
+		concat('%',concat(UPPER(#{search}), '%')) or mp_album
+		like
+		concat('%',
+		concat(LOWER(#{search}), '%'))
+
+	</select>
+	
+		<select id="titleall" parameterType="java.lang.String"
+		resultType="SearchDTO">
+		select DISTINCT mp_title,
+		mp_mpnum
+		from mplan_music
+		where
+		mp_title
+		like
+		concat('%',concat(UPPER(#{search}), '%')) or mp_title
+		like
 		concat('%',
 		concat(LOWER(#{search}), '%'))
 

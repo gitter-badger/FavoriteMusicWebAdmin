@@ -156,7 +156,6 @@
 					<li><a href="<%=request.getContextPath()%>/artist">아티스트관리</a></li>
 					<li><a href="<%=request.getContextPath()%>/album">앨범관리</a></li>
 					<li><a href="<%=request.getContextPath()%>/music">음원관리</a></li>
-					<li><a href="<%=request.getContextPath()%>/music">음원단체등록관리</a></li>
 					<li><a href="<%=request.getContextPath()%>/musicvideo">뮤직비디오관리</a></li>
 				</ul></li>
 			<li class="treeview"><a href="#"><i class='fa fa-money'></i>

@@ -4,6 +4,17 @@
 <mapper namespace="Test">
 	<!-- author = mplan -->
 	<!-- 토탈 쿼리 -->
+	<!-- 뮤비 총 토탈 -->
+	<select id="mvtotalcount" resultType="int" parameterType="Ssmvview">
+
+		SELECT COUNT(*)
+		FROM mplan_musicvideo
+		<where>
+			<if test="@Ognl@isNotEmpty(searchText)">
+				AND ${searchColumn} LIKE CONCAT('',#{searchText},'%')
+			</if>
+		</where>
+	</select>
 	<!-- 음원 총 토탈 -->
 	<select id="selecttotalcount" resultType="int" parameterType="Ssearch">
 
@@ -113,7 +124,7 @@
 
 	<!-- 음원 총 뷰 -->
 	<select id="viewSSview" resultType="Ssview" parameterType="map">
-		SELECT mp_mpnum, mp_num, mp_artist, mp_title, mp_album, mp_lyric,
+		SELECT mp_mpnum, mp_anum, mp_alnum, mp_titlemusic, mp_num, mp_artist, mp_title, mp_album, mp_lyric,
 		mp_label, mp_corp, mp_open_date, mp_year, mp_genre1, mp_genre2,
 		mp_img,
 		mp_320k, mp_192k, mp_age, mp_etc, mp_useyn,
@@ -127,8 +138,10 @@
 	<!-- 앨범 총 뷰 -->
 
 	<select id="viewalbumview" resultType="Ssalbum" parameterType="map">
-		SELECT mp_alnum, mp_anum, mp_artist, mp_album, mp_content, mp_year,
-		mp_corp, mp_albumimg, mp_albumsize, mp_albumimgorg, mp_useyn
+		SELECT mp_alnum, mp_anum, mp_albumtitle, mp_artist, mp_album,
+		mp_content, mp_year,
+		mp_corp, mp_albumimg, mp_albumsize,
+		mp_albumimgorg, mp_useyn
 		FROM
 		mplan_album
 		WHERE mp_alnum = #{mp_alnum}
@@ -164,8 +177,10 @@
 		INSERT INTO
 		mplan_music
 		(
+		mp_anum, mp_alnum, mp_titlemusic,
 		mp_num, mp_artist,
-		mp_title, mp_album,
+		mp_title,
+		mp_album,
 		mp_lyric, mp_year,
 		mp_corp,
 		mp_label,
@@ -174,17 +189,23 @@
 		mp_open_date,
 		mp_img,
 		mp_320k, mp_192k,
-		mp_useyn, mp_insert_date, mp_imgsize, mp_imgo,
-		mp_320size, mp_320ko, mp_192size, mp_192ko, mp_mvk,mp_mvko, mp_mvsize)
+		mp_useyn,
+		mp_insert_date, mp_imgsize, mp_imgo,
+		mp_320size, mp_320ko, mp_192size,
+		mp_192ko, mp_mvk,mp_mvko, mp_mvsize)
 		values
 		(
+		#{mp_anum},
+		#{mp_alnum},
+		#{mp_titlemusic},
 		#{mp_num},
 		#{mp_artist},
 		#{mp_title}, #{mp_album},
 		#{mp_lyric},
 		#{mp_year},
 		#{mp_corp}, #{mp_label},
-		#{mp_genre1}, #{mp_genre2},
+		#{mp_genre1},
+		#{mp_genre2},
 		#{mp_etc},
 		#{mp_age},
 		#{mp_open_date}, #{mp_img},
@@ -206,17 +227,20 @@
 		INSERT INTO
 		mplan_album
 		(
-		mp_anum, mp_artist,
+		mp_anum, mp_albumtitle, mp_artist,
 		mp_album, mp_content,
-		mp_year, mp_corp,
+		mp_year,
+		mp_corp,
 		mp_albumimg,
 		mp_albumsize,
 		mp_albumimgorg, mp_useyn,
 		mp_date)
 		values (
 		#{mp_anum},
+		#{mp_albumtitle},
 		#{mp_artist},
-		#{mp_album}, #{mp_content},
+		#{mp_album},
+		#{mp_content},
 		#{mp_year}, #{mp_corp},
 		#{mp_albumimg}, #{mp_albumsize},
 		#{mp_albumimgorg}, #{mp_useyn},
@@ -298,6 +322,17 @@
 
 		UPDATE mplan_music
 		<set>
+
+			<if test="@Ognl@isNotEmpty(mp_anum)">
+				mp_anum = #{mp_anum},
+			</if>
+			<if test="@Ognl@isNotEmpty(mp_alnum)">
+				mp_alnum = #{mp_alnum},
+			</if>
+			<if test="@Ognl@isNotEmpty(mp_titlemusic)">
+				mp_titlemusic = #{mp_titlemusic},
+			</if>
+
 			<if test="@Ognl@isNotEmpty(mp_num)">
 				mp_num = #{mp_num},
 			</if>
@@ -386,6 +421,12 @@
 
 		UPDATE mplan_album
 		<set>
+			<if test="@Ognl@isNotEmpty(mp_anum)">
+				mp_anum = #{mp_anum},
+			</if>
+			<if test="@Ognl@isNotEmpty(mp_albumtitle)">
+				mp_albumtitle = #{mp_albumtitle},
+			</if>
 			<if test="@Ognl@isNotEmpty(mp_alnum)">
 				mp_alnum = #{mp_alnum},
 			</if>

@@ -87,7 +87,12 @@ function ViewSelect(mpssnumEncrypt) {
 			if (jsontotal.success) {
 				var ssalbum = jsontotal.data;
 				$('#mpssnumEncrypt').val(ssalbum.mpssnumEncrypt);
+				$('#albumtitle > option[value="' + ssalbum.mp_albumtitle + '"]').prop(
+						'selected', true);
+				$('#albumtitle').selectpicker('render');
 				$('#artist').val(ssalbum.mp_artist);
+				$('#artistnum').val(ssalbum.mp_anum);
+				
 				$('#album').val(ssalbum.mp_album);
 				//$('#cke_1_contents').text(ssalbum.mp_content);
 				$('#year').val(ssalbum.mp_year);
@@ -238,7 +243,7 @@ function resetForm(formID) {
 	$("#" + formID).each(function() {
 		this.reset();
 	});
-	$('#mp_mpnums').val('')
+	$('#albumtitle').val('')
 	var bootstrapValidator = $('#' + formID).data('bootstrapValidator');
 	if (bootstrapValidator != null) {
 		bootstrapValidator.resetForm();

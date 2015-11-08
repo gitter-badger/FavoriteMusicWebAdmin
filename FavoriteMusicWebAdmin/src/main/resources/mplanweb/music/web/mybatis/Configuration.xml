@@ -18,6 +18,7 @@
 		<typeAlias alias="Ssalbum" type="mplanweb.music.web.contents.SsAlbum" />
 		<typeAlias alias="Ssartist" type="mplanweb.music.web.contents.Ssartist" />
 		<typeAlias alias="Sscorp" type="mplanweb.music.web.contents.Sscorp" />
+		<typeAlias alias="Ssview" type="mplanweb.music.web.contents.Ssview" />
 	</typeAliases>
 
 	<mappers>

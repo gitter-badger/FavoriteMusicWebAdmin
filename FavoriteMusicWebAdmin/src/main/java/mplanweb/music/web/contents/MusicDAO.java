@@ -5,6 +5,20 @@ import java.util.Map;
 
 public interface MusicDAO {
 
+	// MV View
+		public int mvtotalcount(Ssearch ssearch);
+
+		public List<Ssview> selectSsmvview(Ssearch ssearch);
+
+		public Ssview viewmv(Map<String, Object> map);
+
+		public int insertmv(Ssmvview ssmvview);
+
+		public void deletemv(List<Map<String, Object>> mapList);
+
+		public int updatemv(Ssmvview ssmvview);
+		
+		
 	// SSView
 	public int selecttotalcount(Ssearch ssearch);
 

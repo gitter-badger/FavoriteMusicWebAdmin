@@ -136,4 +136,42 @@ public class MusicDAOImpl implements MusicDAO {
 		return sqlSession.update("Test.updatecorp", sscorp);
 	}
 
+	//  mv View
+	@Override
+	public int mvtotalcount(Ssearch ssearch) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("Test.mvtotalcount", ssearch);
+	}
+
+	@Override
+	public List<Ssview> selectSsmvview(Ssearch ssearch) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList("Test.selectSsmvview", ssearch);
+	}
+
+	@Override
+	public Ssview viewmv(Map<String, Object> map) {
+		return sqlSession.selectOne("Test.viewmv", map);
+	}
+
+	@Override
+	public int insertmv(Ssmvview ssmvview) {
+		// TODO Auto-generated method stub
+		return sqlSession.insert("Test.insertmv", ssmvview);
+	}
+
+	@Override
+	public void deletemv(List<Map<String, Object>> mapList) {
+		// TODO Auto-generated method stub
+		for (Map<String, Object> map : mapList) {
+			sqlSession.delete("Test.deletemv", map);
+		}
+	}
+
+	@Override
+	public int updatemv(Ssmvview ssmvview) {
+		// TODO Auto-generated method stub
+		return sqlSession.update("Test.updatemv", ssmvview);
+	}
+
 }

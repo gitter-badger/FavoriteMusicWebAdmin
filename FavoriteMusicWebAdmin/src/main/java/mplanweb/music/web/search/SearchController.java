@@ -26,18 +26,57 @@ public class SearchController {
 	SearchDAO searchdao;
 
 	@RequestMapping(value = "/artistname", method = RequestMethod.POST)
-	public void SearchValues(Locale locale, Model model,
+	public void SearchartistValues(Locale locale, Model model,
 			HttpServletRequest request, HttpServletResponse response,
 			SearchDTO searchdto) throws IOException {
 
 		String result = request.getParameter("term");
 		logger.info("Result : " + result);
-		List<SearchDTO> list = searchdao.listall(result);
+		List<SearchDTO> list = searchdao.artistall(result);
 		logger.info("list : " + list);
 		JSONArray json = new JSONArray();
 		logger.info("json : " + json);
-		//System.out.println(list.get(0));
-		//System.out.println(list.get(1));
+		for (int i = 0; i < list.size(); i++) {
+			json.add(list.get(i));
+			logger.info("list.get(i) : " + list.get(i));
+		}
+
+		PrintWriter out = response.getWriter();
+		out.print(json.toString());
+
+	}
+	
+	@RequestMapping(value = "/albumname", method = RequestMethod.POST)
+	public void SearchalbumValues(Locale locale, Model model,
+			HttpServletRequest request, HttpServletResponse response,
+			SearchDTO searchdto) throws IOException {
+
+		String result = request.getParameter("term");
+		logger.info("Result : " + result);
+		List<SearchDTO> list = searchdao.albumall(result);
+		logger.info("list : " + list);
+		JSONArray json = new JSONArray();
+		logger.info("json : " + json);
+		for (int i = 0; i < list.size(); i++) {
+			json.add(list.get(i));
+			logger.info("list.get(i) : " + list.get(i));
+		}
+
+		PrintWriter out = response.getWriter();
+		out.print(json.toString());
+
+	}
+	@RequestMapping(value = "/titlename", method = RequestMethod.POST)
+	public void SearchtitleValues(Locale locale, Model model,
+			HttpServletRequest request, HttpServletResponse response,
+			SearchDTO searchdto) throws IOException {
+
+		String result = request.getParameter("term");
+		logger.info("Result : " + result);
+		List<SearchDTO> list = searchdao.albumall(result);
+		logger.info("list : " + list);
+		JSONArray json = new JSONArray();
+		logger.info("json : " + json);
 		for (int i = 0; i < list.size(); i++) {
 			json.add(list.get(i));
 			logger.info("list.get(i) : " + list.get(i));

@@ -86,14 +86,19 @@ function ViewSelect(mpssnumEncrypt) {
 		success : function(jsontotal) {
 			if (jsontotal.success) {
 				var ssview = jsontotal.data;
-				$('#mp_mpnum').val(ssview.mpssnumEncrypt);
+				$('#mpssnumEncrypt').val(ssview.mpssnumEncrypt);
 				$('#num > option[value="' + ssview.mp_num + '"]').prop(
 						'selected', true);
 				$('#num').selectpicker('render');
+				$(':radio[name="titleuse1"]').filter(
+						'[value="' + ssview.mp_titlemusic + '"]').prop("checked",
+						true);
 				$('#artist').val(ssview.mp_artist);
+				$('#artistnum').val(ssview.mp_anum);
 				$('#title').val(ssview.mp_title);
 				$('#album').val(ssview.mp_album);
-				$('#lyric').text(ssview.mp_lyric);
+				$('#albumnum').val(ssview.mp_alnum);
+				//$('#lyric').val(ssview.mp_lyric);
 				$('#label').val(ssview.mp_label);
 				$('#corp').val(ssview.mp_corp);
 				$('#year').val(ssview.mp_year);
@@ -113,7 +118,7 @@ function ViewSelect(mpssnumEncrypt) {
 						'[value="' + ssview.mp_useyn + '"]').prop("checked",
 						true);
 				$('#yboardEditModal').modal('show');
-
+				var lyric = CKEDITOR.instances.lyric.setData(ssview.mp_lyric);
 			} else {
 				alert("Loading failed!");
 			}
@@ -299,6 +304,12 @@ function resetForm(formID) {
  */
 $('.modal').on('hidden.bs.modal', function() {
 	$('#lyric').text('');
+	var content = CKEDITOR.instances.content.setData('');
+	resetForm('mplanform');
+});
+$('#resetBtn').click(function() {
+	$('#lyric').text('');
+	var content = CKEDITOR.instances.content.setData('');
 	resetForm('mplanform');
 });
 
@@ -309,6 +320,7 @@ $('.modal').on('hidden.bs.modal', function() {
 $('#btnYboardSave').click(function() {
 	// var surveyCode = $("#surveyCodeForm" ).serializeObject();
 	var mpssnumEncrypt = $('#mpssnumEncrypt').val();
+	alert(mpssnumEncrypt);
 	var method = "ssviewinsert";
 	// alert("ssviewinsert : " + mpssnumEncrypt);
 	if (mpssnumEncrypt != "") {

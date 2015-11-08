@@ -9,6 +9,33 @@ public class Ssview implements Serializable {
 	private String mpssnumEncrypt; // : ê³ ìœ ?‚¤ ?•”?˜¸?™”
 	private int mp_mpnum; // : ?•„?‹°?Š¤?Š¸
 	private int mp_num; // : ?•„?‹°?Š¤?Š¸
+	private int mp_anum; // : ?Œ?›?„˜ë²?
+	private int mp_alnum; //¾Ù¹ü³Ñ¹ö
+	private String mp_titlemusic; // Å¸ÀÌÆ²°î À¯¹«
+	public int getMp_anum() {
+		return mp_anum;
+	}
+
+	public void setMp_anum(int mp_anum) {
+		this.mp_anum = mp_anum;
+	}
+
+	public int getMp_alnum() {
+		return mp_alnum;
+	}
+
+	public void setMp_alnum(int mp_alnum) {
+		this.mp_alnum = mp_alnum;
+	}
+
+	public String getMp_titlemusic() {
+		return mp_titlemusic;
+	}
+
+	public void setMp_titlemusic(String mp_titlemusic) {
+		this.mp_titlemusic = mp_titlemusic;
+	}
+
 	private String mp_artist; // : ?•„?‹°?Š¤?Š¸
 	private String mp_title; // : ?•„?‹°?Š¤?Š¸
 	private String mp_album; // : ?•„?‹°?Š¤?Š¸
