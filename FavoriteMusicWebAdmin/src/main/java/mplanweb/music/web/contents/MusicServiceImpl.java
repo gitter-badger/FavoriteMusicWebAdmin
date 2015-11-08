@@ -133,13 +133,13 @@ public class MusicServiceImpl implements MusicService {
 	}
 
 	@Override
-	public List<Ssview> selectSsmvview(Ssearch ssearch) {
+	public List<Ssmvview> selectSsmvview(Ssearch ssearch) {
 		// TODO Auto-generated method stub
 		return musicDAO.selectSsmvview(ssearch);
 	}
 
 	@Override
-	public Ssview viewmv(Map<String, Object> map) {
+	public Ssmvview viewmv(Map<String, Object> map) {
 		// TODO Auto-generated method stub
 		return musicDAO.viewmv(map);
 	}
@@ -160,6 +160,7 @@ public class MusicServiceImpl implements MusicService {
 	@Override
 	public int updatemv(Ssmvview ssmvview) {
 		// TODO Auto-generated method stub
+		System.out.println("MusicService Update");
 		return musicDAO.updatemv(ssmvview);
 	}
 

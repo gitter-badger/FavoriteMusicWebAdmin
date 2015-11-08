@@ -463,7 +463,7 @@
 										<div class="col-sm-10">
 											<input type="text" id="artist" name="artist"
 												class="form-control" placeholder="아티스트 입력하세요"> <input
-												type="hidden" id="artistnum" name="artistnum"
+												type="text" id="artistnum" name="artistnum"
 												class="form-control">
 										</div>
 									</div>
@@ -481,7 +481,7 @@
 										<div class="col-sm-10">
 											<input type="text" class="form-control" id="album"
 												name="album" placeholder="앨범명  입력하세요"> <input
-												type="hidden" id="albumnum" name="albumnum"
+												type="text" id="albumnum" name="albumnum"
 												class="form-control">
 										</div>
 									</div>

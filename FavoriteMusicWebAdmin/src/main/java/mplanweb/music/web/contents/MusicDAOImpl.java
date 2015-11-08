@@ -144,13 +144,13 @@ public class MusicDAOImpl implements MusicDAO {
 	}
 
 	@Override
-	public List<Ssview> selectSsmvview(Ssearch ssearch) {
+	public List<Ssmvview> selectSsmvview(Ssearch ssearch) {
 		// TODO Auto-generated method stub
 		return sqlSession.selectList("Test.selectSsmvview", ssearch);
 	}
 
 	@Override
-	public Ssview viewmv(Map<String, Object> map) {
+	public Ssmvview viewmv(Map<String, Object> map) {
 		return sqlSession.selectOne("Test.viewmv", map);
 	}
 
@@ -171,6 +171,8 @@ public class MusicDAOImpl implements MusicDAO {
 	@Override
 	public int updatemv(Ssmvview ssmvview) {
 		// TODO Auto-generated method stub
+
+		System.out.println("MusicService Update2");
 		return sqlSession.update("Test.updatemv", ssmvview);
 	}
 

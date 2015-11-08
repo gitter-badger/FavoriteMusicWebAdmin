@@ -368,13 +368,13 @@
 			<!-- Content Header (Page header) -->
 			<section class="content-header">
 			<h1>
-				Favorite Music <small>음원관리</small>
+				Favorite Music <small>뮤직비디오관리</small>
 			</h1>
 			<ol class="breadcrumb">
 				<li><a href="<%=request.getContextPath()%>/main"><i
 						class="fa fa-dashboard"></i> Home</a></li>
 
-				<li class="active">음원관리</li>
+				<li class="active">뮤직비디오관리</li>
 
 			</ol>
 			</section>
@@ -387,7 +387,7 @@
 						<div class="col-md-12">
 							<div class="panel panel-default">
 								<!-- Default panel contents -->
-								<div class="panel-heading">음원 관리</div>
+								<div class="panel-heading">뮤직비디오관리</div>
 								<div class="panel-body">
 									<div class="form-inline">
 										<div class="row">
@@ -415,6 +415,7 @@
 											<th>아티스트</th>
 											<th>제목명</th>
 											<th>앨범명</th>
+											<th>연령</th>
 											<th>날짜</th>
 											<th>사용여부</th>
 											<th>등록일</th>
@@ -446,12 +447,23 @@
 								<div class="modal-header">
 									<button type="button" class="close" data-dismiss="modal"
 										aria-hidden="true">&times;</button>
-									<h4 class="modal-title" id="myModalLabel">음원 관리/수정</h4>
+									<h4 class="modal-title" id="myModalLabel">뮤직비디오 입력/수정</h4>
 								</div>
 
 								<div class="modal-body">
 
 									<input type="hidden" id="mpssnumEncrypt" name="mpssnumEncrypt">
+									<div class="form-group">
+										<label for="RadioGroup1" class="col-sm-2 control-label">정식여부
+											: </label>
+										<div class="col-sm-10">
+											<label class="radio-inline"> <input type="radio"
+												id="titleuse1" name="titleuse1" value="Y">정식
+											</label> <label class="radio-inline"> <input type="radio"
+												id="titleuse1" name="titleuse1" value="N">티져
+											</label>
+										</div>
+									</div>
 									<div class="form-group">
 										<label for="artist" class="col-sm-2 control-label">아티스트
 										</label>
@@ -569,16 +581,13 @@
 										</div>
 									</div>
 									<div class="form-group">
-										<label for="m320kupload" class="col-sm-2 control-label">음질320K
+										<label for="m320kupload" class="col-sm-2 control-label">뮤직비디오
 										</label>
 										<div class="col-sm-10">
-											<input type="file" class="mp320file" name="m320kupload"
-												id="m320kupload" />
+											<input type="file" class="mpmvfile" name="mmvkupload"
+												id="mmvkupload" />
 										</div>
 									</div>
-								
-									</div>
-
 									<div class="form-group">
 										<label for="RadioGroup1" class="col-sm-2 control-label">사용여부
 											: </label>

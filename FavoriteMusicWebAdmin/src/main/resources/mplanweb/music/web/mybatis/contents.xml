@@ -65,6 +65,20 @@
 
 	<!-- 리스트 쿼리 시작 -->
 
+	<!-- 뮤비 총 리스트 -->
+	<select id="selectSsmvview" resultType="Ssmvview" parameterType="Ssearch">
+		SELECT mp_mvnum, mp_artist, mp_title, mp_album, mp_year, mp_useyn,
+		mp_age, mp_insert_date
+		FROM mplan_musicvideo
+		<where>
+			<if test="@Ognl@isNotEmpty(searchText)">
+				AND ${searchColumn} LIKE CONCAT('',#{searchText},'%')
+			</if>
+		</where>
+		ORDER BY mp_insert_date DESC LIMIT #{start}, #{limit}
+	</select>
+
+
 	<!-- 음원 총 리스트 -->
 	<select id="selectSsview" resultType="Ssview" parameterType="Ssearch">
 		SELECT mp_mpnum, mp_artist, mp_title, mp_album, mp_year, mp_useyn,
@@ -121,18 +135,34 @@
 	<!-- 리스트 쿼리 종료 -->
 
 	<!-- 뷰 쿼리 시작 -->
-
+	<!-- 뮤비 총 뷰 -->
+	<select id="viewmv" resultType="Ssmvview" parameterType="map">
+		SELECT
+		mp_release, mp_mvnum, mp_anum, mp_alnum, mp_mpnum, mp_artist,
+		mp_title, mp_album,
+		mp_content, mp_year, mp_label, mp_corp, mp_label, mp_img, mp_mvk, mp_age,
+		mp_useyn, mp_insert_date,
+		mp_useyn
+		FROM
+		mplan_musicvideo
+		WHERE mp_mvnum =
+		#{mp_mvnum}
+	</select>
 	<!-- 음원 총 뷰 -->
 	<select id="viewSSview" resultType="Ssview" parameterType="map">
-		SELECT mp_mpnum, mp_anum, mp_alnum, mp_titlemusic, mp_num, mp_artist, mp_title, mp_album, mp_lyric,
-		mp_label, mp_corp, mp_open_date, mp_year, mp_genre1, mp_genre2,
+		SELECT mp_mpnum, mp_anum, mp_alnum, mp_titlemusic, mp_num, mp_artist,
+		mp_title, mp_album, mp_lyric,
+		mp_label, mp_corp, mp_open_date, mp_year,
+		mp_genre1, mp_genre2,
 		mp_img,
-		mp_320k, mp_192k, mp_age, mp_etc, mp_useyn,
+		mp_320k, mp_192k, mp_age, mp_etc,
+		mp_useyn,
 		mp_insert_date,
 		mp_open_date
 		FROM
 		mplan_music
-		WHERE mp_mpnum = #{mp_mpnum}
+		WHERE mp_mpnum =
+		#{mp_mpnum}
 	</select>
 
 	<!-- 앨범 총 뷰 -->
@@ -172,6 +202,47 @@
 
 	<!-- 뷰 쿼리 종료 -->
 	<!-- Insert 시작 -->
+	<!-- 뮤비 등록 -->
+	<insert id="insertmv" parameterType="Ssmvview">
+		INSERT INTO
+		mplan_musicvideo
+		(
+		mp_anum, mp_release, mp_alnum, mp_mpnum,
+		mp_artist, mp_title,
+		mp_album,
+		mp_content,
+		mp_year, mp_corp,
+		mp_label,
+		mp_img,
+		mp_imgsize,
+		mp_imgo,
+		mp_mvk,
+		mp_mvsize,
+		mp_mvko,
+		mp_age,
+		mp_useyn, mp_insert_date)
+		values
+		(
+		#{mp_anum},
+		#{mp_release},
+		#{mp_alnum},
+		#{mp_mpnum},
+		#{mp_artist},
+		#{mp_title},
+		#{mp_album},
+		#{mp_content},
+		#{mp_year},
+		#{mp_corp},
+		#{mp_label}, #{mp_img},
+		#{mp_imgsize},
+		#{mp_imgo},
+		#{mp_mvk},
+		#{mp_mvsize},
+		#{mp_mvko}, #{mp_age},
+		#{mp_useyn},NOW()
+		)
+	</insert>
+
 	<!-- 음원 등록 -->
 	<insert id="insertssearch" parameterType="Ssview">
 		INSERT INTO
@@ -290,6 +361,15 @@
 	</insert>
 	<!-- Insert 종료 -->
 	<!-- Delete 시작 -->
+
+	<!-- 뮤비 삭제 -->
+	<delete id="deletemv" parameterType="map">
+		DELETE FROM
+		mplan_musicvideo
+		WHERE
+		mp_mvnum= #{mp_mvnum}
+	</delete>
+
 	<!-- 음원 삭제 -->
 	<delete id="deletessearch" parameterType="map">
 		DELETE FROM mplan_music
@@ -317,6 +397,77 @@
 	</delete>
 	<!-- Delete 종료 -->
 	<!-- Update 시작 -->
+	<!-- 뮤비 수정 -->
+	<update id="updatemv" parameterType="Ssmvview">
+
+		UPDATE mplan_musicvideo
+		<set>
+			mp_release
+			<if test="@Ognl@isNotEmpty(mp_release)">
+				mp_release = #{mp_release},
+			</if>
+			<if test="@Ognl@isNotEmpty(mp_anum)">
+				mp_anum = #{mp_anum},
+			</if>
+			<if test="@Ognl@isNotEmpty(mp_alnum)">
+				mp_alnum = #{mp_alnum},
+			</if>
+			<if test="@Ognl@isNotEmpty(mp_mpnum)">
+				mp_mpnum = #{mp_mpnum},
+			</if>
+
+			<if test="@Ognl@isNotEmpty(mp_artist)">
+				mp_artist = #{mp_artist},
+			</if>
+			<if test="@Ognl@isNotEmpty(mp_title)">
+				mp_title = #{mp_title},
+			</if>
+			<if test="@Ognl@isNotEmpty(mp_album)">
+				mp_album = #{mp_album},
+			</if>
+			<if test="@Ognl@isNotEmpty(mp_content)">
+				mp_content = #{mp_content},
+			</if>
+			<if test="@Ognl@isNotEmpty(mp_year)">
+				mp_year = #{mp_year},
+			</if>
+			<if test="@Ognl@isNotEmpty(mp_corp)">
+				mp_corp = #{mp_corp},
+			</if>
+			<if test="@Ognl@isNotEmpty(mp_label)">
+				mp_label = #{mp_label},
+			</if>
+			<if test="@Ognl@isNotEmpty(mp_img)">
+				mp_img = #{mp_img},
+			</if>
+			<if test="@Ognl@isNotEmpty(mp_imgsize)">
+				mp_imgsize = #{mp_imgsize},
+			</if>
+			<if test="@Ognl@isNotEmpty(mp_imgo)">
+				mp_imgo = #{mp_imgo},
+			</if>
+			<if test="@Ognl@isNotEmpty(mp_mvk)">
+				mp_mvk = #{mp_mvk},
+			</if>
+			<if test="@Ognl@isNotEmpty(mp_mvsize)">
+				mp_mvsize = #{mp_mvsize},
+			</if>
+			<if test="@Ognl@isNotEmpty(mp_mvko)">
+				mp_mvko = #{mp_mvko},
+			</if>
+			<if test="@Ognl@isNotEmpty(mp_age)">
+				mp_age = #{mp_age},
+			</if>
+			<if test="@Ognl@isNotEmpty(mp_useyn)">
+				mp_useyn = #{mp_useyn},
+			</if>
+			mp_update_date = now()
+
+		</set>
+		WHERE mp_mvnum = #{mp_mvnum}
+	</update>
+
+
 	<!-- 음원 수정 -->
 	<update id="updatessearch" parameterType="Ssview">
 

@@ -12,13 +12,13 @@
 
 	<typeAliases>
 		<!-- Contents Query -->
-			<typeAlias alias="SearchDTO" type="mplanweb.music.web.search.SearchDTO" />
+		<typeAlias alias="SearchDTO" type="mplanweb.music.web.search.SearchDTO" />
 		<typeAlias alias="Ssearch" type="mplanweb.music.web.contents.Ssearch" />
 		<typeAlias alias="Ssview" type="mplanweb.music.web.contents.Ssview" />
 		<typeAlias alias="Ssalbum" type="mplanweb.music.web.contents.SsAlbum" />
 		<typeAlias alias="Ssartist" type="mplanweb.music.web.contents.Ssartist" />
 		<typeAlias alias="Sscorp" type="mplanweb.music.web.contents.Sscorp" />
-		<typeAlias alias="Ssview" type="mplanweb.music.web.contents.Ssview" />
+		<typeAlias alias="Ssmvview" type="mplanweb.music.web.contents.Ssmvview" />
 	</typeAliases>
 
 	<mappers>

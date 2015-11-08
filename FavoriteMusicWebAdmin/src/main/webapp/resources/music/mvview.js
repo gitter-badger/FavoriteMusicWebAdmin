@@ -18,7 +18,7 @@ function showList(ssearch) {
 				dataType : 'JSON',
 				data : JSON.stringify(ssearch),
 				contentType : "application/json; charset=UTF-8",
-				url : '/web/source/ssviewselect',
+				url : '/test/contents/mvselect',
 				error : function() {
 					alert("데이터가 에러 났습니다. 에러확인바랍니다.");
 				},
@@ -28,33 +28,36 @@ function showList(ssearch) {
 						$
 								.each(
 										jsontotal.items,
-										function(i, ssview) {
+										function(i, ssmvview) {
 											record += '<tr>'
-													+ '<td><input type="checkbox" name="mp_mpnum" value="'
-													+ ssview.mpssnumEncrypt
+													+ '<td><input type="checkbox" name="mp_mvnum" value="'
+													+ ssmvview.mpssnumEncrypt
 													+ '"/></td>'
 													+ '<td>'
-													+ ssview.mp_mpnum
+													+ ssmvview.mp_mvnum
 													+ '</td>'
 													+ '<td><a href="#" onclick="ViewSelect(\''
-													+ ssview.mpssnumEncrypt
+													+ ssmvview.mpssnumEncrypt
 													+ '\')">'
-													+ ssview.mp_artist
+													+ ssmvview.mp_artist
 													+ '</a></td>'
 													+ '<td>'
-													+ ssview.mp_title
+													+ ssmvview.mp_title
 													+ '</td>'
 													+ '<td>'
-													+ ssview.mp_album
+													+ ssmvview.mp_album
 													+ '</td>'
 													+ '<td>'
-													+ ssview.mp_year
+													+ ssmvview.mp_age
 													+ '</td>'
 													+ '<td>'
-													+ ssview.mp_useyn
+													+ ssmvview.mp_year
 													+ '</td>'
 													+ '<td>'
-													+ ssview.mp_insert_date
+													+ ssmvview.mp_useyn
+													+ '</td>'
+													+ '<td>'
+													+ ssmvview.mp_insert_date
 													+ '</td>' + '</tr>'
 										});
 						$('#dataTable > tbody').html(record);
@@ -79,41 +82,44 @@ function ViewSelect(mpssnumEncrypt) {
 		type : "GET",
 		dataType : "JSON",
 		contentType : "application/json; charset=UTF-8",
-		url : "/web/source/ssviewer/" + mpssnumEncrypt,
+		url : "/test/contents/mvviewer/" + mpssnumEncrypt,
 		error : function() {
 			alert("실패 하셩습니다. ");
 		},
 		success : function(jsontotal) {
 			if (jsontotal.success) {
-				var ssview = jsontotal.data;
-				$('#mp_mpnum').val(ssview.mpssnumEncrypt);
-				$('#num > option[value="' + ssview.mp_num + '"]').prop(
-						'selected', true);
-				$('#num').selectpicker('render');
-				$('#artist').val(ssview.mp_artist);
-				$('#title').val(ssview.mp_title);
-				$('#album').val(ssview.mp_album);
-				$('#lyric').text(ssview.mp_lyric);
-				$('#label').val(ssview.mp_label);
-				$('#corp').val(ssview.mp_corp);
-				$('#year').val(ssview.mp_year);
-				$('#genre1 > option[value="' + ssview.mp_genre1 + '"]').prop(
+				var ssmvview = jsontotal.data;
+				$('#mpssnumEncrypt').val(ssmvview.mpssnumEncrypt);
+				$(':radio[name="titleuse1"]').filter(
+						'[value="' + ssmvview.mp_release + '"]').prop("checked",
+						true);
+				$('#artist').val(ssmvview.mp_artist);
+				$('#artistnum').val(ssmvview.mp_anum);
+				$('#title').val(ssmvview.mp_title);
+				$('#titlenum').val(ssmvview.mp_mpnum);
+				$('#album').val(ssmvview.mp_album);
+				$('#albumnum').val(ssmvview.mp_alnum);
+				$('#label').val(ssmvview.mp_label);
+				$('#corp').val(ssmvview.mp_corp);
+				$('#year').val(ssmvview.mp_year);
+				$('#genre1 > option[value="' + ssmvview.mp_genre1 + '"]').prop(
 						'selected', true);
 				$('#genre1').selectpicker('render');
-				$('#genre2 > option[value="' + ssview.mp_genre2 + '"]').prop(
+				$('#genre2 > option[value="' + ssmvview.mp_genre2 + '"]').prop(
 						'selected', true);
 				$('#genre2').selectpicker('render');
-				$('#etc').val(ssview.mp_etc);
-				$('#copy').val(ssview.mp_open_date);
-				$('#age > option[value="' + ssview.mp_age + '"]').prop(
+				$('#etc').val(ssmvview.mp_etc);
+				$('#copy').val(ssmvview.mp_open_date);
+				$('#age > option[value="' + ssmvview.mp_age + '"]').prop(
 						'selected', true);
 				$('#age').selectpicker('render');
-				$('#imgupload').load(ssview.mp_img);
+				$('#imgupload').load(ssmvview.mp_img);
+				$('#mpmvfile').load(ssmvview.mp_mvk);
 				$(':radio[name="RadioGroup1"]').filter(
-						'[value="' + ssview.mp_useyn + '"]').prop("checked",
+						'[value="' + ssmvview.mp_useyn + '"]').prop("checked",
 						true);
 				$('#yboardEditModal').modal('show');
-
+				var content = CKEDITOR.instances.content.setData(ssmvview.mp_content);
 			} else {
 				alert("Loading failed!");
 			}
@@ -287,7 +293,7 @@ function resetForm(formID) {
 	$("#" + formID).each(function() {
 		this.reset();
 	});
-	$('#mp_mpnum').val('')
+	$('#mp_mvnum').val('')
 	$("#num option[value='1']").attr('selected', true);
 	var bootstrapValidator = $('#' + formID).data('bootstrapValidator');
 	if (bootstrapValidator != null) {
@@ -309,11 +315,13 @@ $('.modal').on('hidden.bs.modal', function() {
 
 $('#btnYboardSave').click(function() {
 	// var surveyCode = $("#surveyCodeForm" ).serializeObject();
+	
+	
 	var mpssnumEncrypt = $('#mpssnumEncrypt').val();
-	var method = "ssviewinsert";
-	// alert("ssviewinsert : " + mpssnumEncrypt);
+	var method = "mvinsert";
 	if (mpssnumEncrypt != "") {
-		method = "ssviewupdate";
+		alert("mvupdate : " + mpssnumEncrypt);
+		method = "mvupdate";
 	}
 	// 폼입력값 검증
 	if (!formValidator()) {
@@ -322,7 +330,7 @@ $('#btnYboardSave').click(function() {
 	$('#mplanform').ajaxForm(
 
 	{
-		url : '/web/source/' + method,
+		url : '/test/contents/' + method,
 		cache : false,
 		dataType : "json",
 		// 보내기전 validation check가 필요할경우
@@ -351,7 +359,7 @@ $('#btnYboardSave').click(function() {
  * 체크된 게시내용 삭제
  */
 $('#btnYboardDelete').click(function() {
-	var checknum = $('input[name=mp_mpnum]:checked').map(function() {
+	var checknum = $('input[name=mp_mvnum]:checked').map(function() {
 		if (this.checked) {
 			// alert("한개 이상 체크되어야 합니다.");
 			alert(checknum);
@@ -367,14 +375,14 @@ $('#btnYboardDelete').click(function() {
 	}
 
 	var param = {
-		mp_mpnum : checknum
+			mp_mvnum : checknum
 	};
 	$.ajax({
 		type : "POST",
 		dataType : "JSON",
 		data : JSON.stringify(param),
 		contentType : "application/json; charset=UTF-8",
-		url : "/web/source/ssviewdelete",
+		url : "/test/contents/mvdelete",
 		error : function() {
 			alert("Loading failed!")
 		},
@@ -393,9 +401,9 @@ $('#btnYboardDelete').click(function() {
  */
 $('#allCheck').click(function() {
 	if (this.checked) {
-		$(':checkbox[name="mp_mpnum"]').prop("checked", true);
+		$(':checkbox[name="mp_mvnum"]').prop("checked", true);
 	} else {
-		$(':checkbox[name="mp_mpnum"]').prop("checked", false);
+		$(':checkbox[name="mp_mvnum"]').prop("checked", false);
 	}
 });
 

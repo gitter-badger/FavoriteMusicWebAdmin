@@ -73,7 +73,7 @@ public class SearchController {
 
 		String result = request.getParameter("term");
 		logger.info("Result : " + result);
-		List<SearchDTO> list = searchdao.albumall(result);
+		List<SearchDTO> list = searchdao.titleall(result);
 		logger.info("list : " + list);
 		JSONArray json = new JSONArray();
 		logger.info("json : " + json);

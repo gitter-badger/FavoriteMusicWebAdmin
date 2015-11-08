@@ -8,9 +8,9 @@ public interface MusicDAO {
 	// MV View
 		public int mvtotalcount(Ssearch ssearch);
 
-		public List<Ssview> selectSsmvview(Ssearch ssearch);
+		public List<Ssmvview> selectSsmvview(Ssearch ssearch);
 
-		public Ssview viewmv(Map<String, Object> map);
+		public Ssmvview viewmv(Map<String, Object> map);
 
 		public int insertmv(Ssmvview ssmvview);
 

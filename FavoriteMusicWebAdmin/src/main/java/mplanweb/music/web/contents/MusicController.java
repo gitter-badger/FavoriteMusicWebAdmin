@@ -677,7 +677,7 @@ public class MusicController {
 		int totalCount = musicService.mvtotalcount(ssearch);
 
 		// Î¶¨Ïä§?ä∏ ?òï?ãù
-		List<Ssview> musiclist = musicService.selectSsmvview(ssearch); // nullpoint
+		List<Ssmvview> musiclist = musicService.selectSsmvview(ssearch); // nullpoint
 		jsontotal.setTotal(totalCount);
 		jsontotal.setItems(musiclist);
 		jsontotal.setSuccess(true);
@@ -710,124 +710,103 @@ public class MusicController {
 	@ResponseBody
 	public Jsontotal insertmv(MultipartHttpServletRequest request)
 			throws Exception {
-		String anum = request.getParameter("artistnum"); // ?ïÑ?ã∞?ä§?ä∏ ?ù¥Î¶?
-															// Request
+		
+		
+		String anum = request.getParameter("artistnum");
 		int mp_anum = Integer.parseInt(anum);
-		String alnum = request.getParameter("albumnum"); // ?ïÑ?ã∞?ä§?ä∏ ?ù¥Î¶?
-															// Request
+		String alnum = request.getParameter("titlenum");
 		int mp_alnum = Integer.parseInt(alnum);
-		String mpnum = request.getParameter("titlenum"); // ?ïÑ?ã∞?ä§?ä∏ ?ù¥Î¶?
-															// Request
+		String mpnum = request.getParameter("albumnum");
 		int mp_mpnum = Integer.parseInt(mpnum);
-		String mp_artist = request.getParameter("titleuse1");
-		String mp_title = request.getParameter("artist"); // ?ùå?õê?†úÎ™? Request
-		String mp_album = request.getParameter("title"); // ?ï®Î≤îÎ™Ö Request
-		String mp_year = request.getParameter("album"); // Í∞??Ç¨ Request
-		String mp_corp = request.getParameter("lyric"); // ?ïÑ?ã∞?ä§?ä∏ ?ù¥Î¶?
-		// Request
-		String mp_label = request.getParameter("label"); // ?ùå?õê?†úÎ™? Request
-		String mp_useyn = request.getParameter("RadioGroup1"); // ?ùå?õê?†úÎ™?
-																// Request
-		MultipartFile mimg = request.getFile("imgupload");
-		MultipartFile m320k = request.getFile("m320kupload");
-		MultipartFile m192k = request.getFile("m192kupload");
-		MultipartFile mmvk = request.getFile("mmvkupload");
+		String mp_release = request.getParameter("titleuse1");
+		String mp_artist = request.getParameter("artist");
+		String mp_title = request.getParameter("title");
+		String mp_album = request.getParameter("album");
+		String mp_year = request.getParameter("year");
+		String mp_corp = request.getParameter("corp");
+		String mp_label = request.getParameter("label");
+		String mp_content = request.getParameter("content");
+		String mp_genre1 = request.getParameter("genre1");
+		String mp_genre2 = request.getParameter("genre2");
+		String mp_age = request.getParameter("age");
+		String mp_useyn = request.getParameter("RadioGroup1");
 
+		MultipartFile mimg = request.getFile("imgupload");
+		MultipartFile mmvk = request.getFile("mmvkupload");
+		logger.info("mp_release : " + mp_release);
 		logger.info("mp_anum : " + mp_anum);
 		logger.info("mp_alnum : " + mp_alnum);
-
+		logger.info("mp_mpnum : " + mp_mpnum);
 		logger.info("mp_artist : " + mp_artist);
 		logger.info("mp_title : " + mp_title);
 		logger.info("mp_album : " + mp_album);
-
+		logger.info("mp_year : " + mp_year);
+		logger.info("mp_corp : " + mp_corp);
 		logger.info("mp_label : " + mp_label);
-
+		logger.info("mp_content : " + mp_content);
+		logger.info("mp_genre1 : " + mp_genre1);
+		logger.info("mp_genre2 : " + mp_genre2);
+		logger.info("mp_age : " + mp_age);
+		logger.info("mp_useyn : " + mp_useyn);
+	
 		Jsontotal jsontotal = new Jsontotal();
-		if (mimg != null && m192k != null && m192k != null) {
+		if (mimg != null && mmvk != null) {
 
 			String mp_img = mimg.getOriginalFilename();
-			String mp_192k = m192k.getOriginalFilename();
-			String mp_320k = m320k.getOriginalFilename();
-			// String mp_mvk = mmvk.getOriginalFilename();
+			String mp_mvk = mmvk.getOriginalFilename();
 
 			long mp_imgsize = mimg.getSize();
-			long mp_192size = m192k.getSize();
-			long mp_320size = m320k.getSize();
-			// long mp_mvsize = mmvk.getSize();
+			long mp_mvsize = mmvk.getSize();
 
-			// ///////////////////////////////////////////////////////////////////////
-			// Upload ?åå?ùºÎ™? UUIDÎ≥?Í≤? (?ûÑ?ùò ?ûú?ç§ ?åå?ùº?ù¥Î¶? Î≥?Í≤?)
-			// ///////////////////////////////////////////////////////////////////////
 			String mp_imgo = System.currentTimeMillis()
 					+ UUID.randomUUID().toString()
 					+ mp_img.substring(mp_img.lastIndexOf("."));
-			String mp_320ko = System.currentTimeMillis()
+			String mp_mvko = System.currentTimeMillis()
 					+ UUID.randomUUID().toString()
-					+ mp_320k.substring(mp_320k.lastIndexOf("."));
-			String mp_192ko = System.currentTimeMillis()
-					+ UUID.randomUUID().toString()
-					+ mp_192k.substring(mp_192k.lastIndexOf("."));
-			// String mp_mvko = System.currentTimeMillis()
-			// + UUID.randomUUID().toString()
-			// + mp_mvk.substring(mp_mvk.lastIndexOf("."));
+					+ mp_mvk.substring(mp_mvk.lastIndexOf("."));
 
-			// ///////////////////////////////////////////////////////////////////////
-			// Upload ?è¥?çî?úÑÏπ? ?Ñ§?†ï
-			// ///////////////////////////////////////////////////////////////////////
-			String uploadimgPath = "E://upload//img//";
-			String upload320Path = "E://upload//music320k//";
-			String upload192Path = "E://upload//music192k//";
-			// String uploadmvPath = "E://upload//video//";
+			String uploadmvimgPath = "E://upload//videoimg//";
+			String uploadmvPath = "E://upload//video//";
 
-			// ///////////////////////////////////////////////////////////////////////
-			// Upload ?åå?ùº?Ç¨?ù¥Ï¶? 0?ù¥ ?ïÑ?ãà?ùºÎ©?... ?óÖÎ°úÎìú
-			// ///////////////////////////////////////////////////////////////////////
 			if (mimg.getSize() != 0) {
-				mimg.transferTo(new File(uploadimgPath + "/" + mp_imgo));
+				mimg.transferTo(new File(uploadmvimgPath + "/" + mp_imgo));
 			}
-			if (m192k.getSize() != 0) {
-				m192k.transferTo(new File(upload192Path + "/" + mp_192ko));
-			}
-			if (m320k.getSize() != 0) {
-				m320k.transferTo(new File(upload320Path + "/" + mp_320ko));
+			if (mmvk.getSize() != 0) {
+				mmvk.transferTo(new File(uploadmvPath + "/" + mp_mvko));
 			}
 
-			// if (mmvk.getSize() != 0) {
-			// mmvk.transferTo(new File(uploadmvPath + "/" + mp_mvko));
-			// }
+			Ssmvview ssmvview = new Ssmvview();
 
-			// ///////////////////////////////////////////////////////////////////////
-			// Hashput ?ûÖ?†•
-			// ///////////////////////////////////////////////////////////////////////
-			Ssview ssview = new Ssview();
-
-			ssview.setMp_anum(mp_anum);
-			ssview.setMp_alnum(mp_alnum);
-
-			ssview.setMp_img(mp_img);
-			ssview.setMp_320k(mp_320k);
-			ssview.setMp_192k(mp_192k);
-			// ssview.setMp_mvk(mp_mvk);
-
-			ssview.setMp_imgsize(mp_imgsize);
-			ssview.setMp_320size(mp_320size);
-			ssview.setMp_192size(mp_192size);
-			// ssview.setMp_mvsize(mp_mvsize);
-
-			ssview.setMp_imgo(mp_imgo);
-			ssview.setMp_320ko(mp_320ko);
-			ssview.setMp_192ko(mp_192ko);
-			// ssview.setMp_mvko(mp_mvko);
-			ssview.setMp_artist(mp_artist);
-			ssview.setMp_title(mp_title);
-			ssview.setMp_album(mp_album);
-			ssview.setMp_label(mp_label);
-			ssview.setMp_corp(mp_corp);
-			ssview.setMp_year(mp_year);
-			ssview.setMp_useyn(mp_useyn);
-
-			musicService.insertssearch(ssview);
-
+			ssmvview.setMp_anum(mp_anum);
+			ssmvview.setMp_alnum(mp_alnum);
+			ssmvview.setMp_mpnum(mp_mpnum);
+			ssmvview.setMp_artist(mp_artist);
+			ssmvview.setMp_title(mp_title);
+			ssmvview.setMp_album(mp_album);
+			ssmvview.setMp_year(mp_year);
+			ssmvview.setMp_corp(mp_corp);
+			ssmvview.setMp_label(mp_label);
+			ssmvview.setMp_content(mp_content);
+			ssmvview.setMp_genre1(mp_genre1);
+			ssmvview.setMp_genre2(mp_genre2);
+			ssmvview.setMp_age(mp_age);
+			ssmvview.setMp_useyn(mp_useyn);
+			ssmvview.setMp_img(mp_img);
+			ssmvview.setMp_imgsize(mp_imgsize);
+			ssmvview.setMp_imgo(mp_imgo);
+			ssmvview.setMp_mvk(mp_mvk);
+			ssmvview.setMp_mvsize(mp_mvsize);
+			ssmvview.setMp_mvko(mp_mvko);
+			ssmvview.setMp_release(mp_release);
+			logger.info("mimg : " + mimg);
+			logger.info("mp_img : " + mp_img);
+			logger.info("mp_imgsize : " + mp_imgsize);
+			logger.info("mp_imgo : " + mp_imgo);
+			logger.info("mmvk : " + mmvk);
+			logger.info("mp_mvk : " + mp_mvk);
+			logger.info("mp_mvsize : " + mp_mvsize);
+			logger.info("mp_mvko : " + mp_mvko);
+			musicService.insertmv(ssmvview);
 			jsontotal.setSuccess(true);
 
 		}
@@ -835,157 +814,110 @@ public class MusicController {
 		return jsontotal;
 	}
 
-	/*
-	 * View =========> ssviewupdate =========> jsontotal ======> DB =====>
-	 * Ssview ===> /music/ssviewselect.jsp ?ùå?õê Í¥?Î¶? ?Ñ†?Éù (List)
-	 * 
-	 * @param ssviewupdate
-	 * 
-	 * @return jsontotal
-	 */
 	@RequestMapping(value = "/mvupdate", produces = "application/json")
 	@ResponseBody
 	public Jsontotal updatemv(MultipartHttpServletRequest request)
 			throws Exception {
-		// Jsontotal
-		// int mp_num = Integer.parseInt(request.getParameter("num")); //
-		// ?ïÑ?ã∞?ä§?ä∏
-		// ?ù¥Î¶? Request
-		String num_pm = request.getParameter("mpssnumEncrypt"); // ?ïÑ?ã∞?ä§?ä∏ ?ù¥Î¶?
-																// Request
-		String num_p = request.getParameter("num"); // ?ïÑ?ã∞?ä§?ä∏ ?ù¥Î¶? Request
-		int mp_num = Integer.parseInt(num_p);
 
-		String anum = request.getParameter("artistnum"); // ?ïÑ?ã∞?ä§?ä∏ ?ù¥Î¶?
-															// Request
+		String anum = request.getParameter("artistnum");
 		int mp_anum = Integer.parseInt(anum);
-		String alnum = request.getParameter("albumnum"); // ?ïÑ?ã∞?ä§?ä∏ ?ù¥Î¶?
-															// Request
+		String alnum = request.getParameter("titlenum");
 		int mp_alnum = Integer.parseInt(alnum);
-		String mp_titlemusic = request.getParameter("titleuse1");
+		String mpnum = request.getParameter("albumnum");
+		int mp_mpnum = Integer.parseInt(mpnum);
+		String mp_mvnum = request.getParameter("mpssnumEncrypt");
+		String mp_release = request.getParameter("titleuse1");
+		String mp_artist = request.getParameter("artist");
+		String mp_title = request.getParameter("title");
+		String mp_album = request.getParameter("album");
+		String mp_year = request.getParameter("year");
+		String mp_corp = request.getParameter("corp");
+		String mp_label = request.getParameter("label");
+		String mp_content = request.getParameter("content");
+		String mp_genre1 = request.getParameter("genre1");
+		String mp_genre2 = request.getParameter("genre2");
+		String mp_age = request.getParameter("age");
+		String mp_useyn = request.getParameter("RadioGroup1");
 
-		String mp_artist = request.getParameter("artist"); // ?ùå?õê?†úÎ™? Request
-		String mp_title = request.getParameter("title"); // ?ï®Î≤îÎ™Ö Request
-		String mp_album = request.getParameter("album"); // Í∞??Ç¨ Request
-		String mp_lyric = request.getParameter("lyric"); // ?ïÑ?ã∞?ä§?ä∏ ?ù¥Î¶?
-															// Request
-		String mp_label = request.getParameter("label"); // ?ùå?õê?†úÎ™? Request
-		String mp_corp = request.getParameter("corp"); // ?ï®Î≤îÎ™Ö Request
-		String mp_year = request.getParameter("year"); // Í∞??Ç¨ Request
-		String mp_genre1 = request.getParameter("genre1"); // ?ïÑ?ã∞?ä§?ä∏ ?ù¥Î¶?
-															// Request
-		String mp_genre2 = request.getParameter("genre2"); // ?ùå?õê?†úÎ™? Request
-		String mp_etc = request.getParameter("etc"); // ?ï®Î≤îÎ™Ö Request
-		String mp_open_date = request.getParameter("copy"); // Í∞??Ç¨ Request
-		String mp_age = request.getParameter("age"); // ?ïÑ?ã∞?ä§?ä∏ ?ù¥Î¶? Request
-		String mp_useyn = request.getParameter("RadioGroup1"); // ?ùå?õê?†úÎ™?
-																// Request
 		MultipartFile mimg = request.getFile("imgupload");
-		MultipartFile m320k = request.getFile("m320kupload");
-		MultipartFile m192k = request.getFile("m192kupload");
 		MultipartFile mmvk = request.getFile("mmvkupload");
-		logger.info("num_pm : " + num_pm);
-		logger.info("mp_num2 : " + mp_num);
+
+		logger.info("mvupdate mp_anum : " + mp_anum);
+		logger.info("mvupdate mp_alnum : " + mp_alnum);
+		logger.info("mvupdate mp_mpnum : " + mp_mpnum);
 		logger.info("mp_artist : " + mp_artist);
 		logger.info("mp_title : " + mp_title);
 		logger.info("mp_album : " + mp_album);
-		logger.info("mp_lyric : " + mp_lyric);
+		logger.info("mp_year : " + mp_year);
+		logger.info("mp_corp : " + mp_corp);
 		logger.info("mp_label : " + mp_label);
+		logger.info("mp_content : " + mp_content);
+		logger.info("mp_genre1 : " + mp_genre1);
+		logger.info("mp_genre2 : " + mp_genre2);
+		logger.info("mp_age : " + mp_age);
+		logger.info("mp_useyn : " + mp_useyn);
+		logger.info("mimg : " + mimg);
+		logger.info("mmvk : " + mmvk);
+	
 
 		Jsontotal jsontotal = new Jsontotal();
-		if (mimg != null && m192k != null && m192k != null) {
+		if (mimg != null && mmvk != null) {
 
 			String mp_img = mimg.getOriginalFilename();
-			String mp_192k = m192k.getOriginalFilename();
-			String mp_320k = m320k.getOriginalFilename();
-			// String mp_mvk = mmvk.getOriginalFilename();
+			String mp_mvk = mmvk.getOriginalFilename();
 
 			long mp_imgsize = mimg.getSize();
-			long mp_192size = m192k.getSize();
-			long mp_320size = m320k.getSize();
-			// long mp_mvsize = mmvk.getSize();
+			long mp_mvsize = mmvk.getSize();
 
-			// ///////////////////////////////////////////////////////////////////////
-			// Upload ?åå?ùºÎ™? UUIDÎ≥?Í≤? (?ûÑ?ùò ?ûú?ç§ ?åå?ùº?ù¥Î¶? Î≥?Í≤?)
-			// ///////////////////////////////////////////////////////////////////////
 			String mp_imgo = System.currentTimeMillis()
 					+ UUID.randomUUID().toString()
 					+ mp_img.substring(mp_img.lastIndexOf("."));
-			String mp_320ko = System.currentTimeMillis()
+			String mp_mvko = System.currentTimeMillis()
 					+ UUID.randomUUID().toString()
-					+ mp_320k.substring(mp_320k.lastIndexOf("."));
-			String mp_192ko = System.currentTimeMillis()
-					+ UUID.randomUUID().toString()
-					+ mp_192k.substring(mp_192k.lastIndexOf("."));
-			// String mp_mvko = System.currentTimeMillis()
-			// + UUID.randomUUID().toString()
-			// + mp_mvk.substring(mp_mvk.lastIndexOf("."));
+					+ mp_mvk.substring(mp_mvk.lastIndexOf("."));
 
-			// ///////////////////////////////////////////////////////////////////////
-			// Upload ?è¥?çî?úÑÏπ? ?Ñ§?†ï
-			// ///////////////////////////////////////////////////////////////////////
-			String uploadimgPath = "E://upload//img//";
-			String upload192Path = "E://upload//music192k//";
-			String upload320Path = "E://upload//music320k//";
-			// String uploadmvPath = "E://upload//video//";
+			String uploadmvimgPath = "E://upload//videoimg//";
+			String uploadmvPath = "E://upload//video//";
 
-			// ///////////////////////////////////////////////////////////////////////
-			// Upload ?åå?ùº?Ç¨?ù¥Ï¶? 0?ù¥ ?ïÑ?ãà?ùºÎ©?... ?óÖÎ°úÎìú
-			// ///////////////////////////////////////////////////////////////////////
 			if (mimg.getSize() != 0) {
-				mimg.transferTo(new File(uploadimgPath + "/" + mp_imgo));
+				mimg.transferTo(new File(uploadmvimgPath + "/" + mp_imgo));
 			}
-			if (m192k.getSize() != 0) {
-				m192k.transferTo(new File(upload192Path + "/" + mp_320ko));
+			if (mmvk.getSize() != 0) {
+				mmvk.transferTo(new File(uploadmvPath + "/" + mp_mvko));
 			}
-			if (m320k.getSize() != 0) {
-				m320k.transferTo(new File(upload320Path + "/" + mp_192ko));
-			}
-			// if (mmvk.getSize() != 0) {
-			// mmvk.transferTo(new File(uploadmvPath + "/" + mp_mvko));
-			// }
-
-			// ///////////////////////////////////////////////////////////////////////
-			// Hashput ?ûÖ?†•
-			// ///////////////////////////////////////////////////////////////////////
-			Ssview ssview = new Ssview();
-			// yboard.setBoardID(YKStringUtil.getTmsDecryptoAesForInt(yboard.getBoardIDEncrypt()));
-			ssview.setMp_mpnum(MusicStringUtil.getTmsDecryptoAesForInt(num_pm));
-			ssview.setMp_img(mp_img);
-			ssview.setMp_320k(mp_320k);
-			ssview.setMp_192k(mp_192k);
-			// ssview.setMp_192k(mp_mvk);
-
-			ssview.setMp_imgsize(mp_imgsize);
-			ssview.setMp_320size(mp_320size);
-			ssview.setMp_192size(mp_192size);
-			// ssview.setMp_192size(mp_mvsize);
-
-			ssview.setMp_imgo(mp_imgo);
-			ssview.setMp_320ko(mp_320ko);
-			ssview.setMp_192ko(mp_192ko);
-			// ssview.setMp_192ko(mp_mvko);
-
-			ssview.setMp_num(mp_num);
-			ssview.setMp_anum(mp_anum);
-			ssview.setMp_alnum(mp_alnum);
-			ssview.setMp_titlemusic(mp_titlemusic);
-			ssview.setMp_artist(mp_artist);
-			ssview.setMp_title(mp_title);
-			ssview.setMp_album(mp_album);
-			ssview.setMp_lyric(mp_lyric);
-			ssview.setMp_label(mp_label);
-			ssview.setMp_corp(mp_corp);
-			ssview.setMp_year(mp_year);
-			ssview.setMp_genre1(mp_genre1);
-			ssview.setMp_genre2(mp_genre2);
-			ssview.setMp_etc(mp_etc);
-			ssview.setMp_open_date(mp_open_date);
-			ssview.setMp_age(mp_age);
-			ssview.setMp_useyn(mp_useyn);
-
-			musicService.updatessearch(ssview);
-
+			Ssmvview ssmvview = new Ssmvview();
+			ssmvview.setMp_mvnum(MusicStringUtil.getTmsDecryptoAesForInt(mp_mvnum));
+			ssmvview.setMp_anum(mp_anum);
+			ssmvview.setMp_alnum(mp_alnum);
+			ssmvview.setMp_mpnum(mp_mpnum);
+			ssmvview.setMp_artist(mp_artist);
+			ssmvview.setMp_title(mp_title);
+			ssmvview.setMp_album(mp_album);
+			ssmvview.setMp_year(mp_year);
+			ssmvview.setMp_corp(mp_corp);
+			ssmvview.setMp_label(mp_label);
+			ssmvview.setMp_content(mp_content);
+			ssmvview.setMp_genre1(mp_genre1);
+			ssmvview.setMp_genre2(mp_genre2);
+			ssmvview.setMp_age(mp_age);
+			ssmvview.setMp_useyn(mp_useyn);
+			ssmvview.setMp_img(mp_img);
+			ssmvview.setMp_imgsize(mp_imgsize);
+			ssmvview.setMp_imgo(mp_imgo);
+			ssmvview.setMp_mvk(mp_mvk);
+			ssmvview.setMp_mvsize(mp_mvsize);
+			ssmvview.setMp_mvko(mp_mvko);
+			ssmvview.setMp_release(mp_release);
+			logger.info("mimg : " + mimg);
+			logger.info("mp_img : " + mp_img);
+			logger.info("mp_imgsize : " + mp_imgsize);
+			logger.info("mp_imgo : " + mp_imgo);
+			logger.info("mmvk : " + mmvk);
+			logger.info("mp_mvk : " + mp_mvk);
+			logger.info("mp_mvsize : " + mp_mvsize);
+			logger.info("mp_mvko : " + mp_mvko);
+			musicService.updatemv(ssmvview);
+			logger.info("test " + ssmvview);
 			jsontotal.setSuccess(true);
 
 		}
@@ -999,19 +931,19 @@ public class MusicController {
 			String mp_imgo) {
 
 		Jsontotal jsontotal = new Jsontotal();
-		String mp_mpnum = String.valueOf(param.get("mp_mpnum"));
-		System.out.println(mp_mpnum);
+		String mp_mvnum = String.valueOf(param.get("mp_mvnum"));
+		System.out.println(mp_mvnum);
 
 		List<Map<String, Object>> mapList = new ArrayList<Map<String, Object>>();
-		String[] mpssnumEncrypts = mp_mpnum.split(",");
+		String[] mpssnumEncrypts = mp_mvnum.split(",");
 
 		for (String mpssnumEncrypt : mpssnumEncrypts) {
 			Map<String, Object> map = new HashMap<String, Object>();
-			map.put("mp_mpnum",
+			map.put("mp_mvnum",
 					MusicStringUtil.getTmsDecryptoAesForInt(mpssnumEncrypt));
 			mapList.add(map);
 		}
-		musicService.deletessearch(mapList);
+		musicService.deletemv(mapList);
 		jsontotal.setSuccess(true);
 		return jsontotal;
 	}
