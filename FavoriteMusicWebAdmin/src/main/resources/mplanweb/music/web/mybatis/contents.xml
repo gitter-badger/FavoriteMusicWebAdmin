@@ -5,7 +5,7 @@
 	<!-- author = mplan -->
 	<!-- 토탈 쿼리 -->
 	<!-- 뮤비 총 토탈 -->
-	<select id="mvtotalcount" resultType="int" parameterType="Ssmvview">
+	<select id="mvtotalcount" resultType="int" parameterType="Ssearch">
 
 		SELECT COUNT(*)
 		FROM mplan_musicvideo
