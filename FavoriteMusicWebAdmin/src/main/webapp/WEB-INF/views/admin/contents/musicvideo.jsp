@@ -12,210 +12,46 @@
 <!-- CSS -->
 <!-- bootstrap.min -->
 <link
-	href="<%=request.getContextPath()%>/resources/css/bootstrap/css/bootstrap.min.css"
+	href="<%=request.getContextPath()%>/resources/bootstrap/dist/css/bootstrap.min.css"
 	rel="stylesheet">
 <!-- bootstrap-select.min -->
 <link
-	href="<%=request.getContextPath()%>/resources/css/bootstrap/css/bootstrap-select.min.css"
+	href="<%=request.getContextPath()%>/resources/bootstrap-select/dist/css/bootstrap-select.min.css"
 	rel="stylesheet">
 <!-- bootstrapValidator.min -->
 <link
-	href="<%=request.getContextPath()%>/resources/css/bootstrap/css/bootstrapValidator.min.css"
+	href="<%=request.getContextPath()%>/resources/bootstrapvalidator/dist/css/bootstrapValidator.min.css"
 	rel="stylesheet">
-<!-- font-awesome.min -->
+<!-- Font Awesome Icons -->
 <link
-	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css"
+	href="<%=request.getContextPath()%>/resources/font-awesome/css/font-awesome.min.css"
 	rel="stylesheet" type="text/css" />
-<!-- ionicons.min -->
+<!-- Ionicons -->
 <link
-	href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css"
+	href="<%=request.getContextPath()%>/resources/ionicons/css/ionicons.min.css"
 	rel="stylesheet" type="text/css" />
-<!-- adminpage -->
-<link rel="stylesheet" type="text/css"
-	href="<%=request.getContextPath()%>/resources/css/adminpage.css">
-<!-- skin-red.min -->
-<link rel="stylesheet" type="text/css"
-	href="<%=request.getContextPath()%>/resources/css/skins/skin-red.min.css">
+<!-- Theme style -->
 <link
-	href="http://code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.css"
-	rel="Stylesheet"></link>
+	href="<%=request.getContextPath()%>/resources/homepage/css/adminpage.min.css"
+	rel="stylesheet" type="text/css" />
+<link
+	href="<%=request.getContextPath()%>/resources/homepage/css/skins/skin-red.min.css"
+	rel="stylesheet" type="text/css" />
+<link
+	href="<%=request.getContextPath()%>/resources/jqueryui/jquery-ui.css"
+	rel="stylesheet" type="text/css" />
+<link
+	href="<%=request.getContextPath()%>/resources/homepage/css/auto.css"
+	rel="stylesheet" type="text/css" />
 <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
 <!--[if lt IE 9]>
         <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
         <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 <![endif]-->
-<!-- JS -->
+	<!-- ckeditor -->
+	<script
+		src="<%=request.getContextPath()%>/resources/editor/ckeditor/ckeditor.js"></script>
 
-<!-- jquery.min -->
-<script
-	src="<%=request.getContextPath()%>/resources/js/jquery/jquery.min.js"></script>
-<!-- jquery.form.min -->
-<script
-	src="<%=request.getContextPath()%>/resources/js/jquery/jquery.form.min.js"></script>
-<!-- jQuery.MultiFile.min -->
-<script
-	src="<%=request.getContextPath()%>/resources/js/jquery/jQuery.MultiFile.min.js"></script>
-<!-- bootstrap.min -->
-<script
-	src="<%=request.getContextPath()%>/resources/js/bootstrap/bootstrap.min.js"></script>
-<!-- bootstrap-select.min -->
-<script
-	src="<%=request.getContextPath()%>/resources/js/bootstrap/bootstrap-select.min.js"></script>
-<!-- bootstrap-paginator.min -->
-<script
-	src="<%=request.getContextPath()%>/resources/js/bootstrap/bootstrap-paginator.min.js"></script>
-<!-- bootstrapValidator.min -->
-<script
-	src="<%=request.getContextPath()%>/resources/js/bootstrap/bootstrapValidator.min.js"></script>
-<!-- ckeditor -->
-
-<script
-	src="<%=request.getContextPath()%>/resources/editor/ckeditor/ckeditor.js"></script>
-
-<script
-	src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"
-	type="text/javascript"></script>
-
-<script src="http://code.jquery.com/ui/1.10.2/jquery-ui.js"></script>
-
-<style>
-.ui-autocomplete {
-	position: absolute;
-	cursor: default;
-	height: 200px;
-	overflow-y: scroll;
-	overflow-x: hidden;
-}
-</STYLE>
-<script type="text/javascript">
-	$(function() {
-		$("#artist").autocomplete({
-			source : function(request, response) {
-				$.ajax({
-					url : "/test/artistname",
-					type : "post",
-					dataType : "json",
-					data : {
-						term : request.term,
-					},
-					//contentType : "application/x-www-form-urlencoded; charset=UTF-8",
-					success : function(data) {
-						response($.map(data, function(item) {
-							//alert(item.mp_artist);
-							console.log(data);
-							console.log(item.mp_artist);
-							console.log(item.mp_anum);
-							return {
-								label : item.mp_artist,
-								value : item.mp_anum
-
-							}
-						}));
-					},
-					error : function(data) {
-						alert("에러가 발생하였습니다.")
-					}
-
-				});
-			},
-			focus : function(event, ui) {
-				event.preventDefault();
-				$("#artist").val(ui.item.label);
-			},
-			select : function(event, ui) {
-				event.preventDefault();
-				$("#artist").val(ui.item.label);
-				$("#artistnum").val(ui.item.value);
-			}
-		});
-	});
-</script>
-<script type="text/javascript">
-	$(function() {
-		$("#album").autocomplete({
-			source : function(request, response) {
-				$.ajax({
-					url : "/test/albumname",
-					type : "post",
-					dataType : "json",
-					data : {
-						term : request.term,
-					},
-					//contentType : "application/x-www-form-urlencoded; charset=UTF-8",
-					success : function(data) {
-						response($.map(data, function(item) {
-							//alert(item.mp_artist);
-							console.log(data);
-							console.log(item.mp_album);
-							console.log(item.mp_alnum);
-							return {
-								label : item.mp_album,
-								value : item.mp_alnum
-
-							}
-						}));
-					},
-					error : function(data) {
-						alert("에러가 발생하였습니다.")
-					}
-
-				});
-			},
-			focus : function(event, ui) {
-				event.preventDefault();
-				$("#album").val(ui.item.label);
-			},
-			select : function(event, ui) {
-				event.preventDefault();
-				$("#album").val(ui.item.label);
-				$("#albumnum").val(ui.item.value);
-			}
-		});
-	});
-</script>
-<script type="text/javascript">
-	$(function() {
-		$("#title").autocomplete({
-			source : function(request, response) {
-				$.ajax({
-					url : "/test/titlename",
-					type : "post",
-					dataType : "json",
-					data : {
-						term : request.term,
-					},
-					//contentType : "application/x-www-form-urlencoded; charset=UTF-8",
-					success : function(data) {
-						response($.map(data, function(item) {
-							//alert(item.mp_artist);
-							console.log(data);
-							console.log(item.mp_title);
-							console.log(item.mp_mpnum);
-							return {
-								label : item.mp_title,
-								value : item.mp_mpnum
-
-							}
-						}));
-					},
-					error : function(data) {
-						alert("에러가 발생하였습니다.")
-					}
-
-				});
-			},
-			focus : function(event, ui) {
-				event.preventDefault();
-				$("#title").val(ui.item.label);
-			},
-			select : function(event, ui) {
-				event.preventDefault();
-				$("#title").val(ui.item.label);
-				$("#titlenum").val(ui.item.value);
-			}
-		});
-	});
-</script>
 </head>
 
 
@@ -638,13 +474,40 @@
            immediately after the control sidebar -->
 	</div>
 	<!-- ./wrapper -->
-
 	<!-- REQUIRED JS SCRIPTS -->
-	<!-- AdminLTE App -->
+	<!-- JS -->
+	<!-- jquery.min -->
 	<script
-		src="<%=request.getContextPath()%>/resources/dist/js/app.min.js"
+		src="<%=request.getContextPath()%>/resources/jquery/jquery-2.1.4.min.js"></script>
+	<!-- jquery.form.min -->
+	<script
+		src="<%=request.getContextPath()%>/resources/jqueryform/jquery.form.js"></script>
+	<!-- jQuery.MultiFile.min -->
+	<script
+		src="<%=request.getContextPath()%>/resources/jquerymultifile/jQuery.MultiFile.min.js"></script>
+	<!-- bootstrap.min -->
+	<script
+		src="<%=request.getContextPath()%>/resources/bootstrap/dist/js/bootstrap.min.js"></script>
+	<!-- bootstrap-select.min -->
+	<script
+		src="<%=request.getContextPath()%>/resources/bootstrap-select/dist/js/bootstrap-select.min.js"></script>
+	<!-- bootstrap-paginator.min -->
+	<script
+		src="<%=request.getContextPath()%>/resources/bootstrap-paginator/build/bootstrap-paginator.min.js"></script>
+	<!-- bootstrapValidator.min -->
+	<script
+		src="<%=request.getContextPath()%>/resources/bootstrapvalidator/dist/js/bootstrapValidator.min.js"></script>
+<script
+	src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"
+	type="text/javascript"></script>
+	<script
+		src="<%=request.getContextPath()%>/resources/jqueryui/jquery-ui.js"></script>
+	<script
+		src="<%=request.getContextPath()%>/resources/homepage/js/autocomplete.js"></script>
+	<script
+		src="<%=request.getContextPath()%>/resources/appjs/dist/js/app.min.js"
 		type="text/javascript"></script>
-
-	<script src="<%=request.getContextPath()%>/resources/music/mvview.js"></script>
+	<script
+		src="<%=request.getContextPath()%>/resources/homepage/js/mvview.js"></script>
 </body>
 </html>

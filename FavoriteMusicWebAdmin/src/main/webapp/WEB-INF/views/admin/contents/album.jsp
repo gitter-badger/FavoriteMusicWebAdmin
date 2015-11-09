@@ -16,121 +16,42 @@
 	rel="stylesheet">
 <!-- bootstrap-select.min -->
 <link
-	href="<%=request.getContextPath()%>/resources/css/bootstrap/css/bootstrap-select.min.css"
+	href="<%=request.getContextPath()%>/resources/bootstrap-select/dist/css/bootstrap-select.min.css"
 	rel="stylesheet">
 <!-- bootstrapValidator.min -->
 <link
-	href="<%=request.getContextPath()%>/resources/css/bootstrap/css/bootstrapValidator.min.css"
+	href="<%=request.getContextPath()%>/resources/bootstrapvalidator/dist/css/bootstrapValidator.min.css"
 	rel="stylesheet">
-<!-- font-awesome.min -->
+<!-- Font Awesome Icons -->
 <link
-	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css"
+	href="<%=request.getContextPath()%>/resources/font-awesome/css/font-awesome.min.css"
 	rel="stylesheet" type="text/css" />
-<!-- ionicons.min -->
+<!-- Ionicons -->
 <link
-	href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css"
+	href="<%=request.getContextPath()%>/resources/ionicons/css/ionicons.min.css"
 	rel="stylesheet" type="text/css" />
-<!-- adminpage -->
-<link rel="stylesheet" type="text/css"
-	href="<%=request.getContextPath()%>/resources/css/adminpage.css">
-<!-- skin-red.min -->
-<link rel="stylesheet" type="text/css"
-	href="<%=request.getContextPath()%>/resources/css/skins/skin-red.min.css">
+<!-- Theme style -->
 <link
-	href="http://code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.css"
-	rel="Stylesheet"></link>
+	href="<%=request.getContextPath()%>/resources/homepage/css/adminpage.min.css"
+	rel="stylesheet" type="text/css" />
+<link
+	href="<%=request.getContextPath()%>/resources/homepage/css/skins/skin-red.min.css"
+	rel="stylesheet" type="text/css" />
+<link
+	href="<%=request.getContextPath()%>/resources/jqueryui/jquery-ui.css"
+	rel="stylesheet" type="text/css" />
+<link
+	href="<%=request.getContextPath()%>/resources/homepage/css/auto.css"
+	rel="stylesheet" type="text/css" />
 <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
 <!--[if lt IE 9]>
         <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
         <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 <![endif]-->
-<!-- JS -->
-
-<!-- jquery.min -->
-<script
-	src="<%=request.getContextPath()%>/resources/js/jquery/jquery.min.js"></script>
-<!-- jquery.form.min -->
-<script
-	src="<%=request.getContextPath()%>/resources/js/jquery/jquery.form.min.js"></script>
-<!-- jQuery.MultiFile.min -->
-<script
-	src="<%=request.getContextPath()%>/resources/js/jquery/jQuery.MultiFile.min.js"></script>
-<!-- bootstrap.min -->
-<script
-	src="<%=request.getContextPath()%>/resources/js/bootstrap/bootstrap.min.js"></script>
-<!-- bootstrap-select.min -->
-<script
-	src="<%=request.getContextPath()%>/resources/js/bootstrap/bootstrap-select.min.js"></script>
-<!-- bootstrap-paginator.min -->
-<script
-	src="<%=request.getContextPath()%>/resources/js/bootstrap/bootstrap-paginator.min.js"></script>
-<!-- bootstrapValidator.min -->
-<script
-	src="<%=request.getContextPath()%>/resources/js/bootstrap/bootstrapValidator.min.js"></script>
 <!-- ckeditor -->
-
 <script
 	src="<%=request.getContextPath()%>/resources/editor/ckeditor/ckeditor.js"></script>
-	
-<script
-	src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"
-	type="text/javascript"></script>
 
-	<script src="http://code.jquery.com/ui/1.10.2/jquery-ui.js"></script>
-
-<style>
-.ui-autocomplete {
-	position: absolute;
-	cursor: default;
-	height: 200px;
-	overflow-y: scroll;
-	overflow-x: hidden;
-}
-</STYLE>
-<script type="text/javascript">
-$(function() {
-			$("#artist").autocomplete({
-								source : function(request, response) {
-									$.ajax({
-										url : "/test/artistname",
-										type : "post",
-										dataType : "json",
-										data : {
-											term : request.term,
-										},
-										//contentType : "application/x-www-form-urlencoded; charset=UTF-8",
-										success : function(data) {
-											response($.map(data, function(item)
-											{
-												//alert(item.mp_artist);
-												 console.log(data);
-												 console.log(item.mp_artist);
-												 console.log(item.mp_anum);
-												return{
-													label: item.mp_artist,
-													value : item.mp_anum
-													
-												}
-											}));
-										},
-										error : function(data) {
-												alert("에러가 발생하였습니다.")
-										}
-										
-									});
-								},
-								focus: function(event, ui) {
-									event.preventDefault();
-									$("#artist").val(ui.item.label);
-								},
-								select: function(event, ui) {
-									event.preventDefault();
-									$("#artist").val(ui.item.label);
-									$("#artistnum").val(ui.item.value);
-								}
-			});
-});
-</script>
 </head>
 
 
@@ -209,9 +130,9 @@ $(function() {
 			<li class="treeview"><a href="#"><i class='fa fa-building'></i>
 					<span>회사(Company)</span> <i class="fa fa-angle-left pull-right"></i></a>
 				<ul class="treeview-menu">
-					<li><a href="#">회사등록</a></li>
-					<li><a href="<%=request.getContextPath()%>/lable">레이블/제작사관리</a></li>
-					<li><a href="#">B2B 관련 관리</a></li>
+					<li><a href="<%=request.getContextPath()%>/company">제작사관리</a></li>
+					<li><a href="<%=request.getContextPath()%>/lable">레이블관리</a></li>
+					<li><a href="<%=request.getContextPath()%>/b2b">B2B관리</a></li>
 				</ul></li>
 			<li class="treeview active"><a href="#"><i
 					class='fa fa-music'></i> <span>콘텐츠등록(Contents)</span> <i
@@ -302,7 +223,7 @@ $(function() {
 						<div class="col-md-12">
 							<div class="panel panel-default">
 								<!-- Default panel contents -->
-								<div class="panel-heading">아티스트 관리</div>
+								<div class="panel-heading">앨범 관리</div>
 								<div class="panel-body">
 									<div class="form-inline">
 										<div class="row">
@@ -310,6 +231,7 @@ $(function() {
 												<select id="searchColumn" class="selectpicker">
 													<option value="mp_artist">아티스트</option>
 													<option value="mp_label">회사명</option>
+													<option value="mp_album">앨범명</option>
 												</select> <input type="text" id="searchText" class="form-control">
 												<button class="btn btn-default" id="searchBtn">검색</button>
 											</div>
@@ -369,7 +291,8 @@ $(function() {
 									<div class="form-group">
 										<label for="name" class="col-sm-2 control-label">앨범타이틀</label>
 										<div class="col-sm-10">
-											<select id="albumtitle" class="selectpicker" name="albumtitle">
+											<select id="albumtitle" class="selectpicker"
+												name="albumtitle">
 												<option value="mini">미니</option>
 												<option value="single">싱글</option>
 												<option value="album">앨범</option>
@@ -383,10 +306,9 @@ $(function() {
 										</label>
 										<div class="col-sm-10">
 											<input type="text" id="artist" name="artist"
-												class="form-control" placeholder="아티스트 입력하세요" > 
-												<input
+												class="form-control" placeholder="아티스트 입력하세요"> <input
 												type="hidden" id="artistnum" name="artistnum"
-												class="form-control" >
+												class="form-control">
 										</div>
 									</div>
 									<div class="form-group">
@@ -482,14 +404,40 @@ $(function() {
            immediately after the control sidebar -->
 	</div>
 	<!-- ./wrapper -->
-
 	<!-- REQUIRED JS SCRIPTS -->
-	<!-- AdminLTE App -->
+	<!-- JS -->
+	<!-- jquery.min -->
 	<script
-		src="<%=request.getContextPath()%>/resources/dist/js/app.min.js"
+		src="<%=request.getContextPath()%>/resources/jquery/jquery-2.1.4.min.js"></script>
+	<!-- jquery.form.min -->
+	<script
+		src="<%=request.getContextPath()%>/resources/jqueryform/jquery.form.js"></script>
+	<!-- jQuery.MultiFile.min -->
+	<script
+		src="<%=request.getContextPath()%>/resources/jquerymultifile/jQuery.MultiFile.min.js"></script>
+	<!-- bootstrap.min -->
+	<script
+		src="<%=request.getContextPath()%>/resources/bootstrap/dist/js/bootstrap.min.js"></script>
+	<!-- bootstrap-select.min -->
+	<script
+		src="<%=request.getContextPath()%>/resources/bootstrap-select/dist/js/bootstrap-select.min.js"></script>
+	<!-- bootstrap-paginator.min -->
+	<script
+		src="<%=request.getContextPath()%>/resources/bootstrap-paginator/build/bootstrap-paginator.min.js"></script>
+	<!-- bootstrapValidator.min -->
+	<script
+		src="<%=request.getContextPath()%>/resources/bootstrapvalidator/dist/js/bootstrapValidator.min.js"></script>
+	<script
+		src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"
 		type="text/javascript"></script>
-
 	<script
-		src="<%=request.getContextPath()%>/resources/music/albumview.js"></script>
+		src="<%=request.getContextPath()%>/resources/jqueryui/jquery-ui.js"></script>
+	<script
+		src="<%=request.getContextPath()%>/resources/homepage/js/autocomplete.js"></script>
+	<script
+		src="<%=request.getContextPath()%>/resources/appjs/dist/js/app.min.js"
+		type="text/javascript"></script>
+	<script
+		src="<%=request.getContextPath()%>/resources/homepage/js/albumview.js"></script>
 </body>
 </html>

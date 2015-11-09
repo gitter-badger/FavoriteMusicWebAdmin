@@ -11,14 +11,18 @@
 	</settings>
 
 	<typeAliases>
-		<!-- Contents Query -->
+		<!-- Search Query -->
 		<typeAlias alias="SearchDTO" type="mplanweb.music.web.search.SearchDTO" />
+		<!-- Contents Query -->
 		<typeAlias alias="Ssearch" type="mplanweb.music.web.contents.Ssearch" />
 		<typeAlias alias="Ssview" type="mplanweb.music.web.contents.Ssview" />
 		<typeAlias alias="Ssalbum" type="mplanweb.music.web.contents.SsAlbum" />
 		<typeAlias alias="Ssartist" type="mplanweb.music.web.contents.Ssartist" />
-		<typeAlias alias="Sscorp" type="mplanweb.music.web.contents.Sscorp" />
 		<typeAlias alias="Ssmvview" type="mplanweb.music.web.contents.Ssmvview" />
+		<!-- Company Query -->
+		<typeAlias alias="CorpCompany" type="mplanweb.music.web.corp.CorpCompany" />
+		<typeAlias alias="CorpLable" type="mplanweb.music.web.corp.CorpLable" />
+		<typeAlias alias="CorpB2B" type="mplanweb.music.web.corp.CorpB2B" />
 	</typeAliases>
 
 	<mappers>
@@ -28,5 +32,7 @@
 		<mapper resource="mplanweb/music/web/mybatis/contents.xml" />
 		<!-- Search query -->
 		<mapper resource="mplanweb/music/web/mybatis/Search.xml" />
+		<!-- Company Query -->
+		<mapper resource="mplanweb/music/web/mybatis/company.xml" />
 	</mappers>
 </configuration>

@@ -8,10 +8,10 @@
 <head>
 <meta http-equiv="content-type" content="text/html; charset=euc-kr" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/resources/css/iCheck/all.css">
-<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/resources/css/admin.css">
+<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/resources/icheck/skins/all.css">
+<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/resources/homepage/css/admin.css">
 <script
-	src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+	src="<%=request.getContextPath()%>/resources/jquery/jquery-2.1.4.min.js"></script>
 <title>Favorite Music Admin Page</title>
 </head>
 <!-- login -->
@@ -72,7 +72,7 @@ int num = r.nextInt(21); %>
     </div>
   </form>
 </div>
-<script src="<%=request.getContextPath()%>/resources/css/iCheck/icheck.min.js"></script> 
+<script src="<%=request.getContextPath()%>/resources/icheck/icheck.min.js"></script> 
 <script type="text/javascript">
       $(function () {
         //iCheck for checkbox and radio inputs

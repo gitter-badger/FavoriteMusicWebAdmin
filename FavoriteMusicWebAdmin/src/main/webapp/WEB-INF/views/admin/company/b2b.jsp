@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
 	pageEncoding="UTF-8"%>
+<%@ page session="false"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -8,72 +9,70 @@
 <meta
 	content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no'
 	name='viewport'>
-<!-- Bootstrap 3.3.4 -->
-<link rel="stylesheet" type="text/css"
-	href="<%=request.getContextPath()%>/resources/bootstrap/css/bootstrap.css">
+<!-- CSS -->
+<!-- bootstrap.min -->
+<link
+	href="<%=request.getContextPath()%>/resources/bootstrap/dist/css/bootstrap.min.css"
+	rel="stylesheet">
+<!-- bootstrap-select.min -->
+<link
+	href="<%=request.getContextPath()%>/resources/bootstrap-select/dist/css/bootstrap-select.min.css"
+	rel="stylesheet">
+<!-- bootstrapValidator.min -->
+<link
+	href="<%=request.getContextPath()%>/resources/bootstrapvalidator/dist/css/bootstrapValidator.min.css"
+	rel="stylesheet">
 <!-- Font Awesome Icons -->
 <link
-	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css"
+	href="<%=request.getContextPath()%>/resources/font-awesome/css/font-awesome.min.css"
 	rel="stylesheet" type="text/css" />
 <!-- Ionicons -->
 <link
-	href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css"
+	href="<%=request.getContextPath()%>/resources/ionicons/css/ionicons.min.css"
 	rel="stylesheet" type="text/css" />
 <!-- Theme style -->
-<link rel="stylesheet" type="text/css"
-	href="<%=request.getContextPath()%>/resources/dist/css/adminpage.css">
-
-<!-- AdminLTE Skins. We have chosen the skin-blue for this starter
-          page. However, you can choose any other skin. Make sure you
-          apply the skin class to the body tag so the changes take effect.
-    -->
-<link rel="stylesheet" type="text/css"
-	href="<%=request.getContextPath()%>/resources/dist/css/skins/skin-red.min.css">
-
+<link
+	href="<%=request.getContextPath()%>/resources/homepage/css/adminpage.min.css"
+	rel="stylesheet" type="text/css" />
+<link
+	href="<%=request.getContextPath()%>/resources/homepage/css/skins/skin-red.min.css"
+	rel="stylesheet" type="text/css" />
+<link
+	href="<%=request.getContextPath()%>/resources/jqueryui/jquery-ui.css"
+	rel="stylesheet" type="text/css" />
+<link
+	href="<%=request.getContextPath()%>/resources/homepage/css/auto.css"
+	rel="stylesheet" type="text/css" />
 <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
 <!--[if lt IE 9]>
         <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
         <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-    <![endif]-->
+<![endif]-->
+<!-- ckeditor -->
+<script
+	src="<%=request.getContextPath()%>/resources/editor/ckeditor/ckeditor.js"></script>
+
 </head>
-<!--
-  BODY TAG OPTIONS:
-  =================
-  Apply one or more of the following classes to get the
-  desired effect
-  |---------------------------------------------------------|
-  | SKINS         | skin-blue                               |
-  |               | skin-black                              |
-  |               | skin-purple                             |
-  |               | skin-yellow                             |
-  |               | skin-red                                |
-  |               | skin-green                              |
-  |---------------------------------------------------------|
-  |LAYOUT OPTIONS | fixed                                   |
-  |               | layout-boxed                            |
-  |               | layout-top-nav                          |
-  |               | sidebar-collapse                        |
-  |               | sidebar-mini                            |
-  |---------------------------------------------------------|
-  -->
+
+
 <body class="skin-red sidebar-mini">
 	<div class="wrapper">
 
 		<!-- Main Header -->
-		<header class="main-header"> <!-- Logo --> <a href="<%=request.getContextPath()%>/main"
-			class="logo"> <!-- mini logo for sidebar mini 50x50 pixels --> <span
-			class="logo-mini">MP</span> <!-- logo for regular state and mobile devices -->
+		<header class="main-header"> <!-- Logo --> <a
+			href="<%=request.getContextPath()%>/main" class="logo"> <!-- mini logo for sidebar mini 50x50 pixels -->
+			<span class="logo-mini">MP</span> <!-- logo for regular state and mobile devices -->
 			<span class="logo-lg">Favorite Music</span>
 		</a> <!-- Header Navbar --> <nav class="navbar navbar-static-top"
 			role="navigation"> <!-- Sidebar toggle button--> <!-- Navbar Right Menu -->
-			  <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button"> <span class="sr-only">메뉴숨기기</span> </a> 
+		<a href="#" class="sidebar-toggle" data-toggle="offcanvas"
+			role="button"> <span class="sr-only">메뉴숨기기</span>
+		</a>
 		<div class="navbar-custom-menu">
 			<ul class="nav navbar-nav">
 				<!-- User Account Menu -->
 				<li class="dropdown user user-menu">
-					<!-- Menu Toggle Button --> 
-					<a href="#" class="dropdown-toggle"
+					<!-- Menu Toggle Button --> <a href="#" class="dropdown-toggle"
 					data-toggle="dropdown"> <!-- The user image in the navbar--> <img
 						src="<%=request.getContextPath()%>/resources/dist/img/user2-160x160.jpg"
 						class="user-image" alt="User Image" /> <!-- hidden-xs hides the username on small devices so only the image appears. -->
@@ -118,7 +117,7 @@
 		<ul class="sidebar-menu">
 			<li class="header">메뉴</li>
 			<!-- Optionally, you can add icons to the links -->
-			<li class="active"><a href="#"><i class='fa fa-link'></i> <span>메인(Main)</span></a></li>
+			<li><a href="#"><i class='fa fa-link'></i> <span>메인(Main)</span></a></li>
 			<li class="treeview"><a href="#"><i class='fa fa-users'></i>
 					<span>회원관리(Member)</span> <i class="fa fa-angle-left pull-right"></i></a>
 				<ul class="treeview-menu">
@@ -131,17 +130,17 @@
 			<li class="treeview"><a href="#"><i class='fa fa-building'></i>
 					<span>회사(Company)</span> <i class="fa fa-angle-left pull-right"></i></a>
 				<ul class="treeview-menu">
-					<li><a href="#">회사등록</a></li>
-					<li><a href="<%=request.getContextPath()%>/lable">레이블/제작사관리</a></li>
-					<li><a href="#">B2B 관련 관리</a></li>
+					<li><a href="<%=request.getContextPath()%>/company">제작사관리</a></li>
+					<li><a href="<%=request.getContextPath()%>/lable">레이블관리</a></li>
+					<li><a href="<%=request.getContextPath()%>/b2b">B2B관리</a></li>
 				</ul></li>
-			<li class="treeview"><a href="#"><i class='fa fa-music'></i>
-					<span>콘텐츠등록(Contents)</span> <i class="fa fa-angle-left pull-right"></i></a>
+			<li class="treeview active"><a href="#"><i
+					class='fa fa-music'></i> <span>콘텐츠등록(Contents)</span> <i
+					class="fa fa-angle-left pull-right"></i></a>
 				<ul class="treeview-menu">
 					<li><a href="<%=request.getContextPath()%>/artist">아티스트관리</a></li>
 					<li><a href="<%=request.getContextPath()%>/album">앨범관리</a></li>
 					<li><a href="<%=request.getContextPath()%>/music">음원관리</a></li>
-					<li><a href="<%=request.getContextPath()%>/music">음원단체등록관리</a></li>
 					<li><a href="<%=request.getContextPath()%>/musicvideo">뮤직비디오관리</a></li>
 				</ul></li>
 			<li class="treeview"><a href="#"><i class='fa fa-money'></i>
@@ -169,7 +168,7 @@
 					<li><a href="#">라디오콘텐츠 관리</a></li>
 					<li><a href="#">큐시트 관리</a></li>
 					<li><a href="#">게시판 관리</a></li>
-					<li><a href="#">M!Radior관리</a></li>
+					<li><a href="#">M!Radio관리</a></li>
 				</ul></li>
 			<li class="treeview"><a href="#"><i class='fa  fa-archive'></i>
 					<span>관리자(Admin)</span> <i class="fa fa-angle-left pull-right"></i></a>
@@ -208,17 +207,182 @@
 				Favorite Music <small>앨범관리</small>
 			</h1>
 			<ol class="breadcrumb">
-				<li><a href="<%=request.getContextPath()%>/main"><i class="fa fa-dashboard"></i> Home</a></li>
-				
-        <li class="active">앨범관리</li>
-       
+				<li><a href="<%=request.getContextPath()%>/main"><i
+						class="fa fa-dashboard"></i> Home</a></li>
+
+				<li class="active">앨범관리</li>
+
 			</ol>
 			</section>
 
 			<!-- Main content -->
 			<section class="content">
 			<div class="infomation">
+				<div class="container-fluid">
+					<div class="row">
+						<div class="col-md-12">
+							<div class="panel panel-default">
+								<!-- Default panel contents -->
+								<div class="panel-heading">앨범 관리</div>
+								<div class="panel-body">
+									<div class="form-inline">
+										<div class="row">
+											<div class="col-md-10">
+												<select id="searchColumn" class="selectpicker">
+													<option value="mp_artist">아티스트</option>
+													<option value="mp_label">회사명</option>
+													<option value="mp_album">앨범명</option>
+												</select> <input type="text" id="searchText" class="form-control">
+												<button class="btn btn-default" id="searchBtn">검색</button>
+											</div>
+											<div class="col-md-2" style="text-align: right">
+												<button class="btn btn-primary" data-toggle="modal"
+													data-target="#yboardEditModal">등록</button>
+												<button class="btn btn-danger" id="btnYboardDelete">삭제</button>
+											</div>
+										</div>
+									</div>
+								</div>
+								<!-- Table -->
+								<table class="table table-striped" id="dataTable">
+									<thead>
+										<tr>
+											<th><input type="checkbox" id="allCheck" /></th>
+											<th>번호</th>
+											<th>아티스트</th>
+											<th>앨범명</th>
+											<th>레이블회사</th>
+											<th>발매일</th>
+											<th>사용여부</th>
+											<th>등록일</th>
+										</tr>
+									</thead>
+									<tbody>
+									</tbody>
+								</table>
+							</div>
+						</div>
+						<!-- 페이징처리 부분  -->
+						<div class="col-md-8">
+							<ul class="pagination" id="pagination">
+							</ul>
+						</div>
+					</div>
+				</div>
+				<!-- Modal : Yboard Edit -->
+				<form class="form-horizontal" id="mplanform" name="mplanform"
+					method="POST" enctype="multipart/form-data">
+					<div class="modal fade" id="yboardEditModal" tabindex="-1"
+						role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+						<div class="modal-dialog">
 
+							<div class="modal-content">
+
+
+								<div class="modal-header">
+									<button type="button" class="close" data-dismiss="modal"
+										aria-hidden="true">&times;</button>
+									<h4 class="modal-title" id="myModalLabel">앨범 관리/수정</h4>
+								</div>
+
+								<div class="modal-body">
+
+									<input type="hidden" id="mpssnumEncrypt" name="mpssnumEncrypt">
+									<div class="form-group">
+										<label for="name" class="col-sm-2 control-label">앨범타이틀</label>
+										<div class="col-sm-10">
+											<select id="albumtitle" class="selectpicker"
+												name="albumtitle">
+												<option value="mini">미니</option>
+												<option value="single">싱글</option>
+												<option value="album">앨범</option>
+
+											</select>
+										</div>
+									</div>
+
+									<div class="form-group">
+										<label for="artist" class="col-sm-2 control-label">아티스트
+										</label>
+										<div class="col-sm-10">
+											<input type="text" id="artist" name="artist"
+												class="form-control" placeholder="아티스트 입력하세요"> <input
+												type="hidden" id="artistnum" name="artistnum"
+												class="form-control">
+										</div>
+									</div>
+									<div class="form-group">
+										<label for="album" class="col-sm-2 control-label">앨범명
+										</label>
+										<div class="col-sm-10">
+											<input type="text" class="form-control" id="album"
+												name="album" placeholder="앨범명  입력하세요">
+										</div>
+									</div>
+									<div class="form-group">
+										<label for="content" class="col-sm-2 control-label">내용
+										</label>
+										<div class="col-sm-10">
+											<textarea style="height: 200px; width: 100%;" id="content"
+												name="content">
+											</textarea>
+											<script>
+												CKEDITOR.replace('content');
+											</script>
+										</div>
+									</div>
+									<div class="form-group">
+										<label for="year" class="col-sm-2 control-label">년도 </label>
+										<div class="col-sm-10">
+											<input type="date" class="form-control" id="year" name="year"
+												placeholder="년도 ">
+										</div>
+									</div>
+									<div class="form-group">
+										<label for="corp" class="col-sm-2 control-label">유통사 </label>
+										<div class="col-sm-10">
+											<input type="text" class="form-control" id="corp" name="corp"
+												placeholder="유통사  ">
+										</div>
+									</div>
+
+									<div class="form-group">
+										<label for="imgupload" class="col-sm-2 control-label">이미지
+											: </label>
+										<div class="col-sm-10">
+											<input type="file" class="imgfile" name="imgupload"
+												id="imgupload" />
+
+										</div>
+									</div>
+									<div class="form-group">
+										<label for="RadioGroup1" class="col-sm-2 control-label">사용여부
+											: </label>
+										<div class="col-sm-10">
+											<label class="radio-inline"> <input type="radio"
+												id="RadioGroup1" name="RadioGroup1" value="Y">사용
+											</label> <label class="radio-inline"> <input type="radio"
+												id="RadioGroup1" name="RadioGroup1" value="N">사용안함
+											</label>
+										</div>
+									</div>
+
+								</div>
+
+								<div class="modal-footer">
+									<button type="button" class="btn btn-default"
+										data-dismiss="modal">닫기</button>
+									<button type="submit" class="btn btn-primary"
+										id="btnYboardSave">저장</button>
+									<button type="button" class="btn btn-info" id="resetBtn">리셋</button>
+								</div>
+
+							</div>
+
+						</div>
+
+					</div>
+				</form>
 			</div>
 			</section>
 		</div>
@@ -240,24 +404,40 @@
            immediately after the control sidebar -->
 	</div>
 	<!-- ./wrapper -->
-
 	<!-- REQUIRED JS SCRIPTS -->
-
-	<!-- jQuery 2.1.4 -->
+	<!-- JS -->
+	<!-- jquery.min -->
 	<script
-		src="<%=request.getContextPath()%>/resources/plugins/jQuery/jQuery-2.1.4.min.js"
+		src="<%=request.getContextPath()%>/resources/jquery/jquery-2.1.4.min.js"></script>
+	<!-- jquery.form.min -->
+	<script
+		src="<%=request.getContextPath()%>/resources/jqueryform/jquery.form.js"></script>
+	<!-- jQuery.MultiFile.min -->
+	<script
+		src="<%=request.getContextPath()%>/resources/jquerymultifile/jQuery.MultiFile.min.js"></script>
+	<!-- bootstrap.min -->
+	<script
+		src="<%=request.getContextPath()%>/resources/bootstrap/dist/js/bootstrap.min.js"></script>
+	<!-- bootstrap-select.min -->
+	<script
+		src="<%=request.getContextPath()%>/resources/bootstrap-select/dist/js/bootstrap-select.min.js"></script>
+	<!-- bootstrap-paginator.min -->
+	<script
+		src="<%=request.getContextPath()%>/resources/bootstrap-paginator/build/bootstrap-paginator.min.js"></script>
+	<!-- bootstrapValidator.min -->
+	<script
+		src="<%=request.getContextPath()%>/resources/bootstrapvalidator/dist/js/bootstrapValidator.min.js"></script>
+	<script
+		src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"
 		type="text/javascript"></script>
-	<!-- Bootstrap 3.3.2 JS -->
 	<script
-		src="<%=request.getContextPath()%>/resources/bootstrap/js/bootstrap.min.js"></script>
-	<!-- AdminLTE App -->
+		src="<%=request.getContextPath()%>/resources/jqueryui/jquery-ui.js"></script>
 	<script
-		src="<%=request.getContextPath()%>/resources/dist/js/app.min.js"
+		src="<%=request.getContextPath()%>/resources/homepage/js/autocomplete.js"></script>
+	<script
+		src="<%=request.getContextPath()%>/resources/appjs/dist/js/app.min.js"
 		type="text/javascript"></script>
-
-	<!-- Optionally, you can add Slimscroll and FastClick plugins.
-          Both of these plugins are recommended to enhance the
-          user experience. Slimscroll is required when using the
-          fixed layout. -->
+	<script
+		src="<%=request.getContextPath()%>/resources/homepage/js/albumview.js"></script>
 </body>
 </html>

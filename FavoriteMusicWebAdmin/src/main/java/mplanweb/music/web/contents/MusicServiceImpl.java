@@ -101,30 +101,7 @@ public class MusicServiceImpl implements MusicService {
 		return musicDAO.updateartist(ssartist);
 	}
 
-	// corp View
-	public int corptotalcount(Ssearch ssearch) {
-		return musicDAO.corptotalcount(ssearch);
-	}
-
-	public List<Sscorp> selectcorpview(Ssearch ssearch) {
-		return musicDAO.selectcorpview(ssearch);
-	}
-
-	public Sscorp viewcorpview(Map<String, Object> map) {
-		return musicDAO.viewcorpview(map);
-	}
-
-	public int insertcorp(Sscorp sscorp) {
-		return musicDAO.insertcorp(sscorp);
-	}
-
-	public void deletecorp(List<Map<String, Object>> mapList) {
-		musicDAO.deletecorp(mapList);
-	}
-
-	public int updatecorp(Sscorp sscorp) {
-		return musicDAO.updatecorp(sscorp);
-	}
+	
 	// mv View
 	@Override
 	public int mvtotalcount(Ssearch ssearch) {

@@ -108,34 +108,7 @@ public class MusicDAOImpl implements MusicDAO {
 		return sqlSession.update("Test.updateartist", ssartist);
 	}
 
-	// corp View
-
-	public int corptotalcount(Ssearch ssearch) {
-		return sqlSession.selectOne("Test.corptotalcount", ssearch);
-	}
-
-	public List<Sscorp> selectcorpview(Ssearch ssearch) {
-		return sqlSession.selectList("Test.selectcorpview", ssearch);
-	}
-
-	public Sscorp viewcorpview(Map<String, Object> map) {
-		return sqlSession.selectOne("Test.viewcorpview", map);
-	}
-
-	public int insertcorp(Sscorp sscorp) {
-		return sqlSession.insert("Test.insertcorp", sscorp);
-	}
-
-	public void deletecorp(List<Map<String, Object>> mapList) {
-		for (Map<String, Object> map : mapList) {
-			sqlSession.delete("Test.deletecorp", map);
-		}
-	}
-
-	public int updatecorp(Sscorp sscorp) {
-		return sqlSession.update("Test.updatecorp", sscorp);
-	}
-
+	
 	//  mv View
 	@Override
 	public int mvtotalcount(Ssearch ssearch) {

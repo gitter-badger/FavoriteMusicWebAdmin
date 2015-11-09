@@ -49,18 +49,6 @@
 			</if>
 		</where>
 	</select>
-
-	<!-- 회사 총 토탈 -->
-	<select id="corptotalcount" resultType="int" parameterType="Ssearch">
-
-		SELECT COUNT(*)
-		FROM mplan_corp
-		<where>
-			<if test="@Ognl@isNotEmpty(searchText)">
-				AND ${searchColumn} LIKE CONCAT('',#{searchText},'%')
-			</if>
-		</where>
-	</select>
 	<!-- 토탈 쿼리 종료 -->
 
 	<!-- 리스트 쿼리 시작 -->
@@ -119,18 +107,6 @@
 		ORDER BY mp_date DESC LIMIT #{start}, #{limit}
 	</select>
 
-	<!-- 회사 총 리스트 -->
-	<select id="selectcorpview" resultType="Sscorp" parameterType="Ssearch">
-		SELECT mp_corpnum, mp_corpname, mp_address, mp_person, mp_useyn,
-		mp_date
-		FROM mplan_corp
-		<where>
-			<if test="@Ognl@isNotEmpty(searchText)">
-				AND ${searchColumn} LIKE CONCAT('',#{searchText},'%')
-			</if>
-		</where>
-		ORDER BY mp_date DESC LIMIT #{start}, #{limit}
-	</select>
 
 	<!-- 리스트 쿼리 종료 -->
 
@@ -140,7 +116,8 @@
 		SELECT
 		mp_release, mp_mvnum, mp_anum, mp_alnum, mp_mpnum, mp_artist,
 		mp_title, mp_album,
-		mp_content, mp_year, mp_label, mp_corp, mp_label, mp_img, mp_mvk, mp_age,
+		mp_content, mp_year, mp_label, mp_corp, mp_label,
+		mp_img, mp_mvk, mp_age,
 		mp_useyn, mp_insert_date,
 		mp_useyn
 		FROM
@@ -187,17 +164,6 @@
 		mplan_artist
 		WHERE mp_anum
 		= #{mp_anum}
-	</select>
-	<!-- 회사 총 뷰 -->
-
-	<select id="viewcorpview" resultType="Sscorp" parameterType="map">
-		SELECT mp_corpnum, mp_corpname, mp_number, mp_address, mp_contents,
-		mp_person,
-		mp_phone, mp_useyn
-		FROM
-		mplan_corp
-		WHERE mp_corpnum =
-		#{mp_corpnum}
 	</select>
 
 	<!-- 뷰 쿼리 종료 -->
@@ -340,25 +306,6 @@
 		#{mp_useyn},
 		now())
 	</insert>
-	<!-- 회사 등록 -->
-	<insert id="insertcorp" parameterType="Sscorp">
-		INSERT INTO
-		mplan_corp
-		(
-		mp_corpname, mp_number,
-		mp_address, mp_contents,
-		mp_person, mp_phone,
-		mp_useyn,
-		mp_date)
-		values (
-		#{mp_corpname},
-		#{mp_number},
-		#{mp_address},
-		#{mp_contents},
-		#{mp_person}, #{mp_phone},
-		#{mp_useyn},
-		now())
-	</insert>
 	<!-- Insert 종료 -->
 	<!-- Delete 시작 -->
 
@@ -388,12 +335,6 @@
 		DELETE FROM mplan_artist
 		WHERE
 		mp_anum= #{mp_anum}
-	</delete>
-	<!-- 회사 삭제 -->
-	<delete id="deletecorp" parameterType="map">
-		DELETE FROM mplan_corp
-		WHERE
-		mp_corpnum= #{mp_corpnum}
 	</delete>
 	<!-- Delete 종료 -->
 	<!-- Update 시작 -->
@@ -646,35 +587,6 @@
 		</set>
 		WHERE mp_anum = #{mp_anum}
 	</update>
-	<!-- 회사 수정 -->
-	<update id="updatecorp" parameterType="Sscorp">
 
-		UPDATE mplan_corp
-		<set>
-			<if test="@Ognl@isNotEmpty(mp_corpname)">
-				mp_corpname = #{mp_corpname},
-			</if>
-			<if test="@Ognl@isNotEmpty(mp_number)">
-				mp_number = #{mp_number},
-			</if>
-			<if test="@Ognl@isNotEmpty(mp_address)">
-				mp_address = #{mp_address},
-			</if>
-			<if test="@Ognl@isNotEmpty(mp_contents)">
-				mp_contents = #{mp_contents},
-			</if>
-			<if test="@Ognl@isNotEmpty(mp_person)">
-				mp_person = #{mp_person},
-			</if>
-			<if test="@Ognl@isNotEmpty(mp_phone)">
-				mp_phone = #{mp_phone},
-			</if>
-			<if test="@Ognl@isNotEmpty(mp_useyn)">
-				mp_useyn = #{mp_useyn},
-			</if>
-
-		</set>
-		WHERE mp_corpnum = #{mp_corpnum}
-	</update>
 	<!-- Update 종료 -->
 </mapper>
