@@ -479,9 +479,9 @@
 										</label>
 										<div class="col-sm-10">
 											<input type="text" class="form-control" id="title"
-												name="title" placeholder="타이틀  입력하세요">
-												 <input
-												type="hidden" class="form-control" id="titlenum" name="titlenum">
+												name="title" placeholder="타이틀  입력하세요"> <input
+												type="hidden" class="form-control" id="titlenum"
+												name="titlenum">
 										</div>
 									</div>
 									<div class="form-group">
@@ -496,7 +496,8 @@
 									</div>
 
 									<div class="form-group">
-										<label for="content" class="col-sm-2 control-label">내용 </label>
+										<label for="content" class="col-sm-2 control-label">내용
+										</label>
 										<div class="col-sm-10">
 											<textarea style="height: 200px; width: 100%;" id="content"
 												name="content">
@@ -558,7 +559,7 @@
 											</select>
 										</div>
 									</div>
-					
+
 									<div class="form-group">
 										<label for="age" class="col-sm-2 control-label">연령제한 </label>
 										<div class="col-sm-10">
@@ -644,7 +645,6 @@
 		src="<%=request.getContextPath()%>/resources/dist/js/app.min.js"
 		type="text/javascript"></script>
 
-	<script
-		src="<%=request.getContextPath()%>/resources/music/mvview.js"></script>
+	<script src="<%=request.getContextPath()%>/resources/music/mvview.js"></script>
 </body>
 </html>

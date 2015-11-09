@@ -12,7 +12,7 @@
 <!-- CSS -->
 <!-- bootstrap.min -->
 <link
-	href="<%=request.getContextPath()%>/resources/css/bootstrap/css/bootstrap.min.css"
+	href="<%=request.getContextPath()%>/resources/bootstrap/dist/css/bootstrap.min.css"
 	rel="stylesheet">
 <!-- bootstrap-select.min -->
 <link
