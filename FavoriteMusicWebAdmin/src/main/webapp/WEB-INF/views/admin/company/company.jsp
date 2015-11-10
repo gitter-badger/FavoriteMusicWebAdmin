@@ -57,43 +57,46 @@
 
 		<!-- Main Header -->
 		<header class="main-header"> <!-- Logo --> <a
-			href="<%=request.getContextPath()%>/main" class="logo"> <!-- mini logo for sidebar mini 50x50 pixels -->
+			href="<%=request.getContextPath()%>/main.do" class="logo"> <!-- mini logo for sidebar mini 50x50 pixels -->
 			<span class="logo-mini">MP</span> <!-- logo for regular state and mobile devices -->
 			<span class="logo-lg">Favorite Music</span>
 		</a> <!-- Header Navbar --> <nav class="navbar navbar-static-top"
-			role="navigation"> <!-- Sidebar toggle button--> <!-- Navbar Right Menu -->
-		<a href="#" class="sidebar-toggle" data-toggle="offcanvas"
-			role="button"> <span class="sr-only">메뉴숨기기</span>
-		</a>
+			role="navigation"> <!-- Sidebar toggle button--> <a href="#"
+			class="sidebar-toggle" data-toggle="offcanvas" role="button"> <span
+			class="sr-only">Toggle navigation</span>
+		</a> <!-- Navbar Right Menu -->
 		<div class="navbar-custom-menu">
 			<ul class="nav navbar-nav">
 				<!-- User Account Menu -->
 				<li class="dropdown user user-menu">
 					<!-- Menu Toggle Button --> <a href="#" class="dropdown-toggle"
 					data-toggle="dropdown"> <!-- The user image in the navbar--> <img
-						src="<%=request.getContextPath()%>/resources/dist/img/user2-160x160.jpg"
+						src="<%=request.getContextPath()%>/resources/appjs/dist/img/user2-160x160.jpg"
 						class="user-image" alt="User Image" /> <!-- hidden-xs hides the username on small devices so only the image appears. -->
-						<span class="hidden-xs">M!Plan 대표</span>
+						<span class="hidden-xs">${username}</span>
 				</a>
-
 					<ul class="dropdown-menu">
 						<!-- The user image in the menu -->
 						<li class="user-header"><img
-							src="<%=request.getContextPath()%>/resources/dist/img/user2-160x160.jpg"
+							src="<%=request.getContextPath()%>/resources/appjs/dist/img/user2-160x160.jpg"
 							class="img-circle" alt="User Image" />
 							<p>
-								성명 : 김정훈 (대표) <small>입사일 : 1997년 07월 23일</small>
+								성명 : ${username}<small>${username}</small>
 							</p></li>
 						<!-- Menu Footer-->
 						<li class="user-footer">
 							<div class="pull-center">
-								<a href="#" class="btn btn-default btn-flat">Sign out</a>
+								<input type="button" class="btn btn-default btn-flat"
+									value="로그아웃" onclick="location.href='j_spring_security_logout'" />
 							</div>
 						</li>
 					</ul>
 				</li>
 				<!-- Control Sidebar Toggle Button -->
+				<li><a href="#" data-toggle="control-sidebar"><i
+						class="fa fa-gears"></i></a></li>
 			</ul>
+
 		</div>
 		</nav> </header>
 		<!-- Left side column. contains the logo and sidebar -->
@@ -102,14 +105,31 @@
 		<div class="user-panel">
 			<div class="pull-left image">
 				<img
-					src="<%=request.getContextPath()%>/resources/dist/img/user2-160x160.jpg"
+					src="<%=request.getContextPath()%>/resources/appjs/dist/img/user2-160x160.jpg"
 					class="img-circle" alt="User Image" />
 			</div>
 			<div class="pull-left info">
 				<p>M!Plan 대표</p>
+			</div>
+		</div>
+		<!-- Sidebar Menu --> <aside class="main-sidebar"> <!-- sidebar: style can be found in sidebar.less -->
+		<section class="sidebar"> <!-- Sidebar user panel (optional) -->
+		<div class="user-panel">
+			<div class="pull-left image">
+				<img
+					src="<%=request.getContextPath()%>/resources/appjs/dist/img/user2-160x160.jpg"
+					class="img-circle" alt="User Image" />
+			</div>
+			<div class="pull-left info">
+				<p>${username}</p>
 				<a href="#">일반직원관리자</a>
 			</div>
 		</div>
+		
+		
+		
+		
+		
 		<!-- Sidebar Menu -->
 		<ul class="sidebar-menu">
 			<li class="header">메뉴</li>
@@ -194,9 +214,7 @@
 						Music</span></a></li>
 
 		</ul>
-		<!-- /.sidebar-menu --> </section> <!-- /.sidebar --> </aside>
-
-		<!-- Content Wrapper. Contains page content -->
+		<!-- /.sidebar-menu --> </section> <!-- /.sidebar --> </aside> <!-- Content Wrapper. Contains page content -->
 		<div class="content-wrapper">
 			<!-- Content Header (Page header) -->
 			<section class="content-header">
@@ -214,6 +232,14 @@
 
 			<!-- Main content -->
 			<section class="content">
+			
+			
+			
+			
+			
+			
+			
+			
 			<div class="infomation">
 				<div class="container-fluid">
 					<div class="row">
@@ -302,7 +328,8 @@
 										</div>
 									</div>
 									<div class="form-group">
-										<label for="corpaddress" class="col-sm-2 control-label">주소 </label>
+										<label for="corpaddress" class="col-sm-2 control-label">주소
+										</label>
 										<div class="col-sm-10">
 											<input type="text" class="form-control" id="corpaddress"
 												name="corpaddress" placeholder="주소  입력하세요">
@@ -320,35 +347,37 @@
 										<label for="corpcontents" class="col-sm-2 control-label">내용
 										</label>
 										<div class="col-sm-10">
-											<textarea style="height: 200px; width: 100%;" id="corpcontents"
-												name="corpcontents">
+											<textarea style="height: 200px; width: 100%;"
+												id="corpcontents" name="corpcontents">
 											</textarea>
 											<script>
-												CKEDITOR.replace('corpcontents');
+												CKEDITOR
+														.replace('corpcontents');
 											</script>
 										</div>
 									</div>
 									<div class="form-group">
-										<label for="bizperson" class="col-sm-2 control-label">담당자 </label>
+										<label for="bizperson" class="col-sm-2 control-label">담당자
+										</label>
 										<div class="col-sm-10">
-											<input type="text" class="form-control" id="bizperson" name="bizperson"
-												placeholder="담당자  입력하세요">
+											<input type="text" class="form-control" id="bizperson"
+												name="bizperson" placeholder="담당자  입력하세요">
 										</div>
 									</div>
 									<div class="form-group">
 										<label for="bizphone" class="col-sm-2 control-label">담당자
 											등록번호 </label>
 										<div class="col-sm-10">
-											<input type="text" class="form-control" id="bizphone" name="bizphone"
-												placeholder="담당자 등록번호 입력하세요">
+											<input type="text" class="form-control" id="bizphone"
+												name="bizphone" placeholder="담당자 등록번호 입력하세요">
 										</div>
 									</div>
 									<div class="form-group">
 										<label for="bizcontents" class="col-sm-2 control-label">사업관련
 											내용 </label>
 										<div class="col-sm-10">
-											<textarea style="height: 200px; width: 100%;" id="bizcontents"
-												name="bizcontents">
+											<textarea style="height: 200px; width: 100%;"
+												id="bizcontents" name="bizcontents">
 											</textarea>
 											<script>
 												CKEDITOR.replace('bizcontents');
@@ -386,21 +415,16 @@
 			</div>
 			</section>
 		</div>
-		<!-- /.content-wrapper -->
-
-		<!-- Main Footer -->
-		<footer class="main-footer"> <!-- To the right -->
+		<!-- /.content-wrapper --> <!-- Main Footer --> <footer
+			class="main-footer"> <!-- To the right -->
 		<div class="pull-right hidden-xs">Favorite Music 2015</div>
 		<!-- Default to the left --> <strong>&copy; Copyright <a
 			href="#">M!Plan</a></strong> All rights reserved. <strong>1997~2015 </strong>
 		<br />
 		<strong> &copy; Copyright <a href="#">VM! Media Contents
-				Labs</a></strong> All rights reserved. <strong>2009~2015 </strong> </footer>
+				Labs</a></strong> All rights reserved. <strong>2009~2015 </strong> </footer> <!-- Control Sidebar -->
 
-		<!-- Control Sidebar -->
-
-		<!-- /.control-sidebar -->
-		<!-- Add the sidebar's background. This div must be placed
+		<!-- /.control-sidebar --> <!-- Add the sidebar's background. This div must be placed
            immediately after the control sidebar -->
 	</div>
 	<!-- ./wrapper -->

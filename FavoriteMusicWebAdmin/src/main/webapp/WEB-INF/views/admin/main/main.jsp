@@ -46,7 +46,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 		<header class="main-header">
 
 			<!-- Logo -->
-			<a href="<%=request.getContextPath()%>/main" class="logo"> <!-- mini logo for sidebar mini 50x50 pixels -->
+			<a href="<%=request.getContextPath()%>/main.do" class="logo"> <!-- mini logo for sidebar mini 50x50 pixels -->
 				<span class="logo-mini">MP</span> <!-- logo for regular state and mobile devices -->
 				<span class="logo-lg">Favorite Music</span>
 			</a>
@@ -81,7 +81,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
 								<li class="user-footer">
 									<div class="pull-center">
 										<input type="button" class="btn btn-default btn-flat"
-											value="로그아웃" /> <a href="j_spring_security_logout">로그아웃</a>
+											value="로그아웃"
+											onclick="location.href='j_spring_security_logout'" />
 									</div>
 								</li>
 							</ul>
@@ -132,7 +133,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 							<li class="header">메뉴</li>
 							<!-- Optionally, you can add icons to the links -->
 							<li class="active"><a
-								href="<%=request.getContextPath()%>/main"><i
+								href="<%=request.getContextPath()%>/main.do"><i
 									class='fa fa-link'></i> <span>메인(Main)</span></a></li>
 							<li class="treeview"><a href="#"><i class='fa fa-users'></i>
 									<span>회원관리(Member)</span> <i
@@ -148,9 +149,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
 									class='fa fa-building'></i> <span>회사(Company)</span> <i
 									class="fa fa-angle-left pull-right"></i></a>
 								<ul class="treeview-menu">
-									<li><a href="#">회사등록</a></li>
-									<li><a href="<%=request.getContextPath()%>/lable">레이블/제작사관리</a></li>
-									<li><a href="#">B2B 관련 관리</a></li>
+									<li><a href="<%=request.getContextPath()%>/company">제작사관리</a></li>
+									<li><a href="<%=request.getContextPath()%>/lable">레이블관리</a></li>
+									<li><a href="<%=request.getContextPath()%>/b2b">B2B관리</a></li>
 								</ul></li>
 							<li class="treeview"><a href="#"><i class='fa fa-music'></i>
 									<span>콘텐츠등록(Contents)</span> <i
@@ -303,8 +304,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
 			<div class="pull-right hidden-xs">Favorite Music 2015</div>
 			<!-- Default to the left -->
 			<strong>&copy; Copyright <a href="#">M!Plan</a></strong> All rights
-			reserved. <strong>1997~2015 </strong> <br /> <strong> &copy;
-				Copyright <a href="#">VM! Media Contents Labs</a>
+			reserved. <strong>1997~2015 </strong> <br /> <strong>
+				&copy; Copyright <a href="#">VM! Media Contents Labs</a>
 			</strong> All rights reserved. <strong>2009~2015 </strong>
 		</footer>
 
