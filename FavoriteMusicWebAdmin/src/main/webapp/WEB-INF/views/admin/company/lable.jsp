@@ -40,9 +40,6 @@
 <link
 	href="<%=request.getContextPath()%>/resources/jqueryui/jquery-ui.css"
 	rel="stylesheet" type="text/css" />
-<link
-	href="<%=request.getContextPath()%>/resources/homepage/css/auto.css"
-	rel="stylesheet" type="text/css" />
 <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
 <!--[if lt IE 9]>
         <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
@@ -127,16 +124,16 @@
 					<li><a href="#">블랙리스트 관리</a></li>
 					<li><a href="#">일괄회원등록</a></li>
 				</ul></li>
-			<li class="treeview"><a href="#"><i class='fa fa-building'></i>
-					<span>회사(Company)</span> <i class="fa fa-angle-left pull-right"></i></a>
+			<li class="treeview active"><a href="#"><i
+					class='fa fa-building'></i> <span>회사(Company)</span> <i
+					class="fa fa-angle-left pull-right"></i></a>
 				<ul class="treeview-menu">
 					<li><a href="<%=request.getContextPath()%>/company">제작사관리</a></li>
 					<li><a href="<%=request.getContextPath()%>/lable">레이블관리</a></li>
 					<li><a href="<%=request.getContextPath()%>/b2b">B2B관리</a></li>
 				</ul></li>
-			<li class="treeview active"><a href="#"><i
-					class='fa fa-music'></i> <span>콘텐츠등록(Contents)</span> <i
-					class="fa fa-angle-left pull-right"></i></a>
+			<li class="treeview"><a href="#"><i class='fa fa-music'></i>
+					<span>콘텐츠등록(Contents)</span> <i class="fa fa-angle-left pull-right"></i></a>
 				<ul class="treeview-menu">
 					<li><a href="<%=request.getContextPath()%>/artist">아티스트관리</a></li>
 					<li><a href="<%=request.getContextPath()%>/album">앨범관리</a></li>
@@ -204,13 +201,13 @@
 			<!-- Content Header (Page header) -->
 			<section class="content-header">
 			<h1>
-				Favorite Music <small>앨범관리</small>
+				Favorite Music <small>레이블관리</small>
 			</h1>
 			<ol class="breadcrumb">
 				<li><a href="<%=request.getContextPath()%>/main"><i
 						class="fa fa-dashboard"></i> Home</a></li>
 
-				<li class="active">앨범관리</li>
+				<li class="active">레이블관리</li>
 
 			</ol>
 			</section>
@@ -223,15 +220,13 @@
 						<div class="col-md-12">
 							<div class="panel panel-default">
 								<!-- Default panel contents -->
-								<div class="panel-heading">앨범 관리</div>
+								<div class="panel-heading">레이블 관리</div>
 								<div class="panel-body">
 									<div class="form-inline">
 										<div class="row">
 											<div class="col-md-10">
 												<select id="searchColumn" class="selectpicker">
-													<option value="mp_artist">아티스트</option>
-													<option value="mp_label">회사명</option>
-													<option value="mp_album">앨범명</option>
+													<option value="mp_corpname">회사명</option>
 												</select> <input type="text" id="searchText" class="form-control">
 												<button class="btn btn-default" id="searchBtn">검색</button>
 											</div>
@@ -249,10 +244,10 @@
 										<tr>
 											<th><input type="checkbox" id="allCheck" /></th>
 											<th>번호</th>
-											<th>아티스트</th>
-											<th>앨범명</th>
-											<th>레이블회사</th>
-											<th>발매일</th>
+											<th>레이블명</th>
+											<th>사업번호</th>
+											<th>담당자</th>
+											<th>전화번호</th>
 											<th>사용여부</th>
 											<th>등록일</th>
 										</tr>
@@ -282,77 +277,82 @@
 								<div class="modal-header">
 									<button type="button" class="close" data-dismiss="modal"
 										aria-hidden="true">&times;</button>
-									<h4 class="modal-title" id="myModalLabel">앨범 관리/수정</h4>
+									<h4 class="modal-title" id="myModalLabel">레이블 관리/수정</h4>
 								</div>
 
 								<div class="modal-body">
 
 									<input type="hidden" id="mpssnumEncrypt" name="mpssnumEncrypt">
-									<div class="form-group">
-										<label for="name" class="col-sm-2 control-label">앨범타이틀</label>
-										<div class="col-sm-10">
-											<select id="albumtitle" class="selectpicker"
-												name="albumtitle">
-												<option value="mini">미니</option>
-												<option value="single">싱글</option>
-												<option value="album">앨범</option>
 
-											</select>
-										</div>
-									</div>
 
 									<div class="form-group">
-										<label for="artist" class="col-sm-2 control-label">아티스트
+										<label for="lablename" class="col-sm-2 control-label">회사명
 										</label>
 										<div class="col-sm-10">
-											<input type="text" id="artist" name="artist"
-												class="form-control" placeholder="아티스트 입력하세요"> <input
-												type="hidden" id="artistnum" name="artistnum"
-												class="form-control">
+											<input type="text" id="lablename" name="lablename"
+												class="form-control" placeholder="회사명 입력하세요">
 										</div>
 									</div>
 									<div class="form-group">
-										<label for="album" class="col-sm-2 control-label">앨범명
+										<label for="lablephone" class="col-sm-2 control-label">대표전화번호
 										</label>
 										<div class="col-sm-10">
-											<input type="text" class="form-control" id="album"
-												name="album" placeholder="앨범명  입력하세요">
+											<input type="text" class="form-control" id="lablephone"
+												name="lablephone" placeholder="전화번호  입력하세요">
 										</div>
 									</div>
 									<div class="form-group">
-										<label for="content" class="col-sm-2 control-label">내용
+										<label for="lableaddress" class="col-sm-2 control-label">주소 </label>
+										<div class="col-sm-10">
+											<input type="text" class="form-control" id="lableaddress"
+												name="lableaddress" placeholder="주소  입력하세요">
+										</div>
+									</div>
+									<div class="form-group">
+										<label for=lablebn class="col-sm-2 control-label">사업자등록번호
 										</label>
 										<div class="col-sm-10">
-											<textarea style="height: 200px; width: 100%;" id="content"
-												name="content">
+											<input type="text" class="form-control" id="lablebn"
+												name="lablebn" placeholder="사업자등록번호  입력하세요">
+										</div>
+									</div>
+									<div class="form-group">
+										<label for="lablecontents" class="col-sm-2 control-label">내용
+										</label>
+										<div class="col-sm-10">
+											<textarea style="height: 200px; width: 100%;" id="lablecontents"
+												name="lablecontents">
 											</textarea>
 											<script>
-												CKEDITOR.replace('content');
+												CKEDITOR.replace('lablecontents');
 											</script>
 										</div>
 									</div>
 									<div class="form-group">
-										<label for="year" class="col-sm-2 control-label">년도 </label>
+										<label for="bizperson" class="col-sm-2 control-label">담당자 </label>
 										<div class="col-sm-10">
-											<input type="date" class="form-control" id="year" name="year"
-												placeholder="년도 ">
+											<input type="text" class="form-control" id="bizperson" name="bizperson"
+												placeholder="담당자  입력하세요">
 										</div>
 									</div>
 									<div class="form-group">
-										<label for="corp" class="col-sm-2 control-label">유통사 </label>
+										<label for="bizphone" class="col-sm-2 control-label">담당자
+											등록번호 </label>
 										<div class="col-sm-10">
-											<input type="text" class="form-control" id="corp" name="corp"
-												placeholder="유통사  ">
+											<input type="text" class="form-control" id="bizphone" name="bizphone"
+												placeholder="담당자 등록번호 입력하세요">
 										</div>
 									</div>
-
 									<div class="form-group">
-										<label for="imgupload" class="col-sm-2 control-label">이미지
-											: </label>
+										<label for="bizcontents" class="col-sm-2 control-label">사업관련
+											내용 </label>
 										<div class="col-sm-10">
-											<input type="file" class="imgfile" name="imgupload"
-												id="imgupload" />
-
+											<textarea style="height: 200px; width: 100%;" id="bizcontents"
+												name="bizcontents">
+											</textarea>
+											<script>
+												CKEDITOR.replace('bizcontents');
+											</script>
 										</div>
 									</div>
 									<div class="form-group">
@@ -433,11 +433,9 @@
 	<script
 		src="<%=request.getContextPath()%>/resources/jqueryui/jquery-ui.js"></script>
 	<script
-		src="<%=request.getContextPath()%>/resources/homepage/js/autocomplete.js"></script>
-	<script
 		src="<%=request.getContextPath()%>/resources/appjs/dist/js/app.min.js"
 		type="text/javascript"></script>
 	<script
-		src="<%=request.getContextPath()%>/resources/homepage/js/albumview.js"></script>
+		src="<%=request.getContextPath()%>/resources/homepage/js/company/lableview.js"></script>
 </body>
 </html>

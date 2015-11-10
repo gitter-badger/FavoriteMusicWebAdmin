@@ -23,6 +23,9 @@
 		<typeAlias alias="CorpCompany" type="mplanweb.music.web.corp.CorpCompany" />
 		<typeAlias alias="CorpLable" type="mplanweb.music.web.corp.CorpLable" />
 		<typeAlias alias="CorpB2B" type="mplanweb.music.web.corp.CorpB2B" />
+		<typeAlias alias="CorpSearch" type="mplanweb.music.web.corp.CorpSearch" />
+		<!-- login query -->
+		<!-- <typeAlias alias="Login" type="mplanweb.music.web.login"  />-->
 	</typeAliases>
 
 	<mappers>
@@ -34,5 +37,7 @@
 		<mapper resource="mplanweb/music/web/mybatis/Search.xml" />
 		<!-- Company Query -->
 		<mapper resource="mplanweb/music/web/mybatis/company.xml" />
+			<!-- login Query -->
+		<mapper resource="mplanweb/music/web/mybatis/login.xml" />
 	</mappers>
 </configuration>

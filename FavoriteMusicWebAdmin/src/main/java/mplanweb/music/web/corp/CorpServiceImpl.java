@@ -11,43 +11,119 @@ import org.springframework.stereotype.Service;
 public class CorpServiceImpl implements CorpService {
 
 	@Autowired
-	private CorpDAO musicDAO;
+	private CorpDAO corpDAO;
 
 	// SSView
 	@Override
-	public int selecttotalcount(CorpSearch ssearch) {
-		return musicDAO.selecttotalcount(ssearch);
+	public int corptotalcount(CorpSearch corpsearch) {
+		return corpDAO.corptotalcount(corpsearch);
 
 	}
 
 	@Override
-	public List<CorpB2B> selectSsview(CorpSearch ssearch) {
+	public List<CorpCompany> selectcorpview(CorpSearch corpsearch) {
 
-		return musicDAO.selectSsview(ssearch);
+		return corpDAO.selectcorpview(corpsearch);
 	}
 
 	@Override
-	public CorpB2B viewSSview(Map<String, Object> map) {
-		return musicDAO.viewSSview(map);
+	public CorpCompany viewcorpview(Map<String, Object> map) {
+		return corpDAO.viewcorpview(map);
 	}
 
 	@Override
-	public int insertssearch(CorpB2B ssview) {
+	public int insertcorp(CorpCompany corpcompany) {
 		// TODO Auto-generated method stub
-		return musicDAO.insertssearch(ssview);
+		return corpDAO.insertcorp(corpcompany);
 	}
 
 	@Override
-	public void deletessearch(List<Map<String, Object>> mapList) {
+	public void deletecorp(List<Map<String, Object>> mapList) {
 		// TODO Auto-generated method stub
 
-		musicDAO.deletessearch(mapList);
+		corpDAO.deletecorp(mapList);
 	}
 
 	@Override
-	public int updatessearch(CorpB2B ssview) {
+	public int updatecorp(CorpCompany corpcompany) {
 		// TODO Auto-generated method stub
-		return musicDAO.updatessearch(ssview);
+		return corpDAO.updatecorp(corpcompany);
+	}
+
+	//lable
+	@Override
+	public int labletotalcount(CorpSearch corpsearch) {
+		// TODO Auto-generated method stub
+		return corpDAO.corptotalcount(corpsearch);
+	}
+
+	@Override
+	public List<CorpLable> selectlableview(CorpSearch corpsearch) {
+		// TODO Auto-generated method stub
+		return corpDAO.selectlableview(corpsearch);
+	}
+
+	@Override
+	public CorpLable viewlableview(Map<String, Object> map) {
+		// TODO Auto-generated method stub
+		return corpDAO.viewlableview(map);
+	}
+
+	@Override
+	public int insertlable(CorpLable corplable) {
+		// TODO Auto-generated method stub
+		return corpDAO.insertlable(corplable);
+	}
+
+	@Override
+	public void deletelable(List<Map<String, Object>> mapList) {
+		// TODO Auto-generated method stub
+
+		corpDAO.deletelable(mapList);
+	}
+
+	@Override
+	public int updatelable(CorpLable corplable) {
+		// TODO Auto-generated method stub
+		return corpDAO.updatelable(corplable);
+	}
+
+	
+	//b2b
+	@Override
+	public int b2btotalcount(CorpSearch corpsearch) {
+		// TODO Auto-generated method stub
+		return corpDAO.corptotalcount(corpsearch);
+	}
+
+	@Override
+	public List<CorpB2B> selectb2bview(CorpSearch corpsearch) {
+		// TODO Auto-generated method stub
+		return corpDAO.selectb2bview(corpsearch);
+	}
+
+	@Override
+	public CorpB2B viewb2bview(Map<String, Object> map) {
+		// TODO Auto-generated method stub
+		return corpDAO.viewb2bview(map);
+	}
+
+	@Override
+	public int insertb2b(CorpB2B corpb2b) {
+		// TODO Auto-generated method stub
+		return corpDAO.insertb2b(corpb2b);
+	}
+
+	@Override
+	public void deleteb2b(List<Map<String, Object>> mapList) {
+		// TODO Auto-generated method stub
+		corpDAO.deleteb2b(mapList);
+	}
+
+	@Override
+	public int updateb2b(CorpB2B corpb2b) {
+		// TODO Auto-generated method stub
+		return corpDAO.updateb2b(corpb2b);
 	}
 
 

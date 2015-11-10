@@ -226,7 +226,7 @@
 										<div class="row">
 											<div class="col-md-10">
 												<select id="searchColumn" class="selectpicker">
-													<option value="mp_label">회사명</option>
+													<option value="mp_corpname">회사명</option>
 												</select> <input type="text" id="searchText" class="form-control">
 												<button class="btn btn-default" id="searchBtn">검색</button>
 											</div>
@@ -286,103 +286,102 @@
 
 
 									<div class="form-group">
-										<label for="artist" class="col-sm-2 control-label">회사명
+										<label for="corpname" class="col-sm-2 control-label">회사명
 										</label>
 										<div class="col-sm-10">
-											<input type="text" id="artist" name="artist"
+											<input type="text" id="corpname" name="corpname"
 												class="form-control" placeholder="회사명 입력하세요">
 										</div>
-										<div class="form-group">
-											<label for="album" class="col-sm-2 control-label">대표전화번호
-											</label>
-											<div class="col-sm-10">
-												<input type="text" class="form-control" id="album"
-													name="album" placeholder="전화번호  입력하세요">
-											</div>
+									</div>
+									<div class="form-group">
+										<label for="corpphone" class="col-sm-2 control-label">대표전화번호
+										</label>
+										<div class="col-sm-10">
+											<input type="text" class="form-control" id="corpphone"
+												name="corpphone" placeholder="전화번호  입력하세요">
 										</div>
-										<div class="form-group">
-											<label for="album" class="col-sm-2 control-label">주소
-											</label>
-											<div class="col-sm-10">
-												<input type="text" class="form-control" id="album"
-													name="album" placeholder="주소  입력하세요">
-											</div>
+									</div>
+									<div class="form-group">
+										<label for="corpaddress" class="col-sm-2 control-label">주소 </label>
+										<div class="col-sm-10">
+											<input type="text" class="form-control" id="corpaddress"
+												name="corpaddress" placeholder="주소  입력하세요">
 										</div>
-										<div class="form-group">
-											<label for="album" class="col-sm-2 control-label">사업자등록번호
-											</label>
-											<div class="col-sm-10">
-												<input type="text" class="form-control" id="album"
-													name="album" placeholder="사업자등록번호  입력하세요">
-											</div>
+									</div>
+									<div class="form-group">
+										<label for="corpbn" class="col-sm-2 control-label">사업자등록번호
+										</label>
+										<div class="col-sm-10">
+											<input type="text" class="form-control" id="corpbn"
+												name="corpbn" placeholder="사업자등록번호  입력하세요">
 										</div>
-										<div class="form-group">
-											<label for="content" class="col-sm-2 control-label">내용
-											</label>
-											<div class="col-sm-10">
-												<textarea style="height: 200px; width: 100%;" id="content"
-													name="content">
+									</div>
+									<div class="form-group">
+										<label for="corpcontents" class="col-sm-2 control-label">내용
+										</label>
+										<div class="col-sm-10">
+											<textarea style="height: 200px; width: 100%;" id="corpcontents"
+												name="corpcontents">
 											</textarea>
-												<script>
-													CKEDITOR.replace('content');
-												</script>
-											</div>
+											<script>
+												CKEDITOR.replace('corpcontents');
+											</script>
 										</div>
-										<div class="form-group">
-											<label for="year" class="col-sm-2 control-label">담당자
-											</label>
-											<div class="col-sm-10">
-												<input type="date" class="form-control" id="year"
-													name="year" placeholder="담당자  입력하세요">
-											</div>
+									</div>
+									<div class="form-group">
+										<label for="bizperson" class="col-sm-2 control-label">담당자 </label>
+										<div class="col-sm-10">
+											<input type="text" class="form-control" id="bizperson" name="bizperson"
+												placeholder="담당자  입력하세요">
 										</div>
-										<div class="form-group">
-											<label for="corp" class="col-sm-2 control-label">담당자
-												등록번호 </label>
-											<div class="col-sm-10">
-												<input type="text" class="form-control" id="corp"
-													name="corp" placeholder="유통사  ">
-											</div>
+									</div>
+									<div class="form-group">
+										<label for="bizphone" class="col-sm-2 control-label">담당자
+											등록번호 </label>
+										<div class="col-sm-10">
+											<input type="text" class="form-control" id="bizphone" name="bizphone"
+												placeholder="담당자 등록번호 입력하세요">
 										</div>
-										<div class="form-group">
-											<label for="content" class="col-sm-2 control-label">사업관련 내용
-											</label>
-											<div class="col-sm-10">
-												<textarea style="height: 200px; width: 100%;" id="content"
-													name="content">
+									</div>
+									<div class="form-group">
+										<label for="bizcontents" class="col-sm-2 control-label">사업관련
+											내용 </label>
+										<div class="col-sm-10">
+											<textarea style="height: 200px; width: 100%;" id="bizcontents"
+												name="bizcontents">
 											</textarea>
-												<script>
-													CKEDITOR.replace('content');
-												</script>
-											</div>
+											<script>
+												CKEDITOR.replace('bizcontents');
+											</script>
 										</div>
-										<div class="form-group">
-											<label for="RadioGroup1" class="col-sm-2 control-label">사용여부
-												: </label>
-											<div class="col-sm-10">
-												<label class="radio-inline"> <input type="radio"
-													id="RadioGroup1" name="RadioGroup1" value="Y">사용
-												</label> <label class="radio-inline"> <input type="radio"
-													id="RadioGroup1" name="RadioGroup1" value="N">사용안함
-												</label>
-											</div>
+									</div>
+									<div class="form-group">
+										<label for="RadioGroup1" class="col-sm-2 control-label">사용여부
+											: </label>
+										<div class="col-sm-10">
+											<label class="radio-inline"> <input type="radio"
+												id="RadioGroup1" name="RadioGroup1" value="Y">사용
+											</label> <label class="radio-inline"> <input type="radio"
+												id="RadioGroup1" name="RadioGroup1" value="N">사용안함
+											</label>
 										</div>
-
 									</div>
 
-									<div class="modal-footer">
-										<button type="button" class="btn btn-default"
-											data-dismiss="modal">닫기</button>
-										<button type="submit" class="btn btn-primary"
-											id="btnYboardSave">저장</button>
-										<button type="button" class="btn btn-info" id="resetBtn">리셋</button>
-									</div>
+								</div>
 
+								<div class="modal-footer">
+									<button type="button" class="btn btn-default"
+										data-dismiss="modal">닫기</button>
+									<button type="submit" class="btn btn-primary"
+										id="btnYboardSave">저장</button>
+									<button type="button" class="btn btn-info" id="resetBtn">리셋</button>
 								</div>
 
 							</div>
 
 						</div>
+
+					</div>
 				</form>
 			</div>
 			</section>
@@ -437,6 +436,6 @@
 		src="<%=request.getContextPath()%>/resources/appjs/dist/js/app.min.js"
 		type="text/javascript"></script>
 	<script
-		src="<%=request.getContextPath()%>/resources/homepage/js/corpview.js"></script>
+		src="<%=request.getContextPath()%>/resources/homepage/js/company/corpview.js"></script>
 </body>
 </html>

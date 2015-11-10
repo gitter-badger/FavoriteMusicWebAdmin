@@ -25,7 +25,7 @@ public class UserService implements UserDetailsService {
 
 		// "ROLE_USER 이름 권한 설정
 		Collection<SimpleGrantedAuthority> roles = new ArrayList<SimpleGrantedAuthority>();
-		roles.add(new SimpleGrantedAuthority("ROLE_USER"));
+		roles.add(new SimpleGrantedAuthority("ROLE_ADMIN"));
 	
 		// User => return 
 		UserDetails user = new User(mp_name, userPwd, roles);

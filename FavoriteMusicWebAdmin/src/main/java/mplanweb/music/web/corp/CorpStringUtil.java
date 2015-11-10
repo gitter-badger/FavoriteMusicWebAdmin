@@ -54,7 +54,7 @@ public class CorpStringUtil {
 			result = "-1";
 		}
 		int a = Integer.parseInt(result);
-	
+
 		return Integer.parseInt(result);
 	}
 

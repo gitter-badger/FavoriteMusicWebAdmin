@@ -32,272 +32,238 @@ public class CorpController {
 	@Autowired
 	private CorpService corpservice;
 
+	/*
+	 * 회사 등록 
+	 */
+	
+	//회사 SELECT
 	@RequestMapping(value = "/corpselect", method = RequestMethod.POST)
 	@ResponseBody
 	public Jsontotal corpselect(@RequestBody CorpSearch corpsearch) {
 
 		Jsontotal jsontotal = new Jsontotal();
+		logger.info("corpselect 연결");
 		int totalCount = corpservice.corptotalcount(corpsearch);
-		List<CorpB2B> corplist = corpservice.selectcorpview(corpsearch); // nullpoint
+		logger.info("totalCount : " + totalCount);
+		List<CorpCompany> corplist = corpservice.selectcorpview(corpsearch); // nullpoint
+		logger.info("corplist : " + corplist);
 		jsontotal.setTotal(totalCount);
 		jsontotal.setItems(corplist);
 		jsontotal.setSuccess(true);
 		return jsontotal;
 	}
 
+
+	//회사 Viewer
 	@RequestMapping(value = "/corpviewer/{mpssnumEncrypt}", method = RequestMethod.GET)
 	@ResponseBody
 	public Jsontotal corpviewer(@PathVariable String mpssnumEncrypt) {
 		Jsontotal jsontotal = new Jsontotal();
 		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("mp_mpnum",
+		map.put("mp_corpnum",
 				CorpStringUtil.getTmsDecryptoAesForInt(mpssnumEncrypt));
-		jsontotal.setData(musicService.viewSSview(map));
+		jsontotal.setData(corpservice.viewcorpview(map));
 		jsontotal.setSuccess(true);
 		return jsontotal;
 	}
 
+	//회사 등록
 	@RequestMapping(value = "/corpinsert", produces = "application/json")
 	@ResponseBody
-	public Jsontotal corpinsert(MultipartHttpServletRequest request)
-			throws Exception {
-
-		String num_p = request.getParameter("num");
-		int mp_num = Integer.parseInt(num_p);
-		String anum = request.getParameter("artistnum");
-		int mp_anum = Integer.parseInt(anum);
-		String alnum = request.getParameter("albumnum");
-		int mp_alnum = Integer.parseInt(alnum);
-		String mp_titlemusic = request.getParameter("titleuse1");
-		String mp_artist = request.getParameter("artist");
-		String mp_title = request.getParameter("title");
-		String mp_album = request.getParameter("album");
-		String mp_lyric = request.getParameter("lyric");
-		String mp_label = request.getParameter("label");
-		String mp_corp = request.getParameter("corp");
-		String mp_year = request.getParameter("year");
-		String mp_genre1 = request.getParameter("genre1");
-		String mp_genre2 = request.getParameter("genre2");
-		String mp_etc = request.getParameter("etc");
-		String mp_open_date = request.getParameter("copy");
-		String mp_age = request.getParameter("age");
-		String mp_useyn = request.getParameter("RadioGroup1");
-		MultipartFile mimg = request.getFile("imgupload");
-		MultipartFile m320k = request.getFile("m320kupload");
-		MultipartFile m192k = request.getFile("m192kupload");
-		logger.info("mp_num : " + mp_num);
-		logger.info("mp_anum : " + mp_anum);
-		logger.info("mp_alnum : " + mp_alnum);
-		logger.info("mp_titlemusic : " + mp_titlemusic);
-		logger.info("mp_artist : " + mp_artist);
-		logger.info("mp_title : " + mp_title);
-		logger.info("mp_album : " + mp_album);
-		logger.info("mp_lyric : " + mp_lyric);
-		logger.info("mp_label : " + mp_label);
-
+	public Jsontotal corpinsert(@RequestBody CorpCompany corpcompany) {
 		Jsontotal jsontotal = new Jsontotal();
-		if (mimg != null && m192k != null && m192k != null) {
-
-			String mp_img = mimg.getOriginalFilename();
-			String mp_192k = m192k.getOriginalFilename();
-			String mp_320k = m320k.getOriginalFilename();
-
-			long mp_imgsize = mimg.getSize();
-			long mp_192size = m192k.getSize();
-			long mp_320size = m320k.getSize();
-
-			String mp_imgo = System.currentTimeMillis()
-					+ UUID.randomUUID().toString()
-					+ mp_img.substring(mp_img.lastIndexOf("."));
-			String mp_320ko = System.currentTimeMillis()
-					+ UUID.randomUUID().toString()
-					+ mp_320k.substring(mp_320k.lastIndexOf("."));
-			String mp_192ko = System.currentTimeMillis()
-					+ UUID.randomUUID().toString()
-					+ mp_192k.substring(mp_192k.lastIndexOf("."));
-
-			String uploadimgPath = "E://upload//img//";
-			String upload320Path = "E://upload//music320k//";
-			String upload192Path = "E://upload//music192k//";
-
-			if (mimg.getSize() != 0) {
-				mimg.transferTo(new File(uploadimgPath + "/" + mp_imgo));
-			}
-			if (m192k.getSize() != 0) {
-				m192k.transferTo(new File(upload192Path + "/" + mp_192ko));
-			}
-			if (m320k.getSize() != 0) {
-				m320k.transferTo(new File(upload320Path + "/" + mp_320ko));
-			}
-
-			CorpB2B ssview = new CorpB2B();
-			ssview.setMp_num(mp_num);
-			ssview.setMp_anum(mp_anum);
-			ssview.setMp_alnum(mp_alnum);
-			ssview.setMp_titlemusic(mp_titlemusic);
-
-			ssview.setMp_img(mp_img);
-			ssview.setMp_320k(mp_320k);
-			ssview.setMp_192k(mp_192k);
-
-			ssview.setMp_imgsize(mp_imgsize);
-			ssview.setMp_320size(mp_320size);
-			ssview.setMp_192size(mp_192size);
-
-			ssview.setMp_imgo(mp_imgo);
-			ssview.setMp_320ko(mp_320ko);
-			ssview.setMp_192ko(mp_192ko);
-
-			ssview.setMp_artist(mp_artist);
-			ssview.setMp_title(mp_title);
-			ssview.setMp_album(mp_album);
-			ssview.setMp_lyric(mp_lyric);
-			ssview.setMp_label(mp_label);
-			ssview.setMp_corp(mp_corp);
-			ssview.setMp_year(mp_year);
-			ssview.setMp_genre1(mp_genre1);
-			ssview.setMp_genre2(mp_genre2);
-			ssview.setMp_etc(mp_etc);
-			ssview.setMp_open_date(mp_open_date);
-			ssview.setMp_age(mp_age);
-			ssview.setMp_useyn(mp_useyn);
-
-			musicService.insertssearch(ssview);
-
-			jsontotal.setSuccess(true);
-
-		}
-
+		corpservice.insertcorp(corpcompany);
+		jsontotal.setSuccess(true);
 		return jsontotal;
 	}
-
+	//회사 수정
 	@RequestMapping(value = "/corpupdate", produces = "application/json")
 	@ResponseBody
-	public Jsontotal corpupdate(MultipartHttpServletRequest request)
-			throws Exception {
-
-		String num_pm = request.getParameter("mpssnumEncrypt");
-		String num_p = request.getParameter("num");
-		int mp_num = Integer.parseInt(num_p);
-		String anum = request.getParameter("artistnum");
-		int mp_anum = Integer.parseInt(anum);
-		String alnum = request.getParameter("albumnum");
-		int mp_alnum = Integer.parseInt(alnum);
-		String mp_titlemusic = request.getParameter("titleuse1");
-		String mp_artist = request.getParameter("artist");
-		String mp_title = request.getParameter("title");
-		String mp_album = request.getParameter("album");
-		String mp_lyric = request.getParameter("lyric");
-		String mp_label = request.getParameter("label");
-		String mp_corp = request.getParameter("corp");
-		String mp_year = request.getParameter("year");
-		String mp_genre1 = request.getParameter("genre1");
-		String mp_genre2 = request.getParameter("genre2");
-		String mp_etc = request.getParameter("etc");
-		String mp_open_date = request.getParameter("copy");
-		String mp_age = request.getParameter("age");
-		String mp_useyn = request.getParameter("RadioGroup1");
-		MultipartFile mimg = request.getFile("imgupload");
-		MultipartFile m320k = request.getFile("m320kupload");
-		MultipartFile m192k = request.getFile("m192kupload");
-		logger.info("num_pm : " + num_pm);
-		logger.info("mp_num2 : " + mp_num);
-		logger.info("mp_artist : " + mp_artist);
-		logger.info("mp_title : " + mp_title);
-		logger.info("mp_album : " + mp_album);
-		logger.info("mp_lyric : " + mp_lyric);
-		logger.info("mp_label : " + mp_label);
-
+	public Jsontotal updatecorp(@RequestBody CorpCompany corpcompany) {
 		Jsontotal jsontotal = new Jsontotal();
-		if (mimg != null && m192k != null && m192k != null) {
-
-			String mp_img = mimg.getOriginalFilename();
-			String mp_192k = m192k.getOriginalFilename();
-			String mp_320k = m320k.getOriginalFilename();
-			long mp_imgsize = mimg.getSize();
-			long mp_192size = m192k.getSize();
-			long mp_320size = m320k.getSize();
-			String mp_imgo = System.currentTimeMillis()
-					+ UUID.randomUUID().toString()
-					+ mp_img.substring(mp_img.lastIndexOf("."));
-			String mp_320ko = System.currentTimeMillis()
-					+ UUID.randomUUID().toString()
-					+ mp_320k.substring(mp_320k.lastIndexOf("."));
-			String mp_192ko = System.currentTimeMillis()
-					+ UUID.randomUUID().toString()
-					+ mp_192k.substring(mp_192k.lastIndexOf("."));
-			String uploadimgPath = "E://upload//img//";
-			String upload192Path = "E://upload//music192k//";
-			String upload320Path = "E://upload//music320k//";
-			if (mimg.getSize() != 0) {
-				mimg.transferTo(new File(uploadimgPath + "/" + mp_imgo));
-			}
-			if (m192k.getSize() != 0) {
-				m192k.transferTo(new File(upload192Path + "/" + mp_320ko));
-			}
-			if (m320k.getSize() != 0) {
-				m320k.transferTo(new File(upload320Path + "/" + mp_192ko));
-			}
-
-			CorpB2B ssview = new CorpB2B();
-			ssview.setMp_mpnum(CorpStringUtil.getTmsDecryptoAesForInt(num_pm));
-			ssview.setMp_img(mp_img);
-			ssview.setMp_320k(mp_320k);
-			ssview.setMp_192k(mp_192k);
-			ssview.setMp_imgsize(mp_imgsize);
-			ssview.setMp_320size(mp_320size);
-			ssview.setMp_192size(mp_192size);
-			ssview.setMp_imgo(mp_imgo);
-			ssview.setMp_320ko(mp_320ko);
-			ssview.setMp_192ko(mp_192ko);
-			ssview.setMp_num(mp_num);
-			ssview.setMp_anum(mp_anum);
-			ssview.setMp_alnum(mp_alnum);
-			ssview.setMp_titlemusic(mp_titlemusic);
-			ssview.setMp_artist(mp_artist);
-			ssview.setMp_title(mp_title);
-			ssview.setMp_album(mp_album);
-			ssview.setMp_lyric(mp_lyric);
-			ssview.setMp_label(mp_label);
-			ssview.setMp_corp(mp_corp);
-			ssview.setMp_year(mp_year);
-			ssview.setMp_genre1(mp_genre1);
-			ssview.setMp_genre2(mp_genre2);
-			ssview.setMp_etc(mp_etc);
-			ssview.setMp_open_date(mp_open_date);
-			ssview.setMp_age(mp_age);
-			ssview.setMp_useyn(mp_useyn);
-
-			musicService.updatessearch(ssview);
-
-			jsontotal.setSuccess(true);
-
-		}
-
+		corpcompany.setMp_corpnum(CorpStringUtil.getTmsDecryptoAesForInt(corpcompany
+				.getMpssnumEncrypt()));
+		corpservice.updatecorp(corpcompany);
+		jsontotal.setSuccess(true);
 		return jsontotal;
 	}
 
+	//회사 삭제
 	@RequestMapping(value = "/corpdelete", method = RequestMethod.POST)
 	@ResponseBody
-	public Jsontotal corpdelete(@RequestBody Map<String, Object> param,
-			String mp_imgo) {
-
+	public Jsontotal deletecorp(@RequestBody Map<String, Object> param) {
 		Jsontotal jsontotal = new Jsontotal();
-		String mp_mpnum = String.valueOf(param.get("mp_mpnum"));
-		System.out.println(mp_mpnum);
+		String mp_corpnum = String.valueOf(param.get("mp_corpnum"));
 
 		List<Map<String, Object>> mapList = new ArrayList<Map<String, Object>>();
-		String[] mpssnumEncrypts = mp_mpnum.split(",");
+		String[] mpssnumEncrypts = mp_corpnum.split(",");
 
 		for (String mpssnumEncrypt : mpssnumEncrypts) {
 			Map<String, Object> map = new HashMap<String, Object>();
-			map.put("mp_mpnum",
+			map.put("mp_corpnum",
 					CorpStringUtil.getTmsDecryptoAesForInt(mpssnumEncrypt));
 			mapList.add(map);
 		}
-		musicService.deletessearch(mapList);
+		corpservice.deletecorp(mapList);
 		jsontotal.setSuccess(true);
 		return jsontotal;
 	}
 
+	
+	/*
+	 * 레이블 등록 
+	 */
+	
+	//레이블 SELECT
+	@RequestMapping(value = "/lableselect", method = RequestMethod.POST)
+	@ResponseBody
+	public Jsontotal lableselect(@RequestBody CorpSearch corpsearch) {
+
+		Jsontotal jsontotal = new Jsontotal();
+		logger.info("lableselect 연결");
+		int totalCount = corpservice.labletotalcount(corpsearch);
+		logger.info("totalCount : " + totalCount);
+		List<CorpLable> corplist = corpservice.selectlableview(corpsearch); // nullpoint
+		logger.info("corplist : " + corplist);
+		jsontotal.setTotal(totalCount);
+		jsontotal.setItems(corplist);
+		jsontotal.setSuccess(true);
+		return jsontotal;
 	}
+
+
+	//레이블 Viewer
+	@RequestMapping(value = "/lableviewer/{mpssnumEncrypt}", method = RequestMethod.GET)
+	@ResponseBody
+	public Jsontotal lableviewer(@PathVariable String mpssnumEncrypt) {
+		Jsontotal jsontotal = new Jsontotal();
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("mp_lablenum",
+				CorpStringUtil.getTmsDecryptoAesForInt(mpssnumEncrypt));
+		jsontotal.setData(corpservice.viewlableview(map));
+		jsontotal.setSuccess(true);
+		return jsontotal;
+	}
+
+	//레이블 등록
+	@RequestMapping(value = "/lableinsert", produces = "application/json")
+	@ResponseBody
+	public Jsontotal lableinsert(@RequestBody CorpLable corplable) {
+		Jsontotal jsontotal = new Jsontotal();
+		corpservice.insertlable(corplable);
+		jsontotal.setSuccess(true);
+		return jsontotal;
+	}
+	//레이블 수정
+	@RequestMapping(value = "/lableupdate", produces = "application/json")
+	@ResponseBody
+	public Jsontotal updatelable(@RequestBody CorpLable corplable) {
+		Jsontotal jsontotal = new Jsontotal();
+		corplable.setMp_lablenum(CorpStringUtil.getTmsDecryptoAesForInt(corplable
+				.getMpssnumEncrypt()));
+		corpservice.updatelable(corplable);
+		jsontotal.setSuccess(true);
+		return jsontotal;
+	}
+
+	//레이블 삭제
+	@RequestMapping(value = "/labledelete", method = RequestMethod.POST)
+	@ResponseBody
+	public Jsontotal deletelable(@RequestBody Map<String, Object> param) {
+		Jsontotal jsontotal = new Jsontotal();
+		String mp_lablenum = String.valueOf(param.get("mp_lablenum"));
+
+		List<Map<String, Object>> mapList = new ArrayList<Map<String, Object>>();
+		String[] mpssnumEncrypts = mp_lablenum.split(",");
+
+		for (String mpssnumEncrypt : mpssnumEncrypts) {
+			Map<String, Object> map = new HashMap<String, Object>();
+			map.put("mp_lablenum",
+					CorpStringUtil.getTmsDecryptoAesForInt(mpssnumEncrypt));
+			mapList.add(map);
+		}
+		corpservice.deletelable(mapList);
+		jsontotal.setSuccess(true);
+		return jsontotal;
+	}
+	
+	
+	
+	/*
+	 * b2b 등록 
+	 */
+	
+	//b2b SELECT
+	@RequestMapping(value = "/b2bselect", method = RequestMethod.POST)
+	@ResponseBody
+	public Jsontotal b2bselect(@RequestBody CorpSearch corpsearch) {
+
+		Jsontotal jsontotal = new Jsontotal();
+		logger.info("lableselect 연결");
+		int totalCount = corpservice.b2btotalcount(corpsearch);
+		logger.info("totalCount : " + totalCount);
+		List<CorpB2B> corplist = corpservice.selectb2bview(corpsearch); // nullpoint
+		logger.info("corplist : " + corplist);
+		jsontotal.setTotal(totalCount);
+		jsontotal.setItems(corplist);
+		jsontotal.setSuccess(true);
+		return jsontotal;
+	}
+
+
+	//b2b Viewer
+	@RequestMapping(value = "/b2bviewer/{mpssnumEncrypt}", method = RequestMethod.GET)
+	@ResponseBody
+	public Jsontotal b2bviewer(@PathVariable String mpssnumEncrypt) {
+		Jsontotal jsontotal = new Jsontotal();
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("mp_b2bnum",
+				CorpStringUtil.getTmsDecryptoAesForInt(mpssnumEncrypt));
+		jsontotal.setData(corpservice.viewb2bview(map));
+		jsontotal.setSuccess(true);
+		return jsontotal;
+	}
+
+	//b2b 등록
+	@RequestMapping(value = "/b2binsert", produces = "application/json")
+	@ResponseBody
+	public Jsontotal b2binsert(@RequestBody CorpB2B corpb2b) {
+		Jsontotal jsontotal = new Jsontotal();
+		corpservice.insertb2b(corpb2b);
+		jsontotal.setSuccess(true);
+		return jsontotal;
+	}
+	//b2b 수정
+	@RequestMapping(value = "/b2bupdate", produces = "application/json")
+	@ResponseBody
+	public Jsontotal updateb2b(@RequestBody CorpB2B corpb2b) {
+		Jsontotal jsontotal = new Jsontotal();
+		corpb2b.setMp_b2bnum(CorpStringUtil.getTmsDecryptoAesForInt(corpb2b
+				.getMpssnumEncrypt()));
+		corpservice.updateb2b(corpb2b);
+		jsontotal.setSuccess(true);
+		return jsontotal;
+	}
+
+	//b2b 삭제
+	@RequestMapping(value = "/b2bdelete", method = RequestMethod.POST)
+	@ResponseBody
+	public Jsontotal deleteb2b(@RequestBody Map<String, Object> param) {
+		Jsontotal jsontotal = new Jsontotal();
+		String mp_b2bnum = String.valueOf(param.get("mp_b2bnum"));
+
+		List<Map<String, Object>> mapList = new ArrayList<Map<String, Object>>();
+		String[] mpssnumEncrypts = mp_b2bnum.split(",");
+
+		for (String mpssnumEncrypt : mpssnumEncrypts) {
+			Map<String, Object> map = new HashMap<String, Object>();
+			map.put("mp_b2bnum",
+					CorpStringUtil.getTmsDecryptoAesForInt(mpssnumEncrypt));
+			mapList.add(map);
+		}
+		corpservice.deleteb2b(mapList);
+		jsontotal.setSuccess(true);
+		return jsontotal;
+	}
+	
+}

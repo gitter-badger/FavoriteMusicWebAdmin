@@ -1,23 +1,23 @@
-function showList(ssearch) {
+function showList(corpsearch) {
 	var record = "";
-	if (ssearch === null) {
-		var ssearch = {
+	if (corpsearch === null) {
+		var corpsearch = {
 			start : 0,
 			page : 1
 		};
 	}
 
-	ssearch.limit = 10;
-	ssearch.searchColumn = $('#searchColumn').val();
-	ssearch.searchText = $('#searchText').val();
+	corpsearch.limit = 10;
+	corpsearch.searchColumn = $('#searchColumn').val();
+	corpsearch.searchText = $('#searchText').val();
 	// ajax 설정
 	$
 			.ajax({
 				type : 'POST',
 				dataType : 'JSON',
-				data : JSON.stringify(ssearch),
+				data : JSON.stringify(corpsearch),
 				contentType : "application/json; charset=UTF-8",
-				url : '/test/contents/abviewselect',
+				url : '/test/company/corpselect',
 				error : function() {
 					alert("데이터가 에러 났습니다. 에러확인바랍니다.");
 				},
@@ -27,35 +27,34 @@ function showList(ssearch) {
 						$
 								.each(
 										jsontotal.items,
-										function(i, ssalbum) {
+										function(i, corpcompany) {
 											record += '<tr>'
-													+ '<td><input type="checkbox" name="mp_alnum" value="'
-													+ ssalbum.mpssnumEncrypt
+													+ '<td><input type="checkbox" name="mp_corpnum" value="'
+													+ corpcompany.mpssnumEncrypt
 													+ '"/></td>'
 													+ '<td>'
-													+ ssalbum.mp_alnum
+													+ corpcompany.mp_corpnum
 													+ '</td>'
 													+ '<td><a href="#" onclick="ViewSelect(\''
-													+ ssalbum.mpssnumEncrypt
+													+ corpcompany.mpssnumEncrypt
 													+ '\')">'
-													+ ssalbum.mp_artist
+													+ corpcompany.mp_corpname
 													+ '</a></td>'
 													+ '<td>'
-													+ ssalbum.mp_album
+													+ corpcompany.mp_corpbn
 													+ '</td>'
 													+ '<td>'
-													+ ssalbum.mp_corp
+													+ corpcompany.mp_bizperson
 													+ '</td>'
 													+ '<td>'
-													+ ssalbum.mp_year
+													+ corpcompany.mp_bizphone
 													+ '</td>'
 													+ '<td>'
-													+ ssalbum.mp_useyn
+													+ corpcompany.mp_useyn
 													+ '</td>'
 													+ '<td>'
-													+ ssalbum.mp_date
-													+ '</td>'
-													+ '</tr>'
+													+ corpcompany.mp_insertdate
+													+ '</td>' + '</tr>'
 										});
 						$('#dataTable > tbody').html(record);
 						// page
@@ -79,30 +78,28 @@ function ViewSelect(mpssnumEncrypt) {
 		type : "GET",
 		dataType : "JSON",
 		contentType : "application/json; charset=UTF-8",
-		url : "/test/contents/abviewer/" + mpssnumEncrypt,
+		url : "/test/company/corpviewer/" + mpssnumEncrypt,
 		error : function() {
 			alert("실패 하셩습니다. ");
 		},
 		success : function(jsontotal) {
 			if (jsontotal.success) {
-				var ssalbum = jsontotal.data;
-				$('#mpssnumEncrypt').val(ssalbum.mpssnumEncrypt);
-				$('#albumtitle > option[value="' + ssalbum.mp_albumtitle + '"]').prop(
-						'selected', true);
-				$('#albumtitle').selectpicker('render');
-				$('#artist').val(ssalbum.mp_artist);
-				$('#artistnum').val(ssalbum.mp_anum);
-				
-				$('#album').val(ssalbum.mp_album);
-				//$('#cke_1_contents').text(ssalbum.mp_content);
-				$('#year').val(ssalbum.mp_year);
-				$('#corp').val(ssalbum.mp_corp);
-				$('#imgupload').load(ssalbum.mp_albumimg);
+				var corpcompany = jsontotal.data;
+				$('#mpssnumEncrypt').val(corpcompany.mpssnumEncrypt);
+				$('#corpname').val(corpcompany.mp_corpname);
+				$('#corpphone').val(corpcompany.mp_corpphone);
+				$('#corpaddress').val(corpcompany.mp_corpaddress);
+				$('#corpbn').val(corpcompany.mp_corpbn);
+				$('#bizperson').val(corpcompany.mp_bizperson);
+				$('#bizphone').val(corpcompany.mp_bizphone);
 				$(':radio[name="RadioGroup1"]').filter(
-						'[value="' + ssalbum.mp_useyn + '"]').prop("checked",
-						true);
+						'[value="' + corpcompany.mp_useyn + '"]').prop(
+						"checked", true);
 				$('#yboardEditModal').modal('show');
-				var content = CKEDITOR.instances.content.setData(ssalbum.mp_content);
+				var corpcontents = CKEDITOR.instances.corpcontents
+						.setData(corpcompany.mp_corpcontents);
+				var bizcontents = CKEDITOR.instances.bizcontents
+						.setData(corpcompany.mp_bizcontents);
 			} else {
 				alert("Loading failed!");
 			}
@@ -145,7 +142,7 @@ function formValidator() {
 					},
 					stringLength : {
 						min : 2,
-						max : 200,
+						max : 30,
 						message : '최소 2자에서 10자이내로 입력하세요'
 					}
 				}
@@ -243,7 +240,7 @@ function resetForm(formID) {
 	$("#" + formID).each(function() {
 		this.reset();
 	});
-	$('#albumtitle').val('')
+	$('#mp_corpnums').val('')
 	var bootstrapValidator = $('#' + formID).data('bootstrapValidator');
 	if (bootstrapValidator != null) {
 		bootstrapValidator.resetForm();
@@ -254,72 +251,86 @@ function resetForm(formID) {
  * 모달창이 닫힐때 폼내용을 reset해준다.
  */
 $('.modal').on('hidden.bs.modal', function() {
-	$('#content').text('');
-	var content = CKEDITOR.instances.content.setData('');
-	resetForm('mplanform');
+	var corpcontents = CKEDITOR.instances.corpcontents
+	.setData('');
+	var bizcontents = CKEDITOR.instances.bizcontents
+	.setData('');
 });
 $('#resetBtn').click(function() {
-	$('#content').text('');
-	var content = CKEDITOR.instances.content.setData('');
+	var corpcontents = CKEDITOR.instances.corpcontents
+	.setData('');
+	var bizcontents = CKEDITOR.instances.bizcontents
+	.setData('');
 	resetForm('mplanform');
 });
+
+
+
 /**
  * 저장
  */
-
 $('#btnYboardSave').click(function() {
-	// var surveyCode = $("#surveyCodeForm" ).serializeObject();
-	var mpssnumEncrypt = $('#mpssnumEncrypt').val();
-	alert("mpssnumEncrypt : " + mpssnumEncrypt)
-	var method = "ssalbuminsert";
-	// alert("ssviewinsert : " + mpssnumEncrypt);
-	if (mpssnumEncrypt != "") {
-		alert("ssalbumupdate : " + mpssnumEncrypt);
-		method = "ssalbumupdate";
+	var mp_corpnums = $('#mpssnumEncrypt').val();
+	alert("mpssnumEncrypt : " + mp_corpnums);
+
+	var method = "corpinsert";
+	alert("corpinsert : " + method);
+	if (mp_corpnums != "") {
+		method = "corpupdate";
+		alert("corpupdate : " + method);
 	}
 	// 폼입력값 검증
 	if (!formValidator()) {
 		return;
 	}
-	$('#mplanform').ajaxForm(
+	// var surveyCode = $("#surveyCodeForm" ).serializeObject();
+	var corpcompany = {
+		mp_corpname : $('#corpname').val(),
+		mp_corpphone : $('#corpphone').val(),
+		mp_corpaddress : $('#corpaddress').val(),
+		mp_corpbn : $('#corpbn').val(),
+		mp_bizperson : $('#bizperson').val(),
+		mp_bizphone : $('#bizphone').val(),
+		mp_corpcontents : CKEDITOR.instances.corpcontents.getData(),
+		mp_bizcontents : CKEDITOR.instances.bizcontents.getData(),
+		mp_useyn : $('input[name="RadioGroup1"]:checked').val(),
+		mpssnumEncrypt : mp_corpnums
+	};
 
-	{
-		url : '/test/contents/' + method,
-		cache : false,
-		dataType : "json",
-		// 보내기전 validation check가 필요할경우
-		beforeSubmit : function(data, frm, opt) {
-			// console.log(data);
-			alert("전송전!!");
-			return true;
+	$.ajax({
+		type : "POST",
+		dataType : "JSON",
+		data : JSON.stringify(corpcompany),
+		contentType : "application/json; charset=UTF-8",
+		url : '/test/company/' + method,
+		error : function() {
+			alert("Loading failed!");
 		},
-		// submit이후의 처리
-		success : function(data, statusText) {
+		success : function(jsontotal) {
+			if (jsontotal.success) {
+				showList(null);
+				resetForm('mplanform');
 
-			alert("전송성공!!");
-			showList(null);
-			resetForm('yboardForm');
-			$('#yboardEditModal').modal('hide');
-		},
-		// ajax error
-		error : function(e) {
-			alert("에러발생!!");
-			console.log(e);
+				$('#yboardEditModal').modal('hide');
+			} else {
+				alert(jsontotal.msg);
+			}
 		}
 	});
+
 });
 
 /**
  * 체크된 게시내용 삭제
  */
 $('#btnYboardDelete').click(function() {
-	var checknum = $('input[name=mp_alnum]:checked').map(function() {
+	var checknum = $(':checkbox[name="mp_corpnum"]').map(function() {
 		if (this.checked) {
 			// alert("한개 이상 체크되어야 합니다.");
 			return this.value;
 		}
 	}).get().join(",");
-
+	alert(checknum);
 	// 아무것도 체크되어 있지 않다면 에러표시
 	if (checknum === "") {
 		alert("한개 이상 체크되어야 합니다.");
@@ -327,14 +338,14 @@ $('#btnYboardDelete').click(function() {
 	}
 
 	var param = {
-		mp_alnum : checknum
+			mp_corpnum : checknum
 	};
 	$.ajax({
 		type : "POST",
 		dataType : "JSON",
 		data : JSON.stringify(param),
 		contentType : "application/json; charset=UTF-8",
-		url : "/test/contents/ssalbumdelete",
+		url : "/test/company/corpdelete",
 		error : function() {
 			alert("Loading failed!")
 		},
@@ -353,9 +364,9 @@ $('#btnYboardDelete').click(function() {
  */
 $('#allCheck').click(function() {
 	if (this.checked) {
-		$(':checkbox[name="mp_alnum"]').prop("checked", true);
+		$(':checkbox[name="mp_corpnum"]').prop("checked", true);
 	} else {
-		$(':checkbox[name="mp_alnum"]').prop("checked", false);
+		$(':checkbox[name="mp_corpnum"]').prop("checked", false);
 	}
 });
 

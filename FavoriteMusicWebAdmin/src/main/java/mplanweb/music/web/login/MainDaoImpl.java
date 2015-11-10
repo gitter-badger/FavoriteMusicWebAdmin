@@ -7,7 +7,7 @@ public class MainDaoImpl extends SqlSessionDaoSupport implements MainDAO{
 	@Override
 	public String getUserPwd(String userid) {
 		// TODO Auto-generated method stub
-		return (String)getSqlSession().selectOne("mplanweb.music.web.admin.getUserPwd", userid);
+		return (String)getSqlSession().selectOne("mplanlogin.getUserPwd", userid);
 	}
 	
 

@@ -63,6 +63,7 @@
 <context:component-scan base-package="mplanweb.music.web.board" />
 <context:component-scan base-package="mplanweb.music.web.call" />
 <context:component-scan base-package="mplanweb.music.web.chart" />
+<context:component-scan base-package="mplanweb.music.web.corp" />
 <context:component-scan base-package="mplanweb.music.web.contents" />
 <context:component-scan base-package="mplanweb.music.web.main" />
 <context:component-scan base-package="mplanweb.music.web.member" />
@@ -70,4 +71,5 @@
 <context:component-scan base-package="mplanweb.music.web.radio" />
 <context:component-scan base-package="mplanweb.music.web.sns" />
 <context:component-scan base-package="mplanweb.music.web.search" />
+<context:component-scan base-package="mplanweb.music.web.login" />
 </beans:beans>

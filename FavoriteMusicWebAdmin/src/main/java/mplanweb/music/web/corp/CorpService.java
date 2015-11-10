@@ -5,18 +5,43 @@ import java.util.Map;
 
 public interface CorpService {
 
-	// MV View
-	public int mvtotalcount(CorpSearch ssearch);
+	// corp View
+	public int corptotalcount(CorpSearch corpsearch);
 
-	public List<CorpLable> selectSsmvview(CorpSearch ssearch);
+	public List<CorpCompany> selectcorpview(CorpSearch corpsearch);
 
-	public CorpLable viewmv(Map<String, Object> map);
+	public CorpCompany viewcorpview(Map<String, Object> map);
 
-	public int insertmv(CorpLable ssmvview);
+	public int insertcorp(CorpCompany corpcompany);
 
-	public void deletemv(List<Map<String, Object>> mapList);
+	public void deletecorp(List<Map<String, Object>> mapList);
 
-	public int updatemv(CorpLable ssmvview);
+	public int updatecorp(CorpCompany corpcompany);
 
+	// lable View
+	public int labletotalcount(CorpSearch corpsearch);
+
+	public List<CorpLable> selectlableview(CorpSearch corpsearch);
+
+	public CorpLable viewlableview(Map<String, Object> map);
+
+	public int insertlable(CorpLable corplable);
+
+	public void deletelable(List<Map<String, Object>> mapList);
+
+	public int updatelable(CorpLable corplable);
+
+	// b2b View
+	public int b2btotalcount(CorpSearch corpsearch);
+
+	public List<CorpB2B> selectb2bview(CorpSearch corpsearch);
+
+	public CorpB2B viewb2bview(Map<String, Object> map);
+
+	public int insertb2b(CorpB2B corpb2b);
+
+	public void deleteb2b(List<Map<String, Object>> mapList);
+
+	public int updateb2b(CorpB2B corpb2b);
 
 }

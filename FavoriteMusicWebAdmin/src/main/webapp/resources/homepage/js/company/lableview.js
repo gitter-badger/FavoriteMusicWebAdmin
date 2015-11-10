@@ -1,24 +1,23 @@
-
-function showList(ssearch) {
+function showList(corpsearch) {
 	var record = "";
-	if (ssearch === null) {
-		var ssearch = {
+	if (corpsearch === null) {
+		var corpsearch = {
 			start : 0,
 			page : 1
 		};
 	}
 
-	ssearch.limit = 10;
-	ssearch.searchColumn = $('#searchColumn').val();
-	ssearch.searchText = $('#searchText').val();
+	corpsearch.limit = 10;
+	corpsearch.searchColumn = $('#searchColumn').val();
+	corpsearch.searchText = $('#searchText').val();
 	// ajax 설정
 	$
 			.ajax({
 				type : 'POST',
 				dataType : 'JSON',
-				data : JSON.stringify(ssearch),
+				data : JSON.stringify(corpsearch),
 				contentType : "application/json; charset=UTF-8",
-				url : '/web/source/corpviewselect',
+				url : '/test/company/lableselect',
 				error : function() {
 					alert("데이터가 에러 났습니다. 에러확인바랍니다.");
 				},
@@ -28,25 +27,34 @@ function showList(ssearch) {
 						$
 								.each(
 										jsontotal.items,
-										function(i, sscorp) {
+										function(i, corplable) {
 											record += '<tr>'
-													+ '<td><input type="checkbox" name="mp_corpnums" value="'
-													+ sscorp.mpssnumEncrypt
+													+ '<td><input type="checkbox" name="mp_corpnum" value="'
+													+ corplable.mpssnumEncrypt
 													+ '"/></td>'
 													+ '<td>'
-													+ sscorp.mp_corpnum
+													+ corplable.mp_corpnum
 													+ '</td>'
 													+ '<td><a href="#" onclick="ViewSelect(\''
-													+ sscorp.mpssnumEncrypt
+													+ corplable.mpssnumEncrypt
 													+ '\')">'
-													+ sscorp.mp_corpname
-													+ '</a></td>' + '<td>'
-													+ sscorp.mp_person
-													+ '</td>' + '<td>'
-													+ sscorp.mp_useyn + '</td>'
-													+ '<td>' + sscorp.mp_date
+													+ corplable.mp_corpname
+													+ '</a></td>'
+													+ '<td>'
+													+ corplable.mp_corpbn
 													+ '</td>'
-
+													+ '<td>'
+													+ corplable.mp_bizperson
+													+ '</td>'
+													+ '<td>'
+													+ corplable.mp_bizphone
+													+ '</td>'
+													+ '<td>'
+													+ corplable.mp_useyn
+													+ '</td>'
+													+ '<td>'
+													+ corplable.mp_insertdate
+													+ '</td>' + '</tr>'
 										});
 						$('#dataTable > tbody').html(record);
 						// page
@@ -70,25 +78,28 @@ function ViewSelect(mpssnumEncrypt) {
 		type : "GET",
 		dataType : "JSON",
 		contentType : "application/json; charset=UTF-8",
-		url : "/web/source/corpviewer/" + mpssnumEncrypt,
+		url : "/test/company/lableviewer/" + mpssnumEncrypt,
 		error : function() {
 			alert("실패 하셩습니다. ");
 		},
 		success : function(jsontotal) {
 			if (jsontotal.success) {
-				var sscorp = jsontotal.data;
-				$('#mpssnumEncrypt').val(sscorp.mpssnumEncrypt);
-				$('#corpname').val(sscorp.mp_corpname);
-				$('#number').val(sscorp.mp_number);
-				$('#address').val(sscorp.mp_address);
-				$('#etc').text(sscorp.mp_contents);
-				$('#person').val(sscorp.mp_person);
-				$('#phone').val(sscorp.mp_phone);
+				var corpcompany = jsontotal.data;
+				$('#mpssnumEncrypt').val(corplable.mpssnumEncrypt);
+				$('#lablename').val(corplable.mp_lablename);
+				$('#lablephone').val(corplable.mp_lablephone);
+				$('#lableaddress').val(corplable.mp_lableaddress);
+				$('#lablebn').val(corplable.mp_lablebn);
+				$('#bizperson').val(corplable.mp_bizperson);
+				$('#bizphone').val(corplable.mp_bizphone);
 				$(':radio[name="RadioGroup1"]').filter(
-						'[value="' + sscorp.mp_useyn + '"]').prop("checked",
-						true);
+						'[value="' + corplable.mp_useyn + '"]').prop(
+						"checked", true);
 				$('#yboardEditModal').modal('show');
-
+				var lablecontents = CKEDITOR.instances.lablecontents
+						.setData(corplable.mp_lablecontents);
+				var bizcontents = CKEDITOR.instances.bizcontents
+						.setData(corplable.mp_bizcontents);
 			} else {
 				alert("Loading failed!");
 			}
@@ -229,7 +240,7 @@ function resetForm(formID) {
 	$("#" + formID).each(function() {
 		this.reset();
 	});
-	$('#mp_corpnums').val('')
+	$('#mp_lablenum').val('')
 	var bootstrapValidator = $('#' + formID).data('bootstrapValidator');
 	if (bootstrapValidator != null) {
 		bootstrapValidator.resetForm();
@@ -240,7 +251,12 @@ function resetForm(formID) {
  * 모달창이 닫힐때 폼내용을 reset해준다.
  */
 $('.modal').on('hidden.bs.modal', function() {
-	$('#etc').text('');
+	var lablecontents = CKEDITOR.instances.lablecontents.setData('');
+	var bizcontents = CKEDITOR.instances.bizcontents.setData('');
+});
+$('#resetBtn').click(function() {
+	var lablecontents = CKEDITOR.instances.lablecontents.setData('');
+	var bizcontents = CKEDITOR.instances.bizcontents.setData('');
 	resetForm('mplanform');
 });
 
@@ -251,34 +267,36 @@ $('#btnYboardSave').click(function() {
 	var mp_corpnums = $('#mpssnumEncrypt').val();
 	alert("mpssnumEncrypt : " + mp_corpnums);
 
-	var method = "sscorpinsert";
-	alert("sscorpinsert : " + method);
+	var method = "lableinsert";
+	alert("lableinsert : " + method);
 	if (mp_corpnums != "") {
-		method = "sscorpupdate";
-		alert("sscorpupdate : " + method);
+		method = "lableupdate";
+		alert("lableupdate : " + method);
 	}
 	// 폼입력값 검증
 	if (!formValidator()) {
 		return;
 	}
 	// var surveyCode = $("#surveyCodeForm" ).serializeObject();
-	var sscorp = {
-		mp_corpname : $('#corpname').val(),
-		mp_number : $('#number').val(),
-		mp_address : $('#address').val(),
-		mp_contents : $('#etc').val(),
-		mp_person : $('#person').val(),
-		mp_phone : $('#phone').val(),
+	var corplable = {
+		mp_lablename : $('#lablename').val(),
+		mp_lablephone : $('#lablephone').val(),
+		mp_lableaddress : $('#lableaddress').val(),
+		mp_lablebn : $('#lablebn').val(),
+		mp_bizperson : $('#bizperson').val(),
+		mp_bizphone : $('#bizphone').val(),
+		mp_lablecontents : CKEDITOR.instances.lablecontents.getData(),
+		mp_bizcontents : CKEDITOR.instances.bizcontents.getData(),
 		mp_useyn : $('input[name="RadioGroup1"]:checked').val(),
-		mpssnumEncrypt : mp_corpnums
+		mpssnumEncrypt : mp_lablenum
 	};
 
 	$.ajax({
 		type : "POST",
 		dataType : "JSON",
-		data : JSON.stringify(sscorp),
+		data : JSON.stringify(corpcompany),
 		contentType : "application/json; charset=UTF-8",
-		url : '/web/source/' + method,
+		url : '/test/company/' + method,
 		error : function() {
 			alert("Loading failed!");
 		},
@@ -300,13 +318,13 @@ $('#btnYboardSave').click(function() {
  * 체크된 게시내용 삭제
  */
 $('#btnYboardDelete').click(function() {
-		var checknum = $(':checkbox[name="mp_corpnums"]').map(function(){
+	var checknum = $(':checkbox[name="mp_lablenum"]').map(function() {
 		if (this.checked) {
 			// alert("한개 이상 체크되어야 합니다.");
 			return this.value;
 		}
 	}).get().join(",");
-
+	alert(checknum);
 	// 아무것도 체크되어 있지 않다면 에러표시
 	if (checknum === "") {
 		alert("한개 이상 체크되어야 합니다.");
@@ -314,14 +332,14 @@ $('#btnYboardDelete').click(function() {
 	}
 
 	var param = {
-		mp_corpnum : checknum
+		mp_lablenum : checknum
 	};
 	$.ajax({
 		type : "POST",
 		dataType : "JSON",
 		data : JSON.stringify(param),
 		contentType : "application/json; charset=UTF-8",
-		url : "/web/source/sscorpdelete",
+		url : "/test/company/labledelete",
 		error : function() {
 			alert("Loading failed!")
 		},
@@ -340,9 +358,9 @@ $('#btnYboardDelete').click(function() {
  */
 $('#allCheck').click(function() {
 	if (this.checked) {
-		$(':checkbox[name="mp_corpnums"]').prop("checked", true);
+		$(':checkbox[name="mp_lablenum"]').prop("checked", true);
 	} else {
-		$(':checkbox[name="mp_corpnums"]').prop("checked", false);
+		$(':checkbox[name="mp_lablenum"]').prop("checked", false);
 	}
 });
 

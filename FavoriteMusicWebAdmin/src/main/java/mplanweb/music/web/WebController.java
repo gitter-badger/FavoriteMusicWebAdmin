@@ -49,6 +49,7 @@ public class WebController {
 	}
 
 	// admin main page
+	/*
 	@RequestMapping(value = "/main", method = RequestMethod.GET)
 	public String action(Locale locale, Model model) {
 		logger.info("IndexPage ==> MainPage : ", locale);
@@ -63,7 +64,7 @@ public class WebController {
 		model.addAttribute("membertotal", membertotal);
 		return "/admin/main/main";
 	}
-	
+	*/
 	// login
 	@RequestMapping("/loginFail.do")
 	public String loginFail(@RequestParam Map<String, Object> paramMap,
@@ -79,7 +80,18 @@ public class WebController {
 		// 로그인 후 로그인 한 아이디를 가지고 온다.
 		String name = principal.getName();
 		model.addAttribute("username", name);
-		return "/admin/login/loginok";
+		
+		
+		int musictotal = mainservice.selectTotalCountMusic();
+		int todaymusictotal = mainservice.selectTotalCountToday();
+		int radiototal = mainservice.selectTotalCountRadio();
+		int membertotal = mainservice.selectTotalCountMember();
+
+		model.addAttribute("musictotal", musictotal);
+		model.addAttribute("todaymusictotal", todaymusictotal);
+		model.addAttribute("radiototal", radiototal);
+		model.addAttribute("membertotal", membertotal);
+		return "/admin/main/main";
 
 	}
 
@@ -87,7 +99,7 @@ public class WebController {
 	public String logout(@RequestParam Map<String, Object> paramMap,
 			ModelMap model) throws Throwable {
 		logger.info("MainPage ==> logout.do : ", paramMap, model);
-		return "/admin/main/main";
+		return "/admin/index";
 	}
 	
 	// Join 
@@ -100,6 +112,35 @@ public class WebController {
 		
 	}
 
+	
+	// Company Page
+	// Company main page
+	@RequestMapping(value = "/company", method = RequestMethod.GET)
+	public String Company(Locale locale, Model model) {
+		logger.info("MainPage ==> companyPage : ", locale);
+
+		return "/admin/company/company";
+	}
+
+
+	// Lable main page
+	@RequestMapping(value = "/lable", method = RequestMethod.GET)
+	public String Lable(Locale locale, Model model) {
+		logger.info("MainPage ==> lablePage : ", locale);
+
+		return "/admin/company/lable";
+	}
+
+
+	// B2B main page
+	@RequestMapping(value = "/b2b", method = RequestMethod.GET)
+	public String B2B(Locale locale, Model model) {
+		logger.info("MainPage ==> b2bPage : ", locale);
+
+		return "/admin/company/b2b";
+	}
+
+	
 	// Admin Page
 	// AD main page
 	@RequestMapping(value = "/ad", method = RequestMethod.GET)
@@ -150,14 +191,6 @@ public class WebController {
 	}
 
 	// Contents Page
-	// Lable main page
-	@RequestMapping(value = "/lable", method = RequestMethod.GET)
-	public String Lable(Locale locale, Model model) {
-		logger.info("MainPage ==> LablePage : ", locale);
-
-		return "/admin/contents/lable";
-	}
-
 	// Artist main page
 	@RequestMapping(value = "/artist", method = RequestMethod.GET)
 	public String Artist(Locale locale, Model model) {

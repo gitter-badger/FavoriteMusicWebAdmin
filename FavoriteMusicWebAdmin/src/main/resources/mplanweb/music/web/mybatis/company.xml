@@ -7,7 +7,27 @@
 	<!-- 회사 총 토탈 -->
 	<select id="corptotalcount" resultType="int" parameterType="CorpSearch">
 		SELECT COUNT(*)
-		FROM mplan_corp
+		FROM mplan_company
+		<where>
+			<if test="@Ognl@isNotEmpty(searchText)">
+				AND ${searchColumn} LIKE CONCAT('',#{searchText},'%')
+			</if>
+		</where>
+	</select>
+	<!-- 레이블 총 토탈 -->
+	<select id="labletotalcount" resultType="int" parameterType="CorpSearch">
+		SELECT COUNT(*)
+		FROM mplan_lable
+		<where>
+			<if test="@Ognl@isNotEmpty(searchText)">
+				AND ${searchColumn} LIKE CONCAT('',#{searchText},'%')
+			</if>
+		</where>
+	</select>
+	<!-- b2b 총 토탈 -->
+	<select id="b2btotalcount" resultType="int" parameterType="CorpSearch">
+		SELECT COUNT(*)
+		FROM mplan_b2b
 		<where>
 			<if test="@Ognl@isNotEmpty(searchText)">
 				AND ${searchColumn} LIKE CONCAT('',#{searchText},'%')
@@ -17,55 +37,179 @@
 	<!-- 토탈 쿼리 종료 -->
 	<!-- 리스트 쿼리 시작 -->
 	<!-- 회사 총 리스트 -->
-	<select id="selectcorpview" resultType="Sscorp" parameterType="CorpSearch">
-		SELECT mp_corpnum, mp_corpname, mp_address, mp_person, mp_useyn,
-		mp_date
-		FROM mplan_corp
+	<select id="selectcorpview" resultType="CorpCompany"
+		parameterType="CorpSearch">
+		SELECT mp_corpnum, mp_corpname, mp_corpbn, mp_bizperson, mp_bizphone,
+		mp_useyn,
+		mp_insertdate
+		FROM mplan_company
 		<where>
 			<if test="@Ognl@isNotEmpty(searchText)">
 				AND ${searchColumn} LIKE CONCAT('',#{searchText},'%')
 			</if>
 		</where>
-		ORDER BY mp_date DESC LIMIT #{start}, #{limit}
+		ORDER BY mp_insertdate DESC LIMIT #{start}, #{limit}
+	</select>
+
+	<!-- 레이블 총 리스트 -->
+	<select id="selectlableview" resultType="CorpLable"
+		parameterType="CorpSearch">
+		SELECT mp_lablenum, mp_lablename, mp_lablephone, mp_bizperson,
+		mp_bizphone,
+		mp_useyn,
+		mp_insertdate
+		FROM mplan_lable
+		<where>
+			<if test="@Ognl@isNotEmpty(searchText)">
+				AND ${searchColumn} LIKE CONCAT('',#{searchText},'%')
+			</if>
+		</where>
+		ORDER BY mp_insertdate DESC LIMIT #{start}, #{limit}
+	</select>
+
+
+	<!-- b2b 총 리스트 -->
+	<select id="selectb2bview" resultType="CorpB2B" parameterType="CorpSearch">
+		SELECT mp_b2bnum, mp_b2bname, mp_b2bbn, mp_bizperson, mp_bizphone,
+		mp_useyn,
+		mp_insertdate
+		FROM mplan_company
+		<where>
+			<if test="@Ognl@isNotEmpty(searchText)">
+				AND ${searchColumn} LIKE CONCAT('',#{searchText},'%')
+			</if>
+		</where>
+		ORDER BY mp_insertdate DESC LIMIT #{start}, #{limit}
 	</select>
 	<!-- 리스트 쿼리 종료 -->
 	<!-- 뷰 쿼리 시작 -->
 	<!-- 회사 총 뷰 -->
-	<select id="viewcorpview" resultType="Sscorp" parameterType="map">
-		SELECT mp_corpnum, mp_corpname, mp_number, mp_address, mp_contents,
-		mp_person,
-		mp_phone, mp_useyn
+	<select id="viewcorpview" resultType="CorpCompany"
+		parameterType="map">
+		SELECT mp_corpnum, mp_corpname, mp_corpphone,
+		mp_corpaddress, mp_corpbn,
+		mp_corpcontents,
+		mp_bizperson, mp_bizphone,
+		mp_bizcontents, mp_useyn
 		FROM
-		mplan_corp
+		mplan_company
+		WHERE mp_corpnum =
+		#{mp_corpnum}
+	</select>
+
+
+	<!-- 레이블 총 뷰 -->
+	<select id="viewlableview" resultType="CorpLable" parameterType="map">
+		SELECT mp_lablenum, mp_lablename, mp_lablephone,
+		mp_lableaddress,
+		mp_lablebn,
+		mp_lablecontents,
+		mp_bizperson, mp_bizphone,
+		mp_bizcontents,
+		mp_useyn
+		FROM
+		mplan_lable
+		WHERE mp_corpnum =
+		#{mp_corpnum}
+	</select>
+
+	<!-- b2b 총 뷰 -->
+	<select id="viewb2bview" resultType="CorpB2B" parameterType="map">
+		SELECT mp_b2bnum, mp_b2bname, mp_b2bphone,
+		mp_b2baddress, mp_b2bbn,
+		mp_b2bcontents,
+		mp_bizperson, mp_bizphone,
+		mp_bizcontents, mp_useyn
+		FROM
+		mplan_b2b
 		WHERE mp_corpnum =
 		#{mp_corpnum}
 	</select>
 	<!-- 뷰 쿼리 종료 -->
 	<!-- Insert 시작 -->
 	<!-- 회사 등록 -->
-	<insert id="insertcorp" parameterType="Sscorp">
+	<insert id="insertcorp" parameterType="CorpCompany">
 		INSERT INTO
-		mplan_corp
+		mplan_company
 		(
-		mp_corpname, mp_number,
-		mp_address, mp_contents,
-		mp_person, mp_phone,
-		mp_useyn,
-		mp_date)
+		mp_corpname, mp_corpphone,
+		mp_corpaddress, mp_corpbn,
+		mp_corpcontents,
+		mp_bizperson,
+		mp_bizphone, mp_bizcontents, mp_useyn,
+		mp_insertdate)
 		values (
 		#{mp_corpname},
-		#{mp_number},
-		#{mp_address},
-		#{mp_contents},
-		#{mp_person}, #{mp_phone},
+		#{mp_corpphone},
+		#{mp_corpaddress},
+		#{mp_corpbn},
+		#{mp_corpcontents}, #{mp_bizperson}, #{mp_bizphone},
+		#{mp_bizcontents},
 		#{mp_useyn},
 		now())
 	</insert>
+
+	<!-- 레이블 등록 -->
+	<insert id="insertlable" parameterType="CorpLable">
+		INSERT INTO
+		mplan_lable
+		(
+		mp_lablename, mp_lablephone,
+		mp_lableaddress, mp_lablebn,
+		mp_lablecontents,
+		mp_bizperson,
+		mp_bizphone, mp_bizcontents, mp_useyn,
+		mp_insertdate)
+		values (
+		#{mp_lablename},
+		#{mp_lablephone},
+		#{mp_lableaddress},
+		#{mp_lablebn},
+		#{mp_lablecontents}, #{mp_bizperson},
+		#{mp_bizphone},
+		#{mp_bizcontents},
+		#{mp_useyn},
+		now())
+	</insert>
+	<!-- b2b 등록 -->
+	<insert id="insertb2b" parameterType="CorpB2B">
+		INSERT INTO
+		mplan_company
+		(
+		mp_b2bname, mp_b2bphone,
+		mp_b2baddress, mp_b2bbn,
+		mp_b2bcontents,
+		mp_bizperson,
+		mp_bizphone, mp_bizcontents, mp_useyn,
+		mp_insertdate)
+		values (
+		#{mp_b2bname},
+		#{mp_b2bphone},
+		#{mp_b2baddress},
+		#{mp_b2bbn},
+		#{mp_b2bcontents}, #{mp_bizperson}, #{mp_bizphone},
+		#{mp_bizcontents},
+		#{mp_useyn},
+		now())
+	</insert>
+
 	<!-- Insert 종료 -->
 	<!-- Delete 시작 -->
 	<!-- 회사 삭제 -->
 	<delete id="deletecorp" parameterType="map">
-		DELETE FROM mplan_corp
+		DELETE FROM mplan_company
+		WHERE
+		mp_corpnum= #{mp_corpnum}
+	</delete>
+	<!-- 레이블 삭제 -->
+	<delete id="deletelable" parameterType="map">
+		DELETE FROM mplan_lable
+		WHERE
+		mp_corpnum= #{mp_corpnum}
+	</delete>
+	<!-- b2b 삭제 -->
+	<delete id="deleteb2b" parameterType="map">
+		DELETE FROM mplan_b2b
 		WHERE
 		mp_corpnum= #{mp_corpnum}
 	</delete>
@@ -73,34 +217,115 @@
 	<!-- Update 시작 -->
 
 	<!-- 회사 수정 -->
-	<update id="updatecorp" parameterType="Sscorp">
+	<update id="updatecorp" parameterType="CorpCompany">
 
-		UPDATE mplan_corp
+		UPDATE mplan_company
 		<set>
 			<if test="@Ognl@isNotEmpty(mp_corpname)">
 				mp_corpname = #{mp_corpname},
 			</if>
-			<if test="@Ognl@isNotEmpty(mp_number)">
-				mp_number = #{mp_number},
+			<if test="@Ognl@isNotEmpty(mp_corpphone)">
+				mp_corpphone = #{mp_corpphone},
 			</if>
-			<if test="@Ognl@isNotEmpty(mp_address)">
-				mp_address = #{mp_address},
+			<if test="@Ognl@isNotEmpty(mp_corpaddress)">
+				mp_corpaddress = #{mp_corpaddress},
 			</if>
-			<if test="@Ognl@isNotEmpty(mp_contents)">
-				mp_contents = #{mp_contents},
+			<if test="@Ognl@isNotEmpty(mp_corpbn)">
+				mp_corpbn = #{mp_corpbn},
 			</if>
-			<if test="@Ognl@isNotEmpty(mp_person)">
-				mp_person = #{mp_person},
+			<if test="@Ognl@isNotEmpty(mp_corpcontents)">
+				mp_corpcontents = #{mp_corpcontents},
 			</if>
-			<if test="@Ognl@isNotEmpty(mp_phone)">
-				mp_phone = #{mp_phone},
+			<if test="@Ognl@isNotEmpty(mp_bizperson)">
+				mp_bizperson = #{mp_bizperson},
+			</if>
+			<if test="@Ognl@isNotEmpty(mp_bizphone)">
+				mp_bizphone = #{mp_bizphone},
+			</if>
+			<if test="@Ognl@isNotEmpty(mp_bizcontents)">
+				mp_bizcontents = #{mp_bizcontents},
 			</if>
 			<if test="@Ognl@isNotEmpty(mp_useyn)">
 				mp_useyn = #{mp_useyn},
 			</if>
-
+			mp_updatedate = now()
 		</set>
 		WHERE mp_corpnum = #{mp_corpnum}
 	</update>
+
+	<!-- 레이블 수정 -->
+	<update id="updatelable" parameterType="CorpLable">
+
+		UPDATE mplan_lable
+		<set>
+			<if test="@Ognl@isNotEmpty(mp_lablename)">
+				mp_lablename = #{mp_lablename},
+			</if>
+			<if test="@Ognl@isNotEmpty(mp_lablephone)">
+				mp_lablephone = #{mp_lablephone},
+			</if>
+			<if test="@Ognl@isNotEmpty(mp_lableaddress)">
+				mp_lableaddress = #{mp_lableaddress},
+			</if>
+			<if test="@Ognl@isNotEmpty(mp_lablebn)">
+				mp_lablebn = #{mp_lablebn},
+			</if>
+			<if test="@Ognl@isNotEmpty(mp_lablecontents)">
+				mp_lablecontents = #{mp_lablecontents},
+			</if>
+			<if test="@Ognl@isNotEmpty(mp_bizperson)">
+				mp_bizperson = #{mp_bizperson},
+			</if>
+			<if test="@Ognl@isNotEmpty(mp_bizphone)">
+				mp_bizphone = #{mp_bizphone},
+			</if>
+			<if test="@Ognl@isNotEmpty(mp_bizcontents)">
+				mp_bizcontents = #{mp_bizcontents},
+			</if>
+			<if test="@Ognl@isNotEmpty(mp_useyn)">
+				mp_useyn = #{mp_useyn},
+			</if>
+			mp_updatedate = now()
+		</set>
+		WHERE mp_corpnum = #{mp_corpnum}
+	</update>
+
+	<!-- b2b 수정 -->
+	<update id="updateb2b" parameterType="CorpB2B">
+
+		UPDATE mplan_company
+		<set>
+			<if test="@Ognl@isNotEmpty(mp_b2bname)">
+				mp_b2bname = #{mp_b2bname},
+			</if>
+			<if test="@Ognl@isNotEmpty(mp_b2bphone)">
+				mp_b2bphone = #{mp_b2bphone},
+			</if>
+			<if test="@Ognl@isNotEmpty(mp_b2baddress)">
+				mp_b2baddress = #{mp_b2baddress},
+			</if>
+			<if test="@Ognl@isNotEmpty(mp_b2bbn)">
+				mp_b2bbn = #{mp_b2bbn},
+			</if>
+			<if test="@Ognl@isNotEmpty(mp_b2bcontents)">
+				mp_b2bcontents = #{mp_b2bcontents},
+			</if>
+			<if test="@Ognl@isNotEmpty(mp_bizperson)">
+				mp_bizperson = #{mp_bizperson},
+			</if>
+			<if test="@Ognl@isNotEmpty(mp_bizphone)">
+				mp_bizphone = #{mp_bizphone},
+			</if>
+			<if test="@Ognl@isNotEmpty(mp_bizcontents)">
+				mp_bizcontents = #{mp_bizcontents},
+			</if>
+			<if test="@Ognl@isNotEmpty(mp_useyn)">
+				mp_useyn = #{mp_useyn},
+			</if>
+			mp_updatedate = now()
+		</set>
+		WHERE mp_corpnum = #{mp_corpnum}
+	</update>
+
 	<!-- Update 종료 -->
 </mapper>
