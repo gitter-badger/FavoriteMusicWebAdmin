@@ -1,23 +1,23 @@
-function showList(corpsearch) {
+function showList(b2bsearch) {
 	var record = "";
-	if (corpsearch === null) {
-		var corpsearch = {
+	if (b2bsearch === null) {
+		var b2bsearch = {
 			start : 0,
 			page : 1
 		};
 	}
 
-	corpsearch.limit = 10;
-	corpsearch.searchColumn = $('#searchColumn').val();
-	corpsearch.searchText = $('#searchText').val();
+	b2bsearch.limit = 10;
+	b2bsearch.searchColumn = $('#searchColumn').val();
+	b2bsearch.searchText = $('#searchText').val();
 	// ajax 설정
 	$
 			.ajax({
 				type : 'POST',
 				dataType : 'JSON',
-				data : JSON.stringify(corpsearch),
+				data : JSON.stringify(b2bsearch),
 				contentType : "application/json; charset=UTF-8",
-				url : '/test/company/corpselect',
+				url : '/test/company/b2bselect',
 				error : function() {
 					alert("데이터가 에러 났습니다. 에러확인바랍니다.");
 				},
@@ -27,39 +27,39 @@ function showList(corpsearch) {
 						$
 								.each(
 										jsontotal.items,
-										function(i, corpcompany) {
+										function(i, b2bcompany) {
 											record += '<tr>'
-													+ '<td><input type="checkbox" name="mp_corpnum" value="'
-													+ corpcompany.mpssnumEncrypt
+													+ '<td><input type="checkbox" name="mp_b2bnum" value="'
+													+ b2bcompany.mpssnumEncrypt
 													+ '"/></td>'
 													+ '<td>'
-													+ corpcompany.mp_corpnum
+													+ b2bcompany.mp_b2bnum
 													+ '</td>'
 													+ '<td><a href="#" onclick="ViewSelect(\''
-													+ corpcompany.mpssnumEncrypt
+													+ b2bcompany.mpssnumEncrypt
 													+ '\')">'
-													+ corpcompany.mp_corpname
+													+ b2bcompany.mp_b2bname
 													+ '</a></td>'
 													+ '<td>'
-													+ corpcompany.mp_corpbn
+													+ b2bcompany.mp_b2bbn
 													+ '</td>'
 													+ '<td>'
-													+ corpcompany.mp_bizperson
+													+ b2bcompany.mp_bizperson
 													+ '</td>'
 													+ '<td>'
-													+ corpcompany.mp_bizphone
+													+ b2bcompany.mp_bizphone
 													+ '</td>'
 													+ '<td>'
-													+ corpcompany.mp_useyn
+													+ b2bcompany.mp_useyn
 													+ '</td>'
 													+ '<td>'
-													+ corpcompany.mp_insertdate
+													+ b2bcompany.mp_insertdate
 													+ '</td>' + '</tr>'
 										});
 						$('#dataTable > tbody').html(record);
 						// page
 						if (jsontotal.total > 0) {
-							goPagination(jsontotal.total, 10, ssearch.page);
+							goPagination(jsontotal.total, 10, b2bsearch.page);
 							$('#pagination').show();
 						} else {
 							$('#pagination').hide();
@@ -78,28 +78,28 @@ function ViewSelect(mpssnumEncrypt) {
 		type : "GET",
 		dataType : "JSON",
 		contentType : "application/json; charset=UTF-8",
-		url : "/test/company/corpviewer/" + mpssnumEncrypt,
+		url : "/test/company/b2bviewer/" + mpssnumEncrypt,
 		error : function() {
 			alert("실패 하셩습니다. ");
 		},
 		success : function(jsontotal) {
 			if (jsontotal.success) {
-				var corpcompany = jsontotal.data;
-				$('#mpssnumEncrypt').val(corpcompany.mpssnumEncrypt);
-				$('#corpname').val(corpcompany.mp_corpname);
-				$('#corpphone').val(corpcompany.mp_corpphone);
-				$('#corpaddress').val(corpcompany.mp_corpaddress);
-				$('#corpbn').val(corpcompany.mp_corpbn);
-				$('#bizperson').val(corpcompany.mp_bizperson);
-				$('#bizphone').val(corpcompany.mp_bizphone);
+				var b2bcompany = jsontotal.data;
+				$('#mpssnumEncrypt').val(b2bcompany.mpssnumEncrypt);
+				$('#b2bname').val(b2bcompany.mp_b2bname);
+				$('#b2bphone').val(b2bcompany.mp_b2bphone);
+				$('#b2baddress').val(b2bcompany.mp_b2baddress);
+				$('#b2bbn').val(b2bcompany.mp_b2bbn);
+				$('#bizperson').val(b2bcompany.mp_bizperson);
+				$('#bizphone').val(b2bcompany.mp_bizphone);
 				$(':radio[name="RadioGroup1"]').filter(
-						'[value="' + corpcompany.mp_useyn + '"]').prop(
+						'[value="' + b2bcompany.mp_useyn + '"]').prop(
 						"checked", true);
 				$('#yboardEditModal').modal('show');
-				var corpcontents = CKEDITOR.instances.corpcontents
-						.setData(corpcompany.mp_corpcontents);
+				var b2bcontents = CKEDITOR.instances.b2bcontents
+						.setData(b2bcompany.mp_b2bcontents);
 				var bizcontents = CKEDITOR.instances.bizcontents
-						.setData(corpcompany.mp_bizcontents);
+						.setData(b2bcompany.mp_bizcontents);
 			} else {
 				alert("Loading failed!");
 			}
@@ -240,7 +240,7 @@ function resetForm(formID) {
 	$("#" + formID).each(function() {
 		this.reset();
 	});
-	$('#mp_corpnums').val('')
+	$('#mp_b2bnum').val('')
 	var bootstrapValidator = $('#' + formID).data('bootstrapValidator');
 	if (bootstrapValidator != null) {
 		bootstrapValidator.resetForm();
@@ -270,28 +270,28 @@ $('#resetBtn').click(function() {
  * 저장
  */
 $('#btnYboardSave').click(function() {
-	var mp_corpnums = $('#mpssnumEncrypt').val();
+	var mp_b2bnums = $('#mpssnumEncrypt').val();
 	alert("mpssnumEncrypt : " + mp_corpnums);
 
-	var method = "corpinsert";
-	alert("corpinsert : " + method);
-	if (mp_corpnums != "") {
-		method = "corpupdate";
-		alert("corpupdate : " + method);
+	var method = "b2binsert";
+	alert("b2binsert : " + method);
+	if (mp_b2bnums != "") {
+		method = "b2bupdate";
+		alert("b2bupdate : " + method);
 	}
 	// 폼입력값 검증
 	if (!formValidator()) {
 		return;
 	}
 	// var surveyCode = $("#surveyCodeForm" ).serializeObject();
-	var corpcompany = {
-		mp_corpname : $('#corpname').val(),
-		mp_corpphone : $('#corpphone').val(),
-		mp_corpaddress : $('#corpaddress').val(),
-		mp_corpbn : $('#corpbn').val(),
+	var b2bcompany = {
+		mp_b2bname : $('#b2bname').val(),
+		mp_b2bphone : $('#b2bphone').val(),
+		mp_b2baddress : $('#b2baddress').val(),
+		mp_b2bbn : $('#b2bbn').val(),
 		mp_bizperson : $('#bizperson').val(),
 		mp_bizphone : $('#bizphone').val(),
-		mp_corpcontents : CKEDITOR.instances.corpcontents.getData(),
+		mp_b2bcontents : CKEDITOR.instances.b2bcontents.getData(),
 		mp_bizcontents : CKEDITOR.instances.bizcontents.getData(),
 		mp_useyn : $('input[name="RadioGroup1"]:checked').val(),
 		mpssnumEncrypt : mp_corpnums
@@ -324,7 +324,7 @@ $('#btnYboardSave').click(function() {
  * 체크된 게시내용 삭제
  */
 $('#btnYboardDelete').click(function() {
-	var checknum = $(':checkbox[name="mp_corpnum"]').map(function() {
+	var checknum = $(':checkbox[name="mp_b2bnum"]').map(function() {
 		if (this.checked) {
 			// alert("한개 이상 체크되어야 합니다.");
 			return this.value;
@@ -345,7 +345,7 @@ $('#btnYboardDelete').click(function() {
 		dataType : "JSON",
 		data : JSON.stringify(param),
 		contentType : "application/json; charset=UTF-8",
-		url : "/test/company/corpdelete",
+		url : "/test/company/b2bdelete",
 		error : function() {
 			alert("Loading failed!")
 		},
@@ -364,9 +364,9 @@ $('#btnYboardDelete').click(function() {
  */
 $('#allCheck').click(function() {
 	if (this.checked) {
-		$(':checkbox[name="mp_corpnum"]').prop("checked", true);
+		$(':checkbox[name="mp_b2bnum"]').prop("checked", true);
 	} else {
-		$(':checkbox[name="mp_corpnum"]').prop("checked", false);
+		$(':checkbox[name="mp_b2bnum"]').prop("checked", false);
 	}
 });
 

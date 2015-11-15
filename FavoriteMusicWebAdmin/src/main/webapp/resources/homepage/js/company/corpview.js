@@ -59,7 +59,7 @@ function showList(corpsearch) {
 						$('#dataTable > tbody').html(record);
 						// page
 						if (jsontotal.total > 0) {
-							goPagination(jsontotal.total, 10, ssearch.page);
+							goPagination(jsontotal.total, 10, corpsearch.page);
 							$('#pagination').show();
 						} else {
 							$('#pagination').hide();

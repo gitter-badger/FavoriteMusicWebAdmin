@@ -1,3 +1,4 @@
+<%@page import="com.fasterxml.jackson.annotation.JsonInclude.Include"%>
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -44,7 +45,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
 		<!-- Main Header -->
 		<header class="main-header">
-
 			<!-- Logo -->
 			<a href="<%=request.getContextPath()%>/main.do" class="logo"> <!-- mini logo for sidebar mini 50x50 pixels -->
 				<span class="logo-mini">MP</span> <!-- logo for regular state and mobile devices -->
@@ -227,6 +227,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
 		<!-- Content Wrapper. Contains page content -->
 		<div class="content-wrapper">
+
+
 			<!-- Content Header (Page header) -->
 			<section class="content-header">
 				<h1>
@@ -242,7 +244,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
 			<!-- Main content -->
 			<section class="content">
-
 				<div class="row">
 					<div class="col-md-3 col-sm-6 col-xs-12">
 						<div class="info-box">
@@ -293,12 +294,16 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
 				</div>
 
+
 			</section>
+
+
 			<!-- /.content -->
 		</div>
 		<!-- /.content-wrapper -->
 
 		<!-- Main Footer -->
+
 		<footer class="main-footer">
 			<!-- To the right -->
 			<div class="pull-right hidden-xs">Favorite Music 2015</div>
@@ -310,7 +315,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
 		</footer>
 
 		<!-- Control Sidebar -->
-
 		<!-- /.control-sidebar -->
 		<!-- Add the sidebar's background. This div must be placed
            immediately after the control sidebar -->

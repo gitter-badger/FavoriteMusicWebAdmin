@@ -23,7 +23,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 @Controller
-@RequestMapping("/company")
+@RequestMapping(value="/company" , method = {RequestMethod.GET, RequestMethod.POST})
 public class CorpController {
 
 	private static final Logger logger = LoggerFactory

@@ -125,16 +125,13 @@
 				<a href="#">일반직원관리자</a>
 			</div>
 		</div>
-		
-		
-		
-		
-		
 		<!-- Sidebar Menu -->
 		<ul class="sidebar-menu">
 			<li class="header">메뉴</li>
 			<!-- Optionally, you can add icons to the links -->
-			<li><a href="#"><i class='fa fa-link'></i> <span>메인(Main)</span></a></li>
+			<li><a
+				href="<%=request.getContextPath()%>/main.do"><i
+					class='fa fa-link'></i> <span>메인(Main)</span></a></li>
 			<li class="treeview"><a href="#"><i class='fa fa-users'></i>
 					<span>회원관리(Member)</span> <i class="fa fa-angle-left pull-right"></i></a>
 				<ul class="treeview-menu">
@@ -144,9 +141,8 @@
 					<li><a href="#">블랙리스트 관리</a></li>
 					<li><a href="#">일괄회원등록</a></li>
 				</ul></li>
-			<li class="treeview active"><a href="#"><i
-					class='fa fa-building'></i> <span>회사(Company)</span> <i
-					class="fa fa-angle-left pull-right"></i></a>
+			<li class="treeview active"><a href="#"><i class='fa fa-building'></i>
+					<span>회사(Company)</span> <i class="fa fa-angle-left pull-right"></i></a>
 				<ul class="treeview-menu">
 					<li><a href="<%=request.getContextPath()%>/company">제작사관리</a></li>
 					<li><a href="<%=request.getContextPath()%>/lable">레이블관리</a></li>
@@ -214,15 +210,14 @@
 						Music</span></a></li>
 
 		</ul>
-		<!-- /.sidebar-menu --> </section> <!-- /.sidebar --> </aside> <!-- Content Wrapper. Contains page content -->
+		<!-- /.sidebar-menu --> </section> <!-- /.sidebar --> </aside> <!-- /.sidebar --></aside>
 		<div class="content-wrapper">
-			<!-- Content Header (Page header) -->
 			<section class="content-header">
 			<h1>
 				Favorite Music <small>회사관리</small>
 			</h1>
 			<ol class="breadcrumb">
-				<li><a href="<%=request.getContextPath()%>/main"><i
+				<li><a href="<%=request.getContextPath()%>/main.do"><i
 						class="fa fa-dashboard"></i> Home</a></li>
 
 				<li class="active">회사관리</li>

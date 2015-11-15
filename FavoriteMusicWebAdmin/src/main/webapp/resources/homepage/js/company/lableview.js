@@ -1,21 +1,21 @@
-function showList(corpsearch) {
+function showList(lablesearch) {
 	var record = "";
-	if (corpsearch === null) {
-		var corpsearch = {
+	if (lablesearch === null) {
+		var lablesearch = {
 			start : 0,
 			page : 1
 		};
 	}
 
-	corpsearch.limit = 10;
-	corpsearch.searchColumn = $('#searchColumn').val();
-	corpsearch.searchText = $('#searchText').val();
+	lablesearch.limit = 10;
+	lablesearch.searchColumn = $('#searchColumn').val();
+	lablesearch.searchText = $('#searchText').val();
 	// ajax 설정
 	$
 			.ajax({
 				type : 'POST',
 				dataType : 'JSON',
-				data : JSON.stringify(corpsearch),
+				data : JSON.stringify(lablesearch),
 				contentType : "application/json; charset=UTF-8",
 				url : '/test/company/lableselect',
 				error : function() {
@@ -29,19 +29,19 @@ function showList(corpsearch) {
 										jsontotal.items,
 										function(i, corplable) {
 											record += '<tr>'
-													+ '<td><input type="checkbox" name="mp_corpnum" value="'
+													+ '<td><input type="checkbox" name="mp_lablenum" value="'
 													+ corplable.mpssnumEncrypt
 													+ '"/></td>'
 													+ '<td>'
-													+ corplable.mp_corpnum
+													+ corplable.mp_lablenum
 													+ '</td>'
 													+ '<td><a href="#" onclick="ViewSelect(\''
 													+ corplable.mpssnumEncrypt
 													+ '\')">'
-													+ corplable.mp_corpname
+													+ corplable.mp_lablename
 													+ '</a></td>'
 													+ '<td>'
-													+ corplable.mp_corpbn
+													+ corplable.mp_lablebn
 													+ '</td>'
 													+ '<td>'
 													+ corplable.mp_bizperson
@@ -59,7 +59,7 @@ function showList(corpsearch) {
 						$('#dataTable > tbody').html(record);
 						// page
 						if (jsontotal.total > 0) {
-							goPagination(jsontotal.total, 10, ssearch.page);
+							goPagination(jsontotal.total, 10, lablesearch.page);
 							$('#pagination').show();
 						} else {
 							$('#pagination').hide();
